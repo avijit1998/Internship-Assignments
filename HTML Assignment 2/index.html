@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Registration Form</title>
+    <style>
+        .body-style {
+            background: #c0c0aa;
+            background: -webkit-linear-gradient(to right, #1cefff, #c0c0aa);
+            background: linear-gradient(to right, #1cefff, #c0c0aa);
+            padding-top: 30px;
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+        .registration-page{
+            border-radius: 5px 5px 5px 5px ;
+            background-image: url(images/banner.jpg);
+            background-position: center left;
+            width: auto;
+            height: 100px;
+        }
+        .registration-form{
+            border-radius: 5px 5px 5px 5px;
+            background-image: url(images/form-background.jpg);
+            background-position: center;
+            width: auto;
+        }
+        input[type=text], select, textarea {
+            width: 90%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            resize: vertical;
+        }
+        input[type=password], select {
+            width: 60%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            resize: vertical;
+        }
+        input[type=date], select {
+            width: 30%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            resize: vertical;
+        }
+        label {
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            padding: 12px 12px 12px 0;
+            display: inline-block;
+        }
+
+        option {
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        }
+        input[type=submit] {
+            background-color: #191A1B;
+            color: white;
+            padding: 14px 22px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            position: center;
+        }
+
+        input[type=submit]:hover {
+            background-color: #424348;
+        }
+
+        .btn-holder {
+            text-align: center;
+            padding-top: 2px;
+        }
+
+        .container {
+            border-radius: 5px;
+            background-color: #f2f2f2;
+            padding: 20px;
+        }
+
+        .col-25 {
+            float: left;
+            width: 25%;
+            margin-top: 6px;
+        }
+
+        .col-75 {
+            float: left;
+            width: 75%;
+            margin-top: 6px;
+        }
+
+        .row:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+        @media screen and (max-width: 600px) {
+            .col-25, .col-75 {
+                width: 100%;
+                margin-top: 0;
+            }
+        }
+    </style>
+</head>
+<body class="body-style">
+    <div class="registration-page">
+        <img src="images/logo.png" alt="logo" style="width: 50px; height: 50px; float: left;padding-top: 25px; padding-left: 10px;">
+        <div style="display: inline;">
+            <h1 style="text-align:right;padding-left: 35px;padding-top: 30px;padding-right: 15px;
+            color: floralwhite">Company Name</h1>
+        </div>
+    </div>
+    <div class="registration-form">
+        <h2 style="text-align: center;color: floralwhite;padding-top: 15px;">Registration Form</h2>
+        <div class="container">
+            <form>
+                <div class="row">
+                    <div class="col-25">
+                        <label for="fname">First Name</label>
+                    </div>
+                    <div class="col-75">
+                        <input type="text" id="fname" name="firstname" placeholder="Your name..">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-25">
+                        <label for="mname">Middle Name</label>
+                    </div>
+                    <div class="col-75">
+                        <input type="text" id="mname" name="middlename" placeholder="Your middle name..">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-25">
+                        <label for="lname">Last Name</label>
+                    </div>
+                    <div class="col-75">
+                        <input type="text" id="lname" name="lastname" placeholder="Your last name..">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-25">
+                        <label for="email">Email-Id</label>
+                    </div>
+                    <div class="col-75">
+                        <input type="text" id="email" name="email" placeholder="Your Email-Id">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-25">
+                        <label for="phone">Phone Number</label>
+                    </div>
+                    <div class="col-75">
+                        <input type="text" id="phone" name="phone" placeholder="Enter Your Phone Number">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-25">
+                        <label for="pswd">Password</label>
+                    </div>
+                    <div class="col-75">
+                        <input type="password" id="pswd" name="pswd" placeholder="Enter the password">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-25">
+                        <label for="gender">Gender</label>
+                    </div>
+                    <div class="col-75">
+                        <select id="gender" name="gender">
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-25">
+                        <label for="birthday">Date-Of-Birth</label>
+                    </div>
+                    <div class="col-75">
+                        <input type="date" id="birthday" name="birthday">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-25">
+                        <label for="c_address">Current Address</label>
+                    </div>
+                    <div class="col-75">
+                        <textarea id="c_address" name="c_address" 
+                            placeholder="Kindly enter your current address. The address should include city, state, country and zip code."
+                            style="height:100px"></textarea>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-25">
+                        <label for="c_address">Permanent Address</label>
+                    </div>
+                    <div class="col-75">
+                        <textarea id="p_address" name="p_address" 
+                            placeholder="Kindly enter your permanent address. The address should include city, state, country and zip code."
+                            style="height:100px"></textarea>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-25">
+                        <label for="interest">Interests</label>
+                    </div>
+                    <div class="col-75">
+                        <textarea id="interest" name="interest" 
+                            placeholder="What are your interests?(Eg. Sports, books, computer & software, fashion, photography etc.)"
+                            style="height:100px"></textarea>
+                    </div>
+                </div>
+                <div class="btn-holder">
+                    <input type="submit" value="Submit">
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
