@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Basic Registration Page</title>
+</head>
+<body style="background: #009FFF;
+    background: -webkit-linear-gradient(to right, #ec2F4B, #009FFF);
+    background: linear-gradient(to right, #ec2F4B, #009FFF);">
+    <div style="border-radius: 5px 5px 5px 5px;background-color: black;
+    width: 75%; margin-left: auto; margin-right: auto;">
+        <h2 style="text-align: center;color: floralwhite;padding-top: 15px;">Registration Form</h2>
+        <div style="border-radius: 0px 0px 5px 5px;background-color: #f2f2f2;padding: 20px">
+            <form>
+            <div style="width: auto;margin-top: 15px;">
+                <label for="fname" style="margin-left: 10px;
+                    padding-left: 10px;font-weight: bold;
+                    font-family: Verdana, Geneva, Tahoma, sans-serif;">
+                    First Name<span style="color: red;">*</span></label>
+            </div>
+            <div style="width: auto;margin-top: 6px;margin-left:20px;margin-right: 20px;">
+                <input type="text" id="fname" name="fname" placeholder="Your name.."
+                    style="width: 90%;padding: 12px;
+                    resize: vertical;border: 0;outline: 0;background: whitesmoke;
+                    border-bottom: 2px solid black;" required>
+            </div>
+            <div style="width: auto;margin-top: 15px;">
+                <label for="lname" style="margin-left: 10px;
+                    padding-left: 10px;font-weight: bold;
+                    font-family: Verdana, Geneva, Tahoma, sans-serif;">
+                    Last Name<span style="color: red;">*</span></label>
+            </div>
+            <div style="width: auto;margin-top: 6px;margin-left:20px;margin-right: 20px;">
+                <input type="text" id="lname" name="lname" placeholder="Your last name"
+                    style="width: 90%;padding: 12px;
+                    resize: vertical;border: 0;outline: 0;background: whitesmoke;
+                    border-bottom: 2px solid black;" required>
+            </div>
+            <div style="width: auto;margin-top: 15px;">
+                <label for="email" style="margin-left: 10px;
+                    padding-left: 10px;font-weight: bold;
+                    font-family: Verdana, Geneva, Tahoma, sans-serif;">
+                    Email-Id<span style="color: red;">*</span></label>
+            </div>
+            <div style="width: auto;margin-top: 6px;margin-left:20px;margin-right: 20px;">
+                <input type="email" id="email" name="email" placeholder="Your email-id"
+                    style="width: 90%;padding: 12px;
+                    resize: vertical;border: 0;outline: 0;background: whitesmoke;
+                    border-bottom: 2px solid black;" required>
+            </div>
+            <div style="width: auto;margin-top: 15px;">
+                <label for="pswd" style="margin-left: 10px;
+                    padding-left: 10px;font-weight: bold;
+                    font-family: Verdana, Geneva, Tahoma, sans-serif;">
+                    Password<span style="color: red;">*</span></label>
+            </div>
+            <div style="width: auto;margin-top: 6px;margin-left:20px;margin-right: 20px;">
+                <input type="password" id="pswd" name="pswd" placeholder="Enter your password"
+                    style="width: 90%;padding: 12px;
+                    resize: vertical;border: 0;outline: 0;background: whitesmoke;
+                    border-bottom: 2px solid black;" required>
+            </div>
+            <div style="width: auto;margin-top: 15px;">
+                <label for="c-pswd" style="margin-left: 10px;
+                    padding-left: 10px;font-weight: bold;
+                    font-family: Verdana, Geneva, Tahoma, sans-serif;">
+                    Confirm Password<span style="color: red;">*</span></label>
+            </div>
+            <div style="width: auto;margin-top: 6px;margin-left:20px;margin-right: 20px;">
+                <input type="password" id="pswd" name="pswd" placeholder="Confirm password."
+                    style="width: 90%;padding: 12px;
+                    resize: vertical;border: 0;outline: 0;background: whitesmoke;
+                    border-bottom: 2px solid black;" required>
+            </div>
+            <div style="width: auto;margin-top: 15px;">
+                <label for="gender" style="margin-left: 10px;
+                    padding-left: 10px;font-weight: bold;
+                    font-family: Verdana, Geneva, Tahoma, sans-serif;">
+                    Gender<span style="color: red;">*</span></label>
+            </div>
+            <div style="width: auto;margin-top: 6px;margin-left:20px;margin-right: 20px;">
+                <select id="gender" name="gender" style="width: 94.4%;padding: 12px;
+                resize: vertical;border: 0;outline: 0;background: whitesmoke;
+                border-bottom: 2px solid black;" required>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+            <div style="width: auto;margin-top: 15px;">
+                <label for="phone" style="margin-left: 10px;
+                    padding-left: 10px;font-weight: bold;
+                    font-family: Verdana, Geneva, Tahoma, sans-serif;">
+                    Phone Number<span style="color: red;">*</span></label>
+            </div>
+            <div style="width: auto;margin-top: 6px;margin-left:20px;margin-right: 20px;">
+                <input type="number" id="phone" name="phone" placeholder="Your phone number"
+                    style="width: 90%;padding: 12px;
+                    resize: vertical;border: 0;outline: 0;background: whitesmoke;
+                    border-bottom: 2px solid black;" required>
+            </div>
+            <div style="width: auto;margin-top: 15px;">
+                <label for="alt-phone" style="margin-left: 10px;
+                    padding-left: 10px;font-weight: bold;
+                    font-family: Verdana, Geneva, Tahoma, sans-serif;">
+                    Alt. Phone Number</label>
+            </div>
+            <div style="width: auto;margin-top: 6px;margin-left:20px;margin-right: 20px;">
+                <input type="number" id="alt-phone" name="alt-phone" placeholder="Enter alternate number"
+                    style="width: 90%;padding: 12px;
+                    resize: vertical;border: 0;outline: 0;background: whitesmoke;
+                    border-bottom: 2px solid black;">
+            </div>
+            <div style="width: auto;margin-top: 15px;">
+                <label for="address" style="margin-left: 10px;
+                    padding-left: 10px;font-weight: bold;
+                    font-family: Verdana, Geneva, Tahoma, sans-serif;">
+                    Address<span style="color: red;">*</span></label>
+            </div>
+            <div style="width: auto;margin-top: 6px;margin-left:20px;margin-right: 20px;">
+                <textarea id="address" name="address" placeholder="Enter address"
+                    style="height:50px; width: 90%;padding: 12px;
+                    resize: vertical;border: 0;outline: 0;background: whitesmoke;
+                    border-bottom: 2px solid black;" required></textarea>
+            </div>
+            <div style="width: auto;margin-top: 15px;">
+                <label for="city" style="margin-left: 10px;
+                    padding-left: 10px;font-weight: bold;
+                    font-family: Verdana, Geneva, Tahoma, sans-serif;">
+                    City<span style="color: red;">*</span></label>
+            </div>
+            <div style="width: auto;margin-top: 6px;margin-left:20px;margin-right: 20px;">
+                <input type="text" id="city" name="city" placeholder="Enter the city"
+                    style="width: 90%;padding: 12px;
+                    resize: vertical;border: 0;outline: 0;background: whitesmoke;
+                    border-bottom: 2px solid black;" required>
+            </div>
+            <div style="width: auto;margin-top: 15px;">
+                <label for="state" style="margin-left: 10px;
+                    padding-left: 10px;font-weight: bold;
+                    font-family: Verdana, Geneva, Tahoma, sans-serif;">
+                    State<span style="color: red;">*</span></label>
+            </div>
+            <div style="width: auto;margin-top: 6px;margin-left:20px;margin-right: 20px;">
+                <select id="state" name="state" style="width: 94.4%;padding: 12px;
+                resize: vertical;border: 0;outline: 0;background: whitesmoke;
+                border-bottom: 2px solid black;" required>
+                    <option value="od">Odisha</option>
+                    <option value="andhra">Andhra Pradesh</option>
+                    <option value="wb">West Bengal</option>
+                    <option value="chatt">Chattisgarh</option>
+                    <option value="jh">Jharkhand</option>
+                    <option value="up">Uttar Pradesh</option>
+                    <option value="bh">Bihar</option>
+                    <option value="pj">Puhjab</option>
+                </select>
+            </div>
+            <div style="width: auto;margin-top: 15px;">
+                <label for="country" style="margin-left: 10px;
+                    padding-left: 10px;font-weight: bold;
+                    font-family: Verdana, Geneva, Tahoma, sans-serif;">
+                    Country<span style="color: red;">*</span></label>
+            </div>
+            <div style="width: auto;margin-top: 6px;margin-left:20px;margin-right: 20px;">
+                <select id="country" name="country" style="width: 94.4%;padding: 12px;
+                resize: vertical;border: 0;outline: 0;background: whitesmoke;
+                border-bottom: 2px solid black;" required>
+                    <option value="ind">India</option>
+                    <option value="fra">France</option>
+                    <option value="jpn">Japan</option>
+                    <option value="rus">Russia</option>
+                    <option value="spn">Spain</option>
+                </select>
+            </div>
+            <div style="width: auto;margin-top: 15px;">
+                <label for="o-address" style="margin-left: 10px;
+                    padding-left: 10px;font-weight: bold;
+                    font-family: Verdana, Geneva, Tahoma, sans-serif;">
+                    Other Address</label>
+            </div>
+            <div style="width: auto;margin-top: 6px;margin-left:20px;margin-right: 20px;">
+                <textarea id="o-address" name="o-address" placeholder="Alternate address"
+                    style="height:40px; width: 90%;padding: 12px;
+                    resize: vertical;border: 0;outline: 0;background: whitesmoke;
+                    border-bottom: 2px solid black;"></textarea>
+            </div>
+            <div style="width: auto;margin-top: 15px;">
+                <label for="o-city" style="margin-left: 10px;
+                    padding-left: 10px;font-weight: bold;
+                    font-family: Verdana, Geneva, Tahoma, sans-serif;">
+                    City</label>
+            </div>
+            <div style="width: auto;margin-top: 6px;margin-left:20px;margin-right: 20px;">
+                <input type="text" id="o-city" name="o-city" placeholder="Enter city"
+                    style="width: 90%;padding: 12px;
+                    resize: vertical;border: 0;outline: 0;background: whitesmoke;
+                    border-bottom: 2px solid black;">
+            </div>
+            <div style="width: auto;margin-top: 15px;">
+                <label for="o-state" style="margin-left: 10px;
+                    padding-left: 10px;font-weight: bold;
+                    font-family: Verdana, Geneva, Tahoma, sans-serif;">
+                    State</label>
+            </div>
+            <div style="width: auto;margin-top: 6px;margin-left:20px;margin-right: 20px;">
+                <select id="o-state" name="o-state" style="width: 94.4%;padding: 12px;
+                resize: vertical;border: 0;outline: 0;background: whitesmoke;
+                border-bottom: 2px solid black;">
+                    <option value="none">None</option>
+                    <option value="od">Odisha</option>
+                    <option value="andhra">Andhra Pradesh</option>
+                    <option value="wb">West Bengal</option>
+                    <option value="chatt">Chattisgarh</option>
+                    <option value="jh">Jharkhand</option>
+                    <option value="up">Uttar Pradesh</option>
+                    <option value="bh">Bihar</option>
+                    <option value="pj">Puhjab</option>
+                </select>
+            </div>
+            <div style="width: auto;margin-top: 15px;">
+                <label for="o-country" style="margin-left: 10px;
+                    padding-left: 10px;font-weight: bold;
+                    font-family: Verdana, Geneva, Tahoma, sans-serif;">
+                    Country</label>
+            </div>
+            <div style="width: auto;margin-top: 6px;margin-left:20px;margin-right: 20px;">
+                <select id="o-country" name="o-country" style="width: 94.4%;padding: 12px;
+                resize: vertical;border: 0;outline: 0;background: whitesmoke;
+                border-bottom: 2px solid black;">
+                    <option value="none">None</option>
+                    <option value="male">India</option>
+                    <option value="female">France</option>
+                    <option value="other">Japan</option>
+                    <option value="other">Russia</option>
+                    <option value="other">Spain</option>
+                </select>
+            </div>
+            <div style="width: auto;margin-top: 15px;">
+                <p style="margin-left: 10px;
+                padding-left: 10px; padding-top:5px; font-weight: bold;padding-right: 10px;
+                font-family: Verdana, Geneva, Tahoma, sans-serif; font-size: small;">
+                Do you wish to subscribe to the newsletter?</p>
+                <div style="margin-left: 10px; padding-left: 10px;margin-bottom: 10px;">
+                    <input type="radio" id="radio-one" name="switch-one" value="yes" checked/>
+                    <label for="radio-one">Yes</label>
+                    <input type="radio" id="radio-two" name="switch-one" value="no" />
+                    <label for="radio-two">No</label>
+                </div>
+            </div>
+            </form>
+            <button style="background-color: #3644D2;font-size: 12px;margin-top: 5px;
+                padding:12px 21px; border: 3px solid blue; border-radius: 3px;
+                width:100px;margin:0 50%;position:relative;left:-50px;
+                box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);">Submit</button>
+        </div>
+    </div>
+</body>
+</html>
