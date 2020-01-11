@@ -68,7 +68,7 @@ input[type=password] {
     outline: 0;
     background: whitesmoke;
     border-bottom: 2px solid black;
-}
+} 
 input[type=number] {
     width: 90%;
     padding: 12px;
@@ -113,7 +113,8 @@ p{
 }
 button{
     background-color: #3644D2;
-    font-size: 12px;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 15px;
     margin-top: 5px;
     padding:12px 21px;
     border: 3px solid blue;
@@ -123,4 +124,8 @@ button{
     position:relative;
     left:-50px;
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+button:hover{
+    cursor: pointer;
+    opacity: 0.8;
 }
