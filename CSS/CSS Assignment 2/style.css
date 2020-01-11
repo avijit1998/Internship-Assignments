@@ -1,0 +1,126 @@
+body{
+    background: #009FFF;
+    background: -webkit-linear-gradient(to right, #ec2F4B, #009FFF);
+    background: linear-gradient(to right, #ec2F4B, #009FFF);
+}
+.div1{
+    border-radius: 5px 5px 5px 5px;
+    background-color: black;
+    width: 75%; 
+    margin-top: 60px; 
+    margin-left: auto; 
+    margin-right: auto;
+    margin-bottom:40px;
+    box-shadow: 0px 0px 35px #292A34;
+}
+h2{
+    text-align: center;
+    color: floralwhite;
+    padding-top: 15px;
+}
+.div2{
+    border-radius: 0px 0px 5px 5px;
+    background-color: #f2f2f2;
+    padding: 20px;
+}
+.text-only-field{
+    width: auto;
+    margin-top: 15px;
+}
+.name-type{
+    margin-left: 10px;
+    padding-left: 10px;
+    font-weight: bold;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+.name-like-field{
+    width: auto;
+    margin-top: 6px;
+    margin-left:20px;
+    margin-right: 20px;
+}
+span{
+    color: red;
+}
+input[type=text] {
+    width: 90%;
+    padding: 12px;
+    resize: vertical;
+    border: 0;
+    outline: 0;
+    background: whitesmoke;
+    border-bottom: 2px solid black;
+}
+input[type=email] {
+    width: 90%;
+    padding: 12px;
+    resize: vertical;
+    border: 0;
+    outline: 0;
+    background: whitesmoke;
+    border-bottom: 2px solid black;
+}
+input[type=password] {
+    width: 90%;
+    padding: 12px;
+    resize: vertical;
+    border: 0;
+    outline: 0;
+    background: whitesmoke;
+    border-bottom: 2px solid black;
+}
+input[type=number] {
+    width: 90%;
+    padding: 12px;
+    resize: vertical;
+    border: 0;
+    outline: 0;
+    background: whitesmoke;
+    border-bottom: 2px solid black;
+}
+select{
+    width: 94.4%;
+    padding: 12px;
+    resize: vertical;
+    border: 0;
+    outline: 0;
+    background: whitesmoke;
+    border-bottom: 2px solid black;
+}
+textarea{
+    height:40px;
+    width: 90%;
+    padding: 12px;
+    resize: vertical;
+    border: 0;
+    outline: 0;
+    background: whitesmoke;
+    border-bottom: 2px solid black;
+}
+p{
+    margin-left: 10px;
+    padding-left: 10px;
+    padding-top:5px;
+    font-weight: bold;
+    padding-right: 10px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif; 
+    font-size: small;
+}
+.radio-btns{
+    margin-left: 10px; 
+    padding-left: 10px;
+    margin-bottom: 10px;
+}
+button{
+    background-color: #3644D2;
+    font-size: 12px;
+    margin-top: 5px;
+    padding:12px 21px;
+    border: 3px solid blue;
+    border-radius: 3px;
+    width:100px;
+    margin:0 50%;
+    position:relative;
+    left:-50px;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}

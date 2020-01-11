@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Basic Registration Page</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="div1">
+        <h2>Registration Form</h2>
+        <div class="div2">
+            <form>
+            <div class="text-only-field">
+                <label for="fname" class="name-type">First Name<span>*</span></label>
+            </div>
+            <div class="name-like-field">
+                <input type="text" id="fname" name="fname" placeholder="Your name.." required>
+            </div>
+            <div class="text-only-field">
+                <label for="lname" class="name-type">Last Name<span>*</span></label>
+            </div>
+            <div class="name-like-field">
+                <input type="text" id="lname" name="lname" placeholder="Your last name" required>
+            </div>
+            <div class="text-only-field">
+                <label for="email" class="name-type">Email-Id<span>*</span></label>
+            </div>
+            <div class="name-like-field">
+                <input type="email" id="email" name="email" placeholder="Your email-id" required>
+            </div>
+            <div class="text-only-field">
+                <label for="pswd" class="name-type">Password<span>*</span></label>
+            </div>
+            <div class="name-like-field">
+                <input type="password" id="pswd" name="pswd" placeholder="Enter your password" required>
+            </div>
+            <div class="text-only-field">
+                <label for="c-pswd" class="name-type">Confirm Password<span>*</span></label>
+            </div>
+            <div class="name-like-field">
+                <input type="password" id="pswd" name="pswd" placeholder="Confirm password." required>
+            </div>
+            <div class="text-only-field">
+                <label for="gender" class="name-type">Gender<span>*</span></label>
+            </div>
+            <div class="name-like-field">
+                <select id="gender" name="gender" required>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+            <div class="text-only-field">
+                <label for="phone" class="name-type">Phone Number<span>*</span></label>
+            </div>
+            <div class="name-like-field">
+                <input type="number" id="phone" name="phone" placeholder="Your phone number" required>
+            </div>
+            <div class="text-only-field">
+                <label for="alt-phone" class="name-type">Alt. Phone Number</label>
+            </div>
+            <div class="name-like-field">
+                <input type="number" id="alt-phone" name="alt-phone" placeholder="Enter alternate number">
+            </div>
+            <div class="text-only-field">
+                <label for="address" class="name-type">Address<span>*</span></label>
+            </div>
+            <div class="name-like-field">
+                <textarea id="address" name="address" placeholder="Enter address" required></textarea>
+            </div>
+            <div class="text-only-field">
+                <label for="city" class="name-type">City<span>*</span></label>
+            </div>
+            <div class="name-like-field">
+                <input type="text" id="city" name="city" placeholder="Enter the city" required>
+            </div>
+            <div class="text-only-field">
+                <label for="state" class="name-type">State<span>*</span></label>
+            </div>
+            <div class="name-like-field">
+                <select id="state" name="state" required>
+                    <option value="od">Odisha</option>
+                    <option value="andhra">Andhra Pradesh</option>
+                    <option value="wb">West Bengal</option>
+                    <option value="chatt">Chattisgarh</option>
+                    <option value="jh">Jharkhand</option>
+                    <option value="up">Uttar Pradesh</option>
+                    <option value="bh">Bihar</option>
+                    <option value="pj">Puhjab</option>
+                </select>
+            </div>
+            <div class="text-only-field">
+                <label for="country" class="name-type">Country<span>*</span></label>
+            </div>
+            <div class="name-like-field">
+                <select id="country" name="country" required>
+                    <option value="ind">India</option>
+                    <option value="fra">France</option>
+                    <option value="jpn">Japan</option>
+                    <option value="rus">Russia</option>
+                    <option value="spn">Spain</option>
+                </select>
+            </div>
+            <div class="text-only-field">
+                <label for="o-address" class="name-type">Other Address</label>
+            </div>
+            <div class="name-like-field">
+                <textarea id="o-address" name="o-address" placeholder="Alternate address"></textarea>
+            </div>
+            <div class="text-only-field">
+                <label for="o-city" class="name-type">City</label>
+            </div>
+            <div class="name-like-field">
+                <input type="text" id="o-city" name="o-city" placeholder="Enter city">
+            </div>
+            <div class="text-only-field">
+                <label for="o-state" class="name-type">State</label>
+            </div>
+            <div class="name-like-field">
+                <select id="o-state" name="o-state">
+                    <option value="none">None</option>
+                    <option value="od">Odisha</option>
+                    <option value="andhra">Andhra Pradesh</option>
+                    <option value="wb">West Bengal</option>
+                    <option value="chatt">Chattisgarh</option>
+                    <option value="jh">Jharkhand</option>
+                    <option value="up">Uttar Pradesh</option>
+                    <option value="bh">Bihar</option>
+                    <option value="pj">Puhjab</option>
+                </select>
+            </div>
+            <div class="text-only-field">
+                <label for="o-country" class="name-type">Country</label>
+            </div>
+            <div class="name-like-field">
+                <select id="o-country" name="o-country">
+                    <option value="none">None</option>
+                    <option value="male">India</option>
+                    <option value="female">France</option>
+                    <option value="other">Japan</option>
+                    <option value="other">Russia</option>
+                    <option value="other">Spain</option>
+                </select>
+            </div>
+            <div class="text-only-field">
+                <p>Do you wish to subscribe to the newsletter?</p>
+                <div class="radio-btns">
+                    <input type="radio" id="radio-one" name="switch-one" value="yes" checked/>
+                    <label for="radio-one">Yes</label>
+                    <input type="radio" id="radio-two" name="switch-one" value="no" />
+                    <label for="radio-two">No</label>
+                </div>
+            </div>
+            </form>
+            <button>Submit</button>
+        </div>
+    </div>
+</body>
+</html>
