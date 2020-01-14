@@ -8,42 +8,42 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="div1">
+    <div class="form-background">
         <h2>Registration Form</h2>
-        <div class="div2">
+        <div class="form-foreground">
             <form>
             <div class="text-only-field">
-                <label for="fname" class="name-type">First Name<span>*</span></label>
+                <label for="fname" class="name-type">First Name<span class="req-star">*</span></label>
             </div>
             <div class="name-like-field">
                 <input type="text" id="fname" name="fname" placeholder="Your name.." required>
             </div>
             <div class="text-only-field">
-                <label for="lname" class="name-type">Last Name<span>*</span></label>
+                <label for="lname" class="name-type">Last Name<span class="req-star">*</span></label>
             </div>
             <div class="name-like-field">
                 <input type="text" id="lname" name="lname" placeholder="Your last name" required>
             </div>
             <div class="text-only-field">
-                <label for="email" class="name-type">Email-Id<span>*</span></label>
+                <label for="email" class="name-type">Email-Id<span class="req-star">*</span></label>
             </div>
             <div class="name-like-field">
                 <input type="email" id="email" name="email" placeholder="Your email-id" required>
             </div>
             <div class="text-only-field">
-                <label for="pswd" class="name-type">Password<span>*</span></label>
+                <label for="pswd" class="name-type">Password<span class="req-star">*</span></label>
             </div>
             <div class="name-like-field">
                 <input type="password" id="pswd" name="pswd" placeholder="Enter your password" required>
             </div>
             <div class="text-only-field">
-                <label for="c-pswd" class="name-type">Confirm Password<span>*</span></label>
+                <label for="c-pswd" class="name-type">Confirm Password<span class="req-star">*</span></label>
             </div>
             <div class="name-like-field">
-                <input type="password" id="pswd" name="pswd" placeholder="Confirm password." required>
+                <input type="password" id="c-pswd" name="pswd" placeholder="Confirm password." required>
             </div>
             <div class="text-only-field">
-                <label for="gender" class="name-type">Gender<span>*</span></label>
+                <label for="gender" class="name-type">Gender<span class="req-star">*</span></label>
             </div>
             <div class="name-like-field">
                 <select id="gender" name="gender" required>
@@ -53,7 +53,7 @@
                 </select>
             </div>
             <div class="text-only-field">
-                <label for="phone" class="name-type">Phone Number<span>*</span></label>
+                <label for="phone" class="name-type">Phone Number<span class="req-star">*</span></label>
             </div>
             <div class="name-like-field">
                 <input type="number" id="phone" name="phone" placeholder="Your phone number" required>
@@ -65,19 +65,19 @@
                 <input type="number" id="alt-phone" name="alt-phone" placeholder="Enter alternate number">
             </div>
             <div class="text-only-field">
-                <label for="address" class="name-type">Address<span>*</span></label>
+                <label for="address" class="name-type">Address<span class="req-star">*</span></label>
             </div>
             <div class="name-like-field">
                 <textarea id="address" name="address" placeholder="Enter address" required></textarea>
             </div>
             <div class="text-only-field">
-                <label for="city" class="name-type">City<span>*</span></label>
+                <label for="city" class="name-type">City<span class="req-star">*</span></label>
             </div>
             <div class="name-like-field">
                 <input type="text" id="city" name="city" placeholder="Enter the city" required>
             </div>
             <div class="text-only-field">
-                <label for="state" class="name-type">State<span>*</span></label>
+                <label for="state" class="name-type">State<span class="req-star">*</span></label>
             </div>
             <div class="name-like-field">
                 <select id="state" name="state" required>
@@ -92,7 +92,7 @@
                 </select>
             </div>
             <div class="text-only-field">
-                <label for="country" class="name-type">Country<span>*</span></label>
+                <label for="country" class="name-type">Country<span class="req-star">*</span></label>
             </div>
             <div class="name-like-field">
                 <select id="country" name="country" required>
@@ -137,11 +137,11 @@
             <div class="name-like-field">
                 <select id="o-country" name="o-country">
                     <option value="none">None</option>
-                    <option value="male">India</option>
-                    <option value="female">France</option>
-                    <option value="other">Japan</option>
-                    <option value="other">Russia</option>
-                    <option value="other">Spain</option>
+                    <option value="ind">India</option>
+                    <option value="fra">France</option>
+                    <option value="jpn">Japan</option>
+                    <option value="rus">Russia</option>
+                    <option value="spn">Spain</option>
                 </select>
             </div>
             <div class="text-only-field">
