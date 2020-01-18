@@ -4,6 +4,32 @@ body{
     background: linear-gradient(to right, #6dd5ed, #2193b0); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */    
 }
 
+.company-banner-heading{
+    border-radius: 5px;
+    background-image: url(images/banner.jpg);
+    background-position: center;
+    width: 75%;
+    margin: 60px auto 40px auto;
+    height: 100px;
+    box-shadow: 0px 0px 35px #292A34;
+}
+
+#imgLogo {
+    width: 50px; 
+    height: 50px; 
+    float: left;
+    padding-top: 25px; 
+    padding-left: 10px;
+}
+
+h1 {
+    text-align:right;
+    padding-left: 35px;
+    padding-top: 30px;
+    padding-right: 15px;  
+    color: floralwhite;
+}
+
 .form-background {
     border-radius: 10px;
     background-color: black;
@@ -36,16 +62,17 @@ h2{
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
+.req-star {
+    color: red;
+}
+
 .name-like-field{
     width: auto;
     margin:6px 20px 0 20px;
 }
 
-.req-star {
-    color: red;
-}
 
-input[type=text], input[type=email], input[type=password], input[type=number] {
+input[type=text], input[type=email], input[type=password], input[type=number], input[type=date] {
     width: 90%;
     padding: 12px;
     resize: vertical;
@@ -87,8 +114,18 @@ p{
 }
 
 .radio-btns{
-    margin:0 0 10px 10px;
+    margin:6px 20px 0px 20px;
     padding-left: 10px;
+}
+
+.cbInterests{
+    display: block;
+    margin:6px 20px 0px 20px;
+    padding-left: 10px;
+}
+
+.cbInterests input[type=checkbox] {
+    display:inline-block;
 }
 
 input[type=submit] {
@@ -110,18 +147,58 @@ input[type=submit]:hover{
     opacity: 0.8;
 }
 
-#stateLabel {
+#lblStateCurrent {
     display: none;
 }
 
-#stateId {
+#optStateCurrent {
     display: none;
 }
 
-#o-stateLabel {
+#lblStatePermanent {
+    display:none;
+}
+
+#optStatePermanent {
     display: none;
 }
 
-#o-stateId {
-    display: none;
+#txtCaptchaDiv {
+    margin-left: 10px;
+    padding-left: 10px;
+    padding-top:5px;
+    font-weight: bold;
+    padding-right: 10px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif; 
+    font-size: small;
+}
+
+#txtVisibleCaptcha {
+    padding: 12px 20px;
+    margin: 5px 21px 10px;
+    border: solid 2px black;
+    box-sizing: border-box;
+}
+
+#btnRefreshCaptcha {
+    padding: 10px 20px;
+    font-size: 10px;
+    text-align: center;
+    cursor: pointer;
+    outline: none;
+    color: #fff;
+    background-color: #2E31F7;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 6px #999
+}
+
+#btnRefreshCaptcha:hover {
+    background-color: #2022B8;
+}
+
+#btnRefreshCaptcha:active {
+    background-color: #2022B8;
+    box-shadow: 0 3px #666;
+    transform: translateY(3px);
 }

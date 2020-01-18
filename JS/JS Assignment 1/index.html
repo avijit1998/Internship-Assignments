@@ -7,137 +7,222 @@
     <title>Basic Registration Page</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body onload = "generateCaptcha()">
+    <div class="company-banner-heading">
+        <img src="images/logo.png" alt="logo" id="imgLogo">
+        <h1>Company Name</h1>
+    </div>
     <div class="form-background">
         <h2>Registration Form</h2>
         <div class="form-foreground">
-            <form name="myForm" onsubmit="validateForm()">
+            <form name="myForm" onsubmit="return validateForm()">
+            
             <div class="text-only-field">
-                <label for="firstname" class="name-type">First Name<span class="req-star">*</span></label>
+                <label for="txtFirstName" class="name-type">First Name<span class="req-star">*</span></label>
             </div>
             <div class="name-like-field">
-                <input type="text" id="firstname" name="fname" placeholder="Your name..">
+                <input type="text" id="txtFirstName" name="firstName" placeholder="Your first name..">
             </div>
+            
             <div class="text-only-field">
-                <label for="lastname" class="name-type">Last Name<span class="req-star">*</span></label>
+                <label for="txtMiddleName" class="name-type">Middle Name</label>
             </div>
             <div class="name-like-field">
-                <input type="text" id="lastname" name="lname" placeholder="Your last name">
+                <input type="text" id="txtMiddleName" name="middleName" placeholder="Your middle name..">
             </div>
+
             <div class="text-only-field">
-                <label for="req-email" class="name-type">Email-Id<span class="req-star">*</span></label>
+                <label for="txtLastName" class="name-type">Last Name<span class="req-star">*</span></label>
             </div>
             <div class="name-like-field">
-                <input type="email" id="req-email" name="email" placeholder="Your email-id">
+                <input type="text" id="txtLastName" name="lastName" placeholder="Your last name..">
             </div>
+
             <div class="text-only-field">
-                <label for="psswd" class="name-type">Password<span class="req-star">*</span></label>
+                <label for="txtEmail" class="name-type">Email-Id<span class="req-star">*</span></label>
             </div>
             <div class="name-like-field">
-                <input type="password" id="psswd" name="pswd" placeholder="Enter your password">
+                <input type="text" id="txtEmail" name="email" placeholder="Your email-id..">
             </div>
+            
             <div class="text-only-field">
-                <label for="confirm-pswd" class="name-type">Confirm Password<span class="req-star">*</span></label>
+                <label for="txtPassword" class="name-type">Password<span class="req-star">*</span></label>
             </div>
             <div class="name-like-field">
-                <input type="password" id="confirm-pswd" name="c_pswd" placeholder="Confirm password.">
+                <input type="password" id="txtPassword" name="password" placeholder="Enter your password." autocomplete="off">
             </div>
+
             <div class="text-only-field">
-                <label for="p-gender" class="name-type">Gender<span class="req-star">*</span></label>
+                <label for="txtConfirmPassword" class="name-type">Confirm Password<span class="req-star">*</span></label>
             </div>
             <div class="name-like-field">
-                <select id="p-gender" name="gender">
+                <input type="password" id="txtConfirmPassword" name="confirmPassword" placeholder="Confirm password." autocomplete="off">
+            </div>
+
+            <div class="text-only-field">
+                <label for="optGender" class="name-type">Gender<span class="req-star">*</span></label>
+            </div>
+            <div class="name-like-field">
+                <select id="optGender" name="gender">
                     <option value="">- select -</option>
                     <option value="male">Male</option>
                     <option value="female">Female</option>
                     <option value="other">Other</option>
                 </select>
             </div>
+
             <div class="text-only-field">
-                <label for="ph-number" class="name-type">Phone Number<span class="req-star">*</span></label>
+                <label for="txtBirthDate" class="name-type">Date-Of-Birth<span class="req-star">*</span></label>
             </div>
             <div class="name-like-field">
-                <input type="number" id="ph-number" name="phone" placeholder="Your phone number">
+                <input type="date" id="txtBirthDate" name="birthday">
             </div>
+
             <div class="text-only-field">
-                <label for="alt-phone" class="name-type">Alt. Phone Number</label>
+                <label for="txtPhoneNumber" class="name-type">Phone Number<span class="req-star">*</span></label>
             </div>
             <div class="name-like-field">
-                <input type="number" id="alt-phone" name="alt-phone" placeholder="Enter alternate number">
+                <input type="number" id="txtPhoneNumber" name="phoneNumber" placeholder="Your phone number..">
             </div>
+
             <div class="text-only-field">
-                <label for="req-address" class="name-type">Address<span class="req-star">*</span></label>
+                <label for="txtAltPhone" class="name-type">Alt. Phone Number</label>
             </div>
             <div class="name-like-field">
-                <textarea id="req-address" name="address" placeholder="Enter address"></textarea>
+                <input type="number" id="txtAltPhone" name="altPhone" placeholder="Enter alternate number.">
             </div>
+
             <div class="text-only-field">
-                <label for="countryId" class="name-type">Country<span class="req-star">*</span></label>
+                <label for="txtCurrentAddress" class="name-type">Current Address<span class="req-star">*</span></label>
             </div>
             <div class="name-like-field">
-                <select name="country" id="countryId" onchange="javascript:countryChange()">
+                <textarea id="txtCurrentAddress" name="currentAddress" placeholder="Enter current address."></textarea>
+            </div>
+
+            <div class="text-only-field">
+                <label for="optCountryCurrent" class="name-type">Country<span class="req-star">*</span></label>
+            </div>
+            <div class="name-like-field">
+                <select name="countryCurrent" id="optCountryCurrent" onchange="javascript:countryChange()">
+                    <option value="">-select-</option>
+                    <option value="IN">India</option>
+                    <option value='US'>United States</option>
+                    <option value='CA'>Canada</option>
+                </select>
+            </div>
+
+            <div class="text-only-field">
+                <label id="lblStateCurrent" class="name-type" for="optStateCurrent">State<span class="req-star">*</span></label>
+            </div>
+            <div class="name-like-field">
+                <select name="stateCurrent" id="optStateCurrent">
+                    <option value="">State/Province</option>
+                </select>
+            </div>
+
+            <div class="text-only-field">
+                <label for="txtCityCurrent" class="name-type">City<span class="req-star">*</span></label>
+            </div>
+            <div class="name-like-field">
+                <input type="text" id="txtCityCurrent" name="cityCurrent" placeholder="Your current city..">
+            </div>
+
+            <div class="text-only-field">
+                <label for="txtCurrentZipcode" class="name-type">ZipCode<span class="req-star">*</span></label>
+            </div>
+            <div class="name-like-field">
+                <input type="text" id="txtCurrentZipcode" name="zipcodeCurrent" placeholder="Current Zip Code..">
+            </div>
+
+            <div class="text-only-field">
+                <label for="txtAddressPermanent" class="name-type">Permanent Address<span class="req-star">*</span></label>
+            </div>
+            <div class="name-like-field">
+                <textarea id="txtAddressPermanent" name="permanentAddress" placeholder="Enter Permanent address."></textarea>
+            </div>
+
+            <div class="text-only-field">
+                <label for="optCountryPermanent" class="name-type">Country<span class="req-star">*</span></label>
+            </div>
+            <div class="name-like-field">
+                <select name="countryPermanent" id="optCountryPermanent" onchange="javascript:otherCountryChange()">
                     <option value="">Select</option>
                     <option value="IN">India</option>
                     <option value='US'>United States</option>
                     <option value='CA'>Canada</option>
                 </select>
             </div>
+            
             <div class="text-only-field">
-                <label id="stateLabel" class="name-type" for="stateId">State<span class="req-star">*</span></label>
+                <label id="lblStatePermanent" class="name-type" for="optStatePermanent">State<span class="req-star">*</span></label>
             </div>
             <div class="name-like-field">
-                <select name="state" id="stateId"></select>
-            </div>
-            <div class="text-only-field">
-                <label for="req-city" class="name-type">City<span class="req-star">*</span></label>
-            </div>
-            <div class="name-like-field">
-                <input type="text" id="req-city" name="city" placeholder="Enter the city">
-            </div>
-            <div class="text-only-field">
-                <label for="o-address" class="name-type">Other Address</label>
-            </div>
-            <div class="name-like-field">
-                <textarea id="o-address" name="o-address" placeholder="Alternate address"></textarea>
-            </div>
-            <div class="text-only-field">
-                <label for="o-countryId" class="name-type">Country</label>
-            </div>
-            <div class="name-like-field">
-                <select name="o-country" id="o-countryId" onchange="javascript:otherCountryChange()">
-                    <option value="">Select</option>
-                    <option value="IN">India</option>
-                    <option value='US'>United States</option>
-                    <option value='CA'>Canada</option>
+                <select name="statePermanent" id="optStatePermanent">
+                    <option value="">State/Province</option>
                 </select>
             </div>
+
             <div class="text-only-field">
-                <label id="o-stateLabel" class="name-type" for="o-stateId">State</label>
+                <label for="txtCityPermanent" class="name-type">City<span class="req-star">*</span></label>
             </div>
             <div class="name-like-field">
-                <select name="o-state" id="o-stateId"></select>
+                <input type="text" id="txtCityPermanent" name="cityPermanent" placeholder="Your permanent city..">
             </div>
+
             <div class="text-only-field">
-                <label for="o-city" class="name-type">City</label>
+                <label for="txtPermanentZipcode" class="name-type">ZipCode<span class="req-star">*</span></label>
             </div>
             <div class="name-like-field">
-                <input type="text" id="o-city" name="o-city" placeholder="Enter city">
+                <input type="text" id="txtPermanentZipcode" name="zipcodePermanent" placeholder="Permanent Zip Code..">
             </div>
+            
             <div class="text-only-field">
-                <label for="o-state" class="name-type">State</label>
+                <label class="name-type">What are your interests?</label>
             </div>
+            <div class="cbInterests">
+                <div>
+                    <input type="checkbox" name="sports" value="sports" id="cbSports"/>
+                    <label for="cbSports">Sports</label>
+                </div>
+                <div>
+                    <input type="checkbox" name="books" value="books" id="cbBooks"/>
+                    <label for="cbBooks">Books</label>
+                </div>
+                <div>
+                    <input type="checkbox" name="computer" value="computer" id="cbComputer"/>
+                    <label for="cbComputer">Computer & Softwares</label>
+                </div>
+                <div>
+                    <input type="checkbox" name="fashion" value="fashion" id="cbFashion"/>
+                    <label for="cbFashion">Fashion</label>
+                </div>
+                <div>
+                    <input type="checkbox" name="photography" value="photography" id="cbPhotography"/>
+                    <label for="cbPhotography">Photography</label>
+                </div>
+            </div>
+            <hr>
             <div class="text-only-field">
                 <p>Do you wish to subscribe to the newsletter?</p>
-                <div class="radio-btns">
-                    <input type="radio" id="radio-one" name="switch-one" value="yes"/>
-                    <label for="radio-one">Yes</label>
-                    <input type="radio" id="radio-two" name="switch-one" value="no" />
-                    <label for="radio-two">No</label>
-                </div>
+            </div>
+            <div class="radio-btns">
+                <input type="radio" id="radioYes" name="subscribe" value="yes" checked/>
+                <label for="radioYes">Yes</label>
+                <input type="radio" id="radioNo" name="subscribe" value="no"/>
+                <label for="radioNo">No</label>
+            </div>
+        
+            <div class="text-only-field">
+                <p>Captcha:<span class="req-star">*</span></p>
+                <span id="txtCaptchaDiv"></span><button id="btnRefreshCaptcha" onclick="return generateCaptcha();">Refresh</button>
+            </div>
+            <div class="text-only-field">
+                <input type="hidden" id="txtCaptcha" value="1">
+                <input type="text" name="inputCaptcha" id="txtVisibleCaptcha" value="0">
             </div>
             <input type="submit" value="Submit">
             </form>
-        </div>
+        </form>
     </div>
     <script type="text/javaScript" src="script.js"></script>
 </body>
