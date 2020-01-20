@@ -376,4 +376,7 @@ function validateForm() {
         alert(error);
         return false; 
     }
+    else {
+        document.getElementById("txtSuccessMessage").showModal(); 
+    }
 }
