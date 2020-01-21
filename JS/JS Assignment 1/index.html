@@ -17,6 +17,7 @@
         <div class="form-foreground">
             <form name="myForm" onsubmit="return validateForm()">
             
+            <!-- first name field -->
             <div class="text-only-field">
                 <label for="txtFirstName" class="name-type">First Name<span class="req-star">*</span></label>
             </div>
@@ -24,13 +25,15 @@
                 <input type="text" id="txtFirstName" name="firstName" placeholder="Your first name..">
             </div>
             
+            <!-- middle name field -->
             <div class="text-only-field">
                 <label for="txtMiddleName" class="name-type">Middle Name</label>
             </div>
             <div class="name-like-field">
                 <input type="text" id="txtMiddleName" name="middleName" placeholder="Your middle name..">
             </div>
-
+            
+            <!-- last name field -->
             <div class="text-only-field">
                 <label for="txtLastName" class="name-type">Last Name<span class="req-star">*</span></label>
             </div>
@@ -38,13 +41,15 @@
                 <input type="text" id="txtLastName" name="lastName" placeholder="Your last name..">
             </div>
 
+            <!-- email field -->
             <div class="text-only-field">
                 <label for="txtEmail" class="name-type">Email-Id<span class="req-star">*</span></label>
             </div>
             <div class="name-like-field">
                 <input type="text" id="txtEmail" name="email" placeholder="Your email-id..">
             </div>
-            
+
+            <!-- password field -->
             <div class="text-only-field">
                 <label for="txtPassword" class="name-type">Password<span class="req-star">*</span></label>
             </div>
@@ -52,6 +57,7 @@
                 <input type="password" id="txtPassword" name="password" placeholder="Enter your password." autocomplete="off">
             </div>
 
+            <!-- confirm password field -->
             <div class="text-only-field">
                 <label for="txtConfirmPassword" class="name-type">Confirm Password<span class="req-star">*</span></label>
             </div>
@@ -59,6 +65,7 @@
                 <input type="password" id="txtConfirmPassword" name="confirmPassword" placeholder="Confirm password." autocomplete="off">
             </div>
 
+            <!-- gender field -->
             <div class="text-only-field">
                 <label for="optGender" class="name-type">Gender<span class="req-star">*</span></label>
             </div>
@@ -71,6 +78,7 @@
                 </select>
             </div>
 
+            <!-- birth date field -->
             <div class="text-only-field">
                 <label for="txtBirthDate" class="name-type">Date-Of-Birth<span class="req-star">*</span></label>
             </div>
@@ -78,6 +86,7 @@
                 <input type="date" id="txtBirthDate" name="birthday">
             </div>
 
+            <!-- phone number field -->
             <div class="text-only-field">
                 <label for="txtPhoneNumber" class="name-type">Phone Number<span class="req-star">*</span></label>
             </div>
@@ -85,6 +94,7 @@
                 <input type="number" id="txtPhoneNumber" name="phoneNumber" placeholder="Your phone number..">
             </div>
 
+            <!-- alt. phone number field -->
             <div class="text-only-field">
                 <label for="txtAltPhone" class="name-type">Alt. Phone Number</label>
             </div>
@@ -92,6 +102,7 @@
                 <input type="number" id="txtAltPhone" name="altPhone" placeholder="Enter alternate number.">
             </div>
 
+            <!-- current address -->
             <div class="text-only-field">
                 <label for="txtCurrentAddress" class="name-type">Current Address<span class="req-star">*</span></label>
             </div>
@@ -99,11 +110,12 @@
                 <textarea id="txtCurrentAddress" name="currentAddress" placeholder="Enter current address."></textarea>
             </div>
 
+            <!-- current country field -->
             <div class="text-only-field">
                 <label for="optCountryCurrent" class="name-type">Country<span class="req-star">*</span></label>
             </div>
             <div class="name-like-field">
-                <select name="countryCurrent" id="optCountryCurrent" onchange="javascript:countryChange()">
+                <select name="countryCurrent" id="optCountryCurrent" onchange="javascript:countryChange('optCountryCurrent','optStateCurrent','lblStateCurrent')">
                     <option value="">-select-</option>
                     <option value="IN">India</option>
                     <option value='US'>United States</option>
@@ -111,15 +123,17 @@
                 </select>
             </div>
 
+            <!-- current state field -->
             <div class="text-only-field">
-                <label id="lblStateCurrent" class="name-type" for="optStateCurrent">State<span class="req-star">*</span></label>
+                <label id="lblStateCurrent" class="name-type initial-hide" for="optStateCurrent">State<span class="req-star">*</span></label>
             </div>
             <div class="name-like-field">
-                <select name="stateCurrent" id="optStateCurrent">
+                <select name="stateCurrent" id="optStateCurrent" class="initial-hide">
                     <option value="">State/Province</option>
                 </select>
             </div>
 
+            <!-- current city field -->
             <div class="text-only-field">
                 <label for="txtCityCurrent" class="name-type">City<span class="req-star">*</span></label>
             </div>
@@ -127,6 +141,7 @@
                 <input type="text" id="txtCityCurrent" name="cityCurrent" placeholder="Your current city..">
             </div>
 
+            <!-- current zipcode -->
             <div class="text-only-field">
                 <label for="txtCurrentZipcode" class="name-type">ZipCode<span class="req-star">*</span></label>
             </div>
@@ -134,6 +149,7 @@
                 <input type="text" id="txtCurrentZipcode" name="zipcodeCurrent" placeholder="Current Zip Code..">
             </div>
 
+            <!-- permanent address -->
             <div class="text-only-field">
                 <label for="txtAddressPermanent" class="name-type">Permanent Address<span class="req-star">*</span></label>
             </div>
@@ -141,27 +157,30 @@
                 <textarea id="txtAddressPermanent" name="permanentAddress" placeholder="Enter Permanent address."></textarea>
             </div>
 
+            <!-- permanent country -->
             <div class="text-only-field">
                 <label for="optCountryPermanent" class="name-type">Country<span class="req-star">*</span></label>
             </div>
             <div class="name-like-field">
-                <select name="countryPermanent" id="optCountryPermanent" onchange="javascript:otherCountryChange()">
-                    <option value="">Select</option>
+                <select name="countryPermanent" id="optCountryPermanent" onchange="javascript:countryChange('optCountryPermanent','optStatePermanent','lblStatePermanent')">
+                    <option value="">-select-</option>
                     <option value="IN">India</option>
                     <option value='US'>United States</option>
                     <option value='CA'>Canada</option>
                 </select>
             </div>
-            
+
+            <!-- permanent state -->
             <div class="text-only-field">
-                <label id="lblStatePermanent" class="name-type" for="optStatePermanent">State<span class="req-star">*</span></label>
+                <label id="lblStatePermanent" class="name-type initial-hide" for="optStatePermanent">State<span class="req-star">*</span></label>
             </div>
             <div class="name-like-field">
-                <select name="statePermanent" id="optStatePermanent">
+                <select name="statePermanent" id="optStatePermanent" class="initial-hide">
                     <option value="">State/Province</option>
                 </select>
             </div>
 
+            <!-- permanent city -->
             <div class="text-only-field">
                 <label for="txtCityPermanent" class="name-type">City<span class="req-star">*</span></label>
             </div>
@@ -169,6 +188,7 @@
                 <input type="text" id="txtCityPermanent" name="cityPermanent" placeholder="Your permanent city..">
             </div>
 
+            <!-- permanent zipcode -->
             <div class="text-only-field">
                 <label for="txtPermanentZipcode" class="name-type">ZipCode<span class="req-star">*</span></label>
             </div>
@@ -176,6 +196,7 @@
                 <input type="text" id="txtPermanentZipcode" name="zipcodePermanent" placeholder="Permanent Zip Code..">
             </div>
             
+            <!-- interests -->
             <div class="text-only-field">
                 <label class="name-type">What are your interests?</label>
             </div>
@@ -201,7 +222,10 @@
                     <label for="cbPhotography">Photography</label>
                 </div>
             </div>
+
             <hr>
+
+            <!-- subscribe choice -->
             <div class="text-only-field">
                 <p>Do you wish to subscribe to the newsletter?</p>
             </div>
@@ -211,7 +235,8 @@
                 <input type="radio" id="radioNo" name="subscribe" value="no"/>
                 <label for="radioNo">No</label>
             </div>
-        
+
+            <!-- captcha -->
             <div class="text-only-field">
                 <p>Captcha:<span class="req-star">*</span></p>
                 <span id="txtCaptchaDiv"></span><button id="btnRefreshCaptcha" onclick="return generateCaptcha();">Refresh</button>
@@ -223,6 +248,7 @@
             <input type="submit" value="Submit">
             </form>
             <dialog id="txtSuccessMessage">Submitted Successfully. Press Esc to exit.</dialog>
+        </div>
     </div>
     <script type="text/javaScript" src="script.js"></script>
 </body>

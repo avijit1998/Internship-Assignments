@@ -3,22 +3,22 @@ function generateCaptcha() {
     var b = Math.floor(Math.random() * (99 - 10 + 1) ) + 10;       
     var c = Math.floor(Math.random() * (4 - 1 + 1) ) + 1;  
     var code,val1;
-    if(c == 1){
+    if(c === 1){
         code = a + '' + '+' + '' + b;
         val1 = a+b;
-    } else if (c == 2 && a >= b){
+    } else if (c === 2 && a >= b){
         code = a + '' + '-' +  '' + b;
         val1 = a-b;
-    } else if (c == 2 && b > a){
+    } else if (c === 2 && b > a){
         code = b + '' + '-' +  '' + a;
         val1 = b-a;
-    } else if (c == 3) {
+    } else if (c === 3) {
         code = a + '' + '*' +  '' + b;
         val1 = a*b;
-    } else if (c == 4 && a >= b) {
+    } else if (c === 4 && a >= b) {
         code = a + '' + '/' +  '' + b;
         val1 = Math.floor(a/b);
-    } else if (c == 4 && a <= b) {
+    } else if (c === 4 && a <= b) {
         code = b + '' + '/' +  '' + a;
         val1 = Math.floor(b/a);
     } else {
@@ -31,8 +31,8 @@ function generateCaptcha() {
     return false;
 }
 
-//for current address
-function countryChange() {
+//for current address[['in',[]],['us',[]],['ca',[]]];
+function countryChange(str1, str2, str3) {
     var countryState = [
         [
             'IN',[
@@ -40,30 +40,32 @@ function countryChange() {
             ['OD', 'Odisha'],
             ['AP', 'Andhra Pradesh'],
             ['WB', 'West Bengal'],
-            ['MP', 'Madhya Pradesh'],
+            ['MP', 'Madhya Pradesh']
 
-    ], ],
+    ] ],
         [
             'US', [
             ['', 'State/Province'],
             ['AL', 'Alabama'],
             ['AK', 'Alaska'],
             ['AZ', 'Arizona'],
-            ['AR', 'Arkansas'],
-    ], ],
+            ['AR', 'Arkansas']
+    ] ],
         [
             'CA', [
             ['', 'State/Province'],
             ['AB', 'Alberta'],
             ['BC', 'British Columbia'],
             ['MB', 'Manitoba'],
-            ['NB', 'New Brunswick'],
+            ['NB', 'New Brunswick']
     ] ]
     ];
-    var selectedState;
-    var countryElement = document.getElementById('optCountryCurrent');
-    var stateElement = document.getElementById('optStateCurrent');
-    var stateLabelElement = document.getElementById('lblStateCurrent');
+    // var countryElement = document.getElementById('optCountryCurrent');
+    var countryElement = document.getElementById(str1);
+    // var stateElement = document.getElementById('optStateCurrent');
+    var stateElement = document.getElementById(str2);
+    // var stateLabelElement = document.getElementById('lblStateCurrent');
+    var stateLabelElement = document.getElementById(str3);
     var listOfState;
     //if country and state have been selected
     if (countryElement && stateElement) {
@@ -86,93 +88,18 @@ function countryChange() {
             stateLabelElement.style.display = 'inline';
         }
 
-        // add all states from listofState to option in select field and
-        // store the selected option in selectedState
+        // add all states from listofState to option in select field
         stateElement.options.length = 0;
         for (var k = 0; k < listOfState.length; k++) {
             stateElement.options[k] = new Option(listOfState[k][1], listOfState[k][0]);    
         }
-        for (var j = 0; j < stateElement.length; j++) {
-            if (stateElement.options[j].selected === true) {
-                selectedState = stateElement.options[j].value;
-            }        
-        }
     }
 }
 
-//for permanent address
-function otherCountryChange() {
-    var countryState = [
-        [
-            'IN',[
-            ['', 'State/Province'],
-            ['OD', 'Odisha'],
-            ['AP', 'Andhra Pradesh'],
-            ['WB', 'West Bengal'],
-            ['MP', 'Madhya Pradesh'],
-
-    ], ],
-        [
-            'US', [
-            ['', 'State/Province'],
-            ['AL', 'Alabama'],
-            ['AK', 'Alaska'],
-            ['AZ', 'Arizona'],
-            ['AR', 'Arkansas'],
-    ], ],
-        [
-            'CA', [
-            ['', 'State/Province'],
-            ['AB', 'Alberta'],
-            ['BC', 'British Columbia'],
-            ['MB', 'Manitoba'],
-            ['NB', 'New Brunswick'],
-    ] ]
-    ];
-    var selectedState;
-    var countryElement = document.getElementById('optCountryPermanent');
-    var stateElement = document.getElementById('optStatePermanent');
-    var stateLabelElement = document.getElementById('lblStatePermanent');
-
-    //if country and state have been selected
-    if (countryElement && stateElement) {
-        var listOfState = [['XX', 'None']];
-
-        //states based on country are added into the list
-        var currentCountry = countryElement.options[countryElement.selectedIndex].value;
-        for (var i = 0; i < countryState.length; i++) {
-            if (currentCountry == countryState[i][0]) {
-                listOfState = countryState[i][1];
-            }
-        }
-
-        //atleast there should be two states in the selected list of states for each country
-        if (listOfState.length < 2) {
-            stateElement.style.display = 'none';
-            stateLabelElement.style.display = 'none';
-        } else {
-            stateElement.style.display = 'inline';
-            stateLabelElement.style.display = 'inline';
-        }
-    
-        // add all states from listofState to option in select field and
-        // store the selected option in selectedState
-        stateElement.options.length = 0;
-        for (var k = 0; k < listOfState.length; k++) {
-            stateElement.options[k] = new Option(listOfState[k][1], listOfState[k][0]);    
-        }
-        for (var j = 0; j < stateElement.length; j++) {
-            if (stateElement.options[j].selected === true) {
-                selectedState = stateElement.options[j].value;
-            }        
-        }      
-    }
-}
- 
 function checkValidCaptcha(){
     var str1 = removeSpaces(document.getElementById('txtCaptcha').value);
 	var str2 = removeSpaces(document.getElementById('txtVisibleCaptcha').value);
-	if (str1 == str2){
+	if (str1 === str2){
 		return true;	
 	}else{
 		return false;
@@ -220,7 +147,7 @@ function validateForm() {
         txtPermanentStateSelectedValue = statePermanentSelectBox.options[statePermanentSelectBox.selectedIndex].value,
         fldPermanentCity = document.forms.myForm.cityPermanent,
         fldZipCodePermanent = document.forms.myForm.zipcodePermanent,
-        txtCaptcha = document.forms.myForm.inputCaptcha;
+        fldCaptcha = document.forms.myForm.inputCaptcha;
 
     if(fldFirstName.value === ""){
         error += "Please enter the first name field.\n";
@@ -363,13 +290,13 @@ function validateForm() {
         fldZipCodePermanent.focus();
     }
 
-    if (txtCaptcha.value === "") {
+    if (fldCaptcha.value === "") {
         error += "Captcha is empty.\n";
-        fldFirstName.focus();
+        fldCaptcha.focus();
     }
-    else if(checkValidCaptcha(txtCaptcha.value) === false){
+    else if(checkValidCaptcha(fldCaptcha.value) === false){
         error += "Wrong Answer. CAPTCHA failed.";
-        fldFirstName.focus();
+        fldCaptcha.focus();
     }
     
     if (error !== "") {
