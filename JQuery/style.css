@@ -232,7 +232,6 @@ textarea.error {
     width: 90%;
     padding: 12px;
     resize: vertical;
-    border: 0;
     outline: 0;
     background: whitesmoke;
     border: 1px solid #FF2323;
