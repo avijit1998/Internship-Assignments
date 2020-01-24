@@ -4,10 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Basic Registration Page</title>
+    <title>Registration Page</title>
+    <link rel="icon" href="images/logo.png">
     <link rel="stylesheet" href="style.css">
+    <script src="http://code.jquery.com/jquery.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.js"></script>
 </head>
-<body onload = "generateCaptcha()">
+<body>
     <div class="company-banner-heading">
         <img src="images/logo.png" alt="logo" id="imgLogo">
         <h1>Company Name</h1>
@@ -15,8 +18,9 @@
     <div class="form-background">
         <h2>Registration Form</h2>
         <div class="form-foreground">
-            <form name="myForm" onsubmit="return validateForm()">
+            <form autocomplete="off" id="registerForm" method="POST" action="">
             
+            <p>(<span class="req-star">*</span>)Compulsory Field.</p>
             <!-- first name field -->
             <div class="text-only-field">
                 <label for="txtFirstName" class="name-type">First Name<span class="req-star">*</span></label>
@@ -107,7 +111,7 @@
                 <label for="txtCurrentAddress" class="name-type">Current Address<span class="req-star">*</span></label>
             </div>
             <div class="name-like-field">
-                <textarea id="txtCurrentAddress" name="currentAddress" placeholder="Enter current address."></textarea>
+                <textarea id="txtAddressCurrent" name="currentAddress" placeholder="Enter current address."></textarea>
             </div>
 
             <!-- current country field -->
@@ -115,7 +119,7 @@
                 <label for="optCountryCurrent" class="name-type">Country<span class="req-star">*</span></label>
             </div>
             <div class="name-like-field">
-                <select name="countryCurrent" id="optCountryCurrent" onchange="javascript:countryChange('optCountryCurrent','optStateCurrent','lblStateCurrent')">
+                <select name="countryCurrent" id="optCountryCurrent">
                     <option value="">-select-</option>
                     <option value="IN">India</option>
                     <option value='US'>United States</option>
@@ -129,7 +133,7 @@
             </div>
             <div class="name-like-field">
                 <select name="stateCurrent" id="optStateCurrent" class="initial-hide">
-                    <option value="">State/Province</option>
+                    <option value="0">State/Province</option>
                 </select>
             </div>
 
@@ -146,7 +150,7 @@
                 <label for="txtCurrentZipcode" class="name-type">ZipCode<span class="req-star">*</span></label>
             </div>
             <div class="name-like-field">
-                <input type="text" id="txtCurrentZipcode" name="zipcodeCurrent" placeholder="Current Zip Code..">
+                <input type="number" id="txtCurrentZipcode" name="zipcodeCurrent" placeholder="Current Zip Code..">
             </div>
 
             <!-- permanent address -->
@@ -162,7 +166,7 @@
                 <label for="optCountryPermanent" class="name-type">Country<span class="req-star">*</span></label>
             </div>
             <div class="name-like-field">
-                <select name="countryPermanent" id="optCountryPermanent" onchange="javascript:countryChange('optCountryPermanent','optStatePermanent','lblStatePermanent')">
+                <select name="countryPermanent" id="optCountryPermanent">
                     <option value="">-select-</option>
                     <option value="IN">India</option>
                     <option value='US'>United States</option>
@@ -193,7 +197,7 @@
                 <label for="txtPermanentZipcode" class="name-type">ZipCode<span class="req-star">*</span></label>
             </div>
             <div class="name-like-field">
-                <input type="text" id="txtPermanentZipcode" name="zipcodePermanent" placeholder="Permanent Zip Code..">
+                <input type="number" id="txtPermanentZipcode" name="zipcodePermanent" placeholder="Permanent Zip Code..">
             </div>
             
             <!-- interests -->
@@ -239,17 +243,17 @@
             <!-- captcha -->
             <div class="text-only-field">
                 <p>Captcha:<span class="req-star">*</span></p>
-                <span id="txtCaptchaDiv"></span><button id="btnRefreshCaptcha" onclick="return generateCaptcha();">Refresh</button>
+                <span id="txtCaptchaDiv"></span><button id="btnRefreshCaptcha">Refresh</button>
             </div>
             <div class="text-only-field">
                 <input type="hidden" id="txtCaptcha" value="1">
-                <input type="text" name="inputCaptcha" id="txtVisibleCaptcha" value="0">
+                <input type="number" name="inputCaptcha" id="txtVisibleCaptcha" value="" placeholder="Enter CAPTCHA.">
             </div>
-            <input type="submit" value="Submit">
+            <input type="submit" value="Submit" id="btnSubmit">
             </form>
-            <dialog id="txtSuccessMessage">Submitted Successfully.</dialog>
         </div>
     </div>
-    <script type="text/javaScript" src="script.js"></script>
+    <script type="text/javaScript" src="jqscript.js"></script>
+    <script src="validateEarlierField.js"></script>
 </body>
 </html>

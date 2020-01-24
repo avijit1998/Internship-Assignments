@@ -60,11 +60,8 @@ function countryChange(str1, str2, str3) {
             ['NB', 'New Brunswick']
     ] ]
     ];
-    // var countryElement = document.getElementById('optCountryCurrent');
     var countryElement = document.getElementById(str1);
-    // var stateElement = document.getElementById('optStateCurrent');
     var stateElement = document.getElementById(str2);
-    // var stateLabelElement = document.getElementById('lblStateCurrent');
     var stateLabelElement = document.getElementById(str3);
     var listOfState;
     //if country and state have been selected

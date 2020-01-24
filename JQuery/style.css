@@ -1,0 +1,265 @@
+body {
+    background: #0091EA;
+    /* background: -webkit-linear-gradient(to right, #6dd5ed, #2193b0); */
+    /* background: linear-gradient(to right, #6dd5ed, #2193b0) center center; */
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.company-banner-heading{
+    border-radius: 5px;
+    background-image: url(images/banner.jpg);
+    background-position: center;
+    width: 75%;
+    margin: 60px auto 40px auto;
+    height: 100px;
+    box-shadow: 0px 0px 35px #292A34;
+}
+
+#imgLogo {
+    width: 50px; 
+    height: 50px; 
+    float: left;
+    padding-top: 25px; 
+    padding-left: 10px;
+}
+
+h1 {
+    text-align:right;
+    padding-left: 30px;
+    padding-top: 32px;
+    padding-right: 15px;  
+    color: floralwhite;
+}
+
+.form-background {
+    border-radius: 10px;
+    background-color: black;
+    width: 75%; 
+    margin: 60px auto 40px auto;
+    box-shadow: 0px 0px 35px #292A34;
+}
+
+h2{
+    text-align: center;
+    color: floralwhite;
+    padding-top: 15px;
+}
+
+.form-foreground {
+    border-radius: 0px 0px 10px 10px;
+    background-color: #f2f2f2;
+    padding: 20px;
+}
+
+.text-only-field{
+    width: auto;
+    margin-top: 15px;
+}
+
+.name-type{
+    margin-left: 10px;
+    padding-left: 10px;
+    font-weight: bold;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.req-star {
+    color: red;
+}
+
+.name-like-field{
+    width: auto;
+    margin:6px 20px 0 20px;
+}
+
+
+input[type=text], input[type=email], input[type=password], input[type=number], input[type=date] {
+    width: 90%;
+    padding: 12px;
+    resize: vertical;
+    border: 0;
+    outline: 0;
+    background: whitesmoke;
+    border-bottom: 2px solid black;
+}
+
+select{
+    width: 92.7%;
+    padding: 12px;
+    resize: vertical;
+    border: 0;
+    outline: 0;
+    background: whitesmoke;
+    border-bottom: 2px solid black;
+}
+
+textarea{
+    height:40px;
+    width: 90%;
+    padding: 12px;
+    resize: vertical;
+    border: 0;
+    outline: 0;
+    background: whitesmoke;
+    border-bottom: 2px solid black;
+}
+
+p{
+    margin-left: 10px;
+    padding-left: 10px;
+    padding-top:5px;
+    font-weight: bold;
+    padding-right: 10px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif; 
+    font-size: small;
+}
+
+.radio-btns{
+    margin:6px 20px 0px;
+    padding-left: 10px;
+}
+
+.cbInterests{
+    display: block;
+    margin:6px 20px 0px;
+    padding-left: 10px;
+}
+
+.cbInterests input[type=checkbox] {
+    display:inline-block;
+}
+
+input[type=submit] {
+    background-color: #3644D2;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 15px;
+    padding:12px 21px;
+    border: 3px solid blue;
+    border-radius: 3px;
+    width:100px;
+    margin:0 50%;
+    position:relative;
+    left:-50px;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
+input[type=submit]:hover{
+    cursor: pointer;
+    opacity: 0.8;
+}
+
+.initial-hide {
+    display: none;
+}
+
+#txtCaptchaDiv {
+    margin-left: 10px;
+    padding-left: 10px;
+    padding-top:5px;
+    font-weight: bold;
+    padding-right: 10px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif; 
+    font-size: small;
+}
+
+#txtVisibleCaptcha {
+    padding: 12px 20px;
+    margin: 5px 21px 10px;
+    border: solid 2px black;
+    box-sizing: border-box;
+}
+
+#btnRefreshCaptcha {
+    padding: 10px 20px;
+    font-size: 10px;
+    text-align: center;
+    cursor: pointer;
+    outline: none;
+    color: #fff;
+    background-color: #2E31F7;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 6px #999
+}
+
+#btnRefreshCaptcha:hover {
+    background-color: #2022B8;
+}
+
+#btnRefreshCaptcha:active {
+    background-color: #2022B8;
+    box-shadow: 0 3px #666;
+    transform: translateY(3px);
+}
+
+.error {
+    display: block;
+    width: max-content;
+    border: 1px solid;
+	margin: 10px 0px;
+	padding: 15px 10px 15px 50px;
+	background-repeat: no-repeat;
+    background-position: 10px center;
+    color: #D8000C;
+	background-color: #FFBABA;
+    background-image: url('images/cross.png');
+}
+
+#txtPassword-error {
+    width: 200px;
+}
+
+#txtVisibleCaptcha-error {
+    width:max-content;
+    margin-left: 20px;
+    padding-left: 50px;
+}
+
+input.error {
+    width: 90%;
+    border: 1px solid #FF2323;
+}
+select.error {
+    display: block;
+    width: 80%;
+    background-color: whitesmoke;
+    border: 1px solid #FF2323;
+}
+
+textarea.error {
+    height: 40px;
+    width: 90%;
+    padding: 12px;
+    resize: vertical;
+    border: 0;
+    outline: 0;
+    background: whitesmoke;
+    border: 1px solid #FF2323;
+}
+
+.valid {
+    color: green;
+}
+
+@media only screen and (max-width: 500px){
+    .error{
+        width: min-content;
+    }
+
+    #txtPassword-error {
+        width: min-content;
+    }
+
+    #txtVisibleCaptcha-error {
+        width: min-content;
+    }
+}
+
+@media only screen and (max-width: 420px){
+    h1 {
+        font-size: x-large;
+        padding-top: 35px;
+    }
+
+}
