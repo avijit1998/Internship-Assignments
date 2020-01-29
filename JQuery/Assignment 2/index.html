@@ -4,9 +4,63 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Employee Registration Form</title>
+    <link href="https://fonts.googleapis.com/css?family=Domine&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    
+    <div class="form-background">
+        <h1>Register New Employee</h1>
+        <form action="" method="post" class="emp-form">
+            
+            <!-- name field -->
+            <div class="text-field double-div-parent">
+                <div class="smaller-input-field">
+                    <label for="txtFirstName">First Name</label>
+                    <input type="text" id="txtFirstName" name="firstName" placeholder="  Your first name..">
+                </div>
+                <div class="smaller-input-field right-field">
+                    <label for="txtLastName">Last Name</label>
+                    <input type="text" id="txtLastName" name="lastName" placeholder="  Your last name..">
+                </div>
+            </div>
+            
+            <!-- email field -->
+            <div class="text-field">
+                <div class="bigger-input-field">
+                    <label for="txtEmail">Email-Id</label>
+                    <input type="text" id="txtEmail" name="email" placeholder="  Your email-id..">
+                </div>
+            </div>
+            
+            <!-- password field -->
+            <div class="text-field double-div-parent">
+                <div class="smaller-input-field">
+                    <label for="txtPassword">Password</label>
+                    <input type="password" id="txtPassword" name="password" placeholder="  Enter password.">
+                </div>
+                <div class="smaller-input-field right-child">
+                    <label for="txtConfirmPassword">Confirm Password</label>
+                    <input type="password" id="txtConfirmPassword" name="confirmPassword" placeholder="  Enter the password again.">
+                </div>
+            </div>
+        
+            <!-- adhaar field -->
+            <div class="text-field">
+                <div class="bigger-input-field">
+                    <label for="txtAdhaar">Adhaar</label>
+                    <input type="number" id="txtAdhaar" name="adhaar" placeholder="  Your Adhaar Number..">
+                </div>
+            </div>
+
+            <!-- PAN field -->
+            <div class="text-field">
+                <div class="bigger-input-field">
+                    <label for="txtPAN">PAN</label>
+                    <input type="text" id="txtPAN" name="pan" placeholder="  Your PAN..">
+                </div>
+            </div>
+        </form>
+    </div>
 </body>
 </html>
