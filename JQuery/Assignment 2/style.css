@@ -8,7 +8,18 @@ body {
     background: linear-gradient(to left, #91EAE4, #86A8E7, #7F7FD5);
 }
 
+@keyframes slideInFromLeft {
+    0% {
+      transform: translateX(-100%);
+      
+    }
+    100% {
+      transform: translateX(0);
+    }
+}
+
 .form-background{
+    animation: 1s ease-out 0s 1 slideInFromLeft;
     margin: 5% 10%;
     background-color: #1B2631;
     border-radius: 9px;
@@ -25,20 +36,31 @@ h1{
 }
 
 label{
+    margin-top: 5px;
     font-family: 'Domine',sans-serif;
     text-align: left;
     color: #F2F4F4;
+    display: block;
 }
 
-input[type=text], input[type=password], input[type=number] {
+input[type=text], input[type=number], textarea{
     margin-top: 5px;
-    display: block;
     width: 100%;
     background: rgba(43,43,43,1);
     border: 1px solid #7B7D7D;
     border-radius: 5px;
     padding: 10px 0px 10px;
     color: #ffffff;
+}
+
+select{
+    color: #f2f2f2;
+    margin-top: 5px;
+    width: 50%;
+    background: rgba(43,43,43,1);
+    border: 1px solid #7B7D7D;
+    border-radius: 4px;
+    padding: 10px;
 }
 
 .text-field{
@@ -51,7 +73,8 @@ input[type=text], input[type=password], input[type=number] {
 
 .right-child{
     display: flex;
-    flex-direction: column;
+    flex-direction: column;;
+    align-items: flex-end;
     justify-content: space-between;
 }
 .smaller-input-field {
@@ -59,7 +82,7 @@ input[type=text], input[type=password], input[type=number] {
     flex: 1;
 }
 
-#txtFirstName, #txtLastName, #txtPassword, #txtConfirmPassword{
+#txtFirstName, #txtLastName, #txtPhone1 {
     width: 80%;
 }
 
@@ -70,6 +93,117 @@ input[type=text], input[type=password], input[type=number] {
   transition: transform 0.25s ease-in-out;
 }
 
-@media only screen and (max-width: 750px){
+#btnAddPhone {
+    margin-left: 10px;
+    background-color: #1B2631;
+    color: #7B7D7D;
+    font-size: 20px;
+    font-weight: bolder;
+    border: 0 solid;
+    box-shadow: inset 0 0 20px rgba(255, 255, 255, 0);
+    outline: 1px solid;
+    outline-color: rgba(255, 255, 255, .5);
+    outline-offset: 0px;
+    text-shadow: none;
+    transition: all 1250ms cubic-bezier(0.19, 1, 0.22, 1);
+} 
+  
+#btnAddPhone:hover {
+    border: 1px solid;
+    box-shadow: inset 0 0 20px rgba(255, 255, 255, .5), 0 0 20px rgba(255, 255, 255, .2);
+    outline-color: rgba(255, 255, 255, 0);
+    outline-offset: 15px;
+    text-shadow: 1px 1px 2px #427388; 
+  }
+
+  .btn-remove-phone {
+    margin-left: 14px;
+    background-color: #1B2631;
+    color: #7B7D7D;
+    font-size: 20px;
+    font-weight: bolder;
+    border: 0 solid;
+    box-shadow: inset 0 0 20px rgba(255, 255, 255, 0);
+    outline: 1px solid;
+    outline-color: rgba(255, 255, 255, .5);
+    outline-offset: 0px;
+    text-shadow: none;
+    transition: all 1250ms cubic-bezier(0.19, 1, 0.22, 1);
+} 
+  
+.btn-remove-phone:hover {
+    border: 1px solid;
+    box-shadow: inset 0 0 20px rgba(255, 255, 255, .5), 0 0 20px rgba(255, 255, 255, .2);
+    outline-color: rgba(255, 255, 255, 0);
+    outline-offset: 15px;
+    text-shadow: 1px 1px 2px #427388; 
+}
+
+.initial-hide {
+    display: none;
+}
+
+
+#btnAddAddress{
+    margin-top: 10px;
+    background-color: #1B2631;
+    color: #7B7D7D;
+    font-size: 16px;
+    font-weight: bolder;
+    border: 0 solid;
+    box-shadow: inset 0 0 20px rgba(255, 255, 255, 0);
+    outline: 1px solid;
+    outline-color: rgba(255, 255, 255, .5);
+    outline-offset: 0px;
+    text-shadow: none;
+    transition: all 1250ms cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+#btnAddAddress:hover {
+    border: 1px solid;
+    box-shadow: inset 0 0 20px rgba(255, 255, 255, .5), 0 0 20px rgba(255, 255, 255, .2);
+    outline-color: rgba(255, 255, 255, 0);
+    outline-offset: 15px;
+    text-shadow: 1px 1px 2px #427388; 
+}
     
+  .btn-remove-address {
+    margin-top: 10px;
+    background-color: #1B2631;
+    color: #7B7D7D;
+    font-size: 16px;
+    font-weight: bolder;
+    border: 0 solid;
+    box-shadow: inset 0 0 20px rgba(255, 255, 255, 0);
+    outline: 1px solid;
+    outline-color: rgba(255, 255, 255, .5);
+    outline-offset: 0px;
+    text-shadow: none;
+    transition: all 1250ms cubic-bezier(0.19, 1, 0.22, 1);
+} 
+  
+.btn-remove-address:hover {
+    border: 1px solid;
+    box-shadow: inset 0 0 20px rgba(255, 255, 255, .5), 0 0 20px rgba(255, 255, 255, .2);
+    outline-color: rgba(255, 255, 255, 0);
+    outline-offset: 15px;
+    text-shadow: 1px 1px 2px #427388; 
+}
+
+@media only screen and (max-width: 550px){
+    h1{
+        font-size: smaller;
+    }
+    label{
+        font-size: smaller;
+    }
+}
+
+@media only screen and (max-width: 320px){
+    h1{
+        font-size: x-small;
+    }
+    label{
+        font-size: x-small;
+    }
 }
