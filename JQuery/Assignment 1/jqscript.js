@@ -1,8 +1,8 @@
 jQuery.fn.extend({
     generateCaptcha: function () {
-        var a = Math.floor(Math.random() * (99 - 10 + 1) ) + 10;
-        var b = Math.floor(Math.random() * (99 - 10 + 1) ) + 10;       
-        var c = Math.floor(Math.random() * (4 - 1 + 1) ) + 1;  
+        var a = Math.floor(Math.random() * 10) + 1;
+        var b = Math.floor(Math.random() * 10) + 1;       
+        var c = Math.floor(Math.random() * 4) + 1;  
         var code,val1;
         if(c === 1){
             code = a + '+' + b;
@@ -30,7 +30,12 @@ jQuery.fn.extend({
         captcha.val(val1);
         $("#txtCaptchaDiv").html(code);
     },
-    countryChange: function(str1, str2, str3) {
+    countryChange: function() { 
+        var str1 = '#' + $(this).closest('.country').attr('id');
+        var str2 = '#' + $(this).closest('.country').parent().parent().find('.initial-hide:eq(1)').attr('id');
+        var str3 = '#' + $(this).closest('.country').parent().parent().find('.initial-hide').attr('id');
+        console.log(str1 + " " + str2 + " " + str3);
+        
         var countryState = [
             [
                 'IN',[
@@ -58,6 +63,7 @@ jQuery.fn.extend({
         ] ]
         ];
         var listOfState;
+       
         //if country and state have been selected
         if ($(str1)[0] && $(str2)[0]) {
             listOfState = [['XX', 'None']];
@@ -90,19 +96,15 @@ jQuery.fn.extend({
 
 
 $(document).ready(function() {
-    $(document).generateCaptcha();
+    $(this).generateCaptcha();
 
-    $("#optCountryCurrent").change(function() {
-        $(document).countryChange("#optCountryCurrent","#optStateCurrent","#lblStateCurrent");
-    });
-
-    $("#optCountryPermanent").change(function() {
-        $(document).countryChange("#optCountryPermanent","#optStatePermanent","#lblStatePermanent");
+    $(".country").change(function() {
+        $(this).countryChange();
     });
     
     $("#btnRefreshCaptcha").click(function (e) {
         e.preventDefault();
-        $(document).generateCaptcha();    
+        $(this).generateCaptcha();    
     });
 
     $.validator.addMethod("regex", function (value, element, regexpr) {
