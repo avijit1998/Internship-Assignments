@@ -7,99 +7,166 @@
     <title>Employee Registration Form</title>
     <link href="https://fonts.googleapis.com/css?family=Domine&display=swap" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/validation-styles.css">
 </head>
 <body>
+    <div class="company-banner-heading">
+        <img src="images/logo.png" alt="logo" id="imgLogo">
+        <h2>Company Name</h2>
+    </div>
     <div class="form-background">
         <h1>Register New Employee</h1>
-        <form action="" method="POST" class="emp-form">
+        <form class="emp-form">
+            <div id="activeForm">
+                <!-- name field -->
+                <div class="text-field double-div-parent">
+                    <div class="smaller-input-field">
+                        <label for="txtFirstName" id="lblFirstName">First Name</label> 
+                        <input type="text" id="txtFirstName" name="firstName" placeholder="First name">
+                    </div>
+                    <div class="smaller-input-field right-child">
+                        <label for="txtLastName">Last Name</label>
+                        <input type="text" id="txtLastName" name="lastName" placeholder="Last name">
+                    </div>
+                </div>
+                <div id="emsgNameField" class="error-message"></div>
+                
+                <!-- email field -->
+                <div class="text-field">
+                    <div class="bigger-input-field">
+                        <label for="txtEmail">Email-Id</label>
+                        <input type="text" id="txtEmail" name="email" placeholder="Your email-id..">
+                    </div>
+                </div>
+                <div id="emsgEmailField" class="error-message"></div>
+                
+                <!-- date of birth field -->
+                <div class="text-field">
+                    <label for="txtBirthDate">Date of Birth</label>
+                    <input type="date" name="birthdate" id="txtBirthDate" placeholder="Date of Birth">
+                </div>
+                <div id="emsgDateField" class="error-message"></div>
             
-            <!-- name field -->
-            <div class="text-field double-div-parent">
-                <div class="smaller-input-field">
-                    <label for="txtFirstName">First Name</label>
-                    <input type="text" id="txtFirstName" name="firstName" placeholder="Your first name..">
-                </div>
-                <div class="smaller-input-field right-child">
-                    <label for="txtLastName">Last Name</label>
-                    <input type="text" id="txtLastName" name="lastName" placeholder="Your last name..">
-                </div>
-            </div>
-            
-            <!-- email field -->
-            <div class="text-field">
-                <div class="bigger-input-field">
-                    <label for="txtEmail">Email-Id</label>
-                    <input type="text" id="txtEmail" name="email" placeholder="Your email-id..">
-                </div>
-            </div>
-        
-            <!-- adhaar field -->
-            <div class="text-field">
-                <div class="bigger-input-field">
-                    <label for="txtAdhaar">Adhaar</label>
-                    <input type="number" id="txtAdhaar" name="adhaar" placeholder="Your Adhaar Number..">
-                </div>
-            </div>
-
-            <!-- PAN field -->
-            <div class="text-field">
-                <div class="bigger-input-field">
-                    <label for="txtPAN">PAN</label>
-                    <input type="text" id="txtPAN" name="pan" placeholder="Your PAN..">
-                </div>
-            </div>
-
-            <!-- phone number field -->
-            <div id="grpPhoneField" class="text-field">
-                <div id="phoneField1">
-                    <label for="txtPhone1">Phone Number 1</label>
-                    <input type="number" name="phone1" id="txtPhone1" placeholder="Your Phone Number..">
-                    <button id="btnAddPhone">+</button>
-                </div>
-            </div>
-
-            <!-- address field -->
-            <div id="grpAddressField" class="text-field">
-                <div id="addressField1">
-                    <div id="multilineAddressField1">
-                        <label for="txtAddress1">Address 1</label>
-                        <textarea id="txtCurrent1" name="address1" placeholder="Enter address."></textarea>
+                <!-- adhaar field -->
+                <div class="text-field">
+                    <div class="bigger-input-field">
+                        <label for="txtAdhaar">Adhaar</label>
+                        <input type="text" id="txtAdhaar" name="adhaar" placeholder="Adhaar Number">
                     </div>
-                    
-                    <div id="cityField1">
-                        <label for="txtCity1">City 1</label>
-                        <input type="text" id="txtCity1" name="city1" placeholder="Enter city..">
+                </div>
+                <div id="emsgAdhaarField" class="error-message"></div>
+                
+                <!-- pan field -->
+                <div class="text-field">
+                    <div class="bigger-input-field">
+                        <label for="txtPAN">PAN</label>
+                        <input type="text" id="txtPAN" name="pan" placeholder="Your PAN..">
                     </div>
+                </div>
+                <div id="emsgPANField" class="error-message"></div>
+                
+                <!-- phone number field -->
+                <div id="grpPhoneField" class="text-field">
+                    <div id="phoneField1">
+                        <label for="txtPhone1">Phone Number (Primary)</label>
+                        <input type="text" name="phone1" id="txtPhone1" class="validate-phone" placeholder="Your Phone Number..">
+                        <button class="glowing-btn" id="btnAddPhone">+</button>
+                    </div>
+                </div>
+                <div id="emsgPhoneField" class="error-message"></div>
+    
+                <!-- address field -->
+                <div id="grpAddressField" class="text-field">
+                    <div id="addressField1">
+                        <div id="multilineAddressField1">
+                            <label for="txtAddress1">Address (Primary)</label>
+                            <textarea id="txtAddress1" class="validate-address" name="address1" placeholder="Enter address."></textarea>
+                        </div>
+                        <div id="emsgAddressField1" class="error-message"></div>
+                        
+                        <div id="cityField1">
+                            <label for="txtCity1">City (Primary)</label>
+                            <input type="text" id="txtCity1"  class="validate-city" name="city1" placeholder="Enter city..">
+                        </div>
+                        <div id="emsgCityField1" class="error-message"></div>
+                        
+                        <div id="countryField1">
+                            <label for="optCountry1">Country (Primary)</label>
+                            <select class="country validate-country" name="country1" id="optCountry1">
+                                <option value="">-select-</option>
+                                <option value="IN">India</option>
+                                <option value='US'>United States</option>
+                                <option value='CA'>Canada</option>
+                            </select>
+                        </div>
+                        <div id="emsgCountryField1" class="error-message"></div>
+                        
+                        <div id="stateField1">
+                            <label id="lblState1" class="find-state-field" for="optState1">State (Primary)</span></label>
+                            <select name="state1" id="optState1" class="find-state-field validate-state">
+                                <option value="">State/Province</option>
+                            </select>
+                        </div>
+                        <div id="emsgStateField1" class="error-message"></div>
+                        
+                        <div id="zipcode1">
+                            <label for="txtZipcode1">ZipCode (Primary)</label>
+                            <input type="text" id="txtZipcode1" class="validate-zipcode" name="zipcode1" placeholder="Zip Code..">
+                        </div>
+                        <div id="emsgZipCodeField1" class="error-message"></div>
+                        <button id="btnAddAddress" class="glowing-btn">+ Add Address</button>
+                    </div>
+                </div>
+    
+                <!-- profile picture upload field-->
+                <div class="file-upload">
+                    <button class="file-upload-btn" type="button">Add Image</button>
+                    <div class="image-upload-wrap">
+                        <input type='file' accept="image/*" class="file-upload-input" name="profile picture">
+                        <div class="drag-text">
+                            <h3 id="messageArea">Drag and drop a file or select add Image</h3>
+                        </div>
+                    </div>
+                    <div class="file-upload-content">
+                        <img class="file-upload-image" src="#" alt="your image" id="imageUpload"/>
+                        <div class="image-title-wrap">
+                            <button type="button" class="remove-image">Remove 
+                                <span class="image-title">Uploaded Image</span></button>
+                        </div>
+                    </div>
+                </div>
+    
+                <!-- captcha -->
+                <div id="captchaField" class="text-field">
+                    <div class="bigger-input-field">
+                        <label for="txtVisibleCaptcha">Captcha:</label>
+                        <label id="txtCaptchaDiv"></label><button id="btnRefreshCaptcha" class="glowing-btn">Refresh</button>
+                    </div>
+                </div>
+                <div class="text-field">
+                    <div class="bigger-input-field">
+                        <input type="hidden" id="hiddenTxtCaptcha" value="1">
+                        <input type="number" name="inputCaptcha" id="txtVisibleCaptcha" value="" placeholder="Enter CAPTCHA.">
+                    </div>
+                </div>
 
-                    <div id="countryField1">
-                        <label for="optCountry1">Country 1</label>
-                        <select class="country" name="country1" id="optCountry1">
-                            <option value="">-select-</option>
-                            <option value="IN">India</option>
-                            <option value='US'>United States</option>
-                            <option value='CA'>Canada</option>
-                        </select>
-                    </div>
-
-                    <div id="stateField1">
-                        <label id="lblState1" class="initial-hide" for="optState1">State 1</span></label>
-                        <select name="state1" id="optState1" class="initial-hide">
-                            <option value="">State/Province</option>
-                        </select>
-                    </div>
-                    
-                    <div id="zipcode1">
-                        <label for="txtZipcode1">ZipCode 1</label>
-                        <input type="number" id="txtZipcode1" name="zipcode1" placeholder="Zip Code..">
-                    </div>
-                    <button id="btnAddAddress">+ Add Address</button>
+                <!-- submit and reset button -->
+                <div class="text-field submit-reset-field">
+                    <input type="submit" value="Submit" id="btnSubmit" class="glowing-btn">
+                    <input type="reset" value="Reset" id="btnReset" class="glowing-btn">
                 </div>
             </div>
+                
+            <div id="displayForm"></div>
         </form>
+        </div>
     </div>
     <script src="jquery/addField.js"></script>
     <script src="jquery/showStateList.js"></script>
     <script src="jquery/common.js"></script>
+    <script src="jquery/fileUpload.js"></script>
+    <script src="jquery/validate.js"></script>
+    <script src="jquery/fileUploadEvents.js"></script>
 </body>
 </html>

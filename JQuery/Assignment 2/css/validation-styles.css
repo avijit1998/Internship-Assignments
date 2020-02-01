@@ -1,0 +1,20 @@
+input.invalid, textarea.invalid, select.invalid {
+	border: 2px solid red;
+}
+
+input.valid, textarea.valid, select.valid {
+	border: 2px solid green;
+}
+
+input[type=date].invalid{
+	border: 2px solid red;
+}
+
+input[type=date].valid{
+	border: 2px solid green;
+}
+
+.error-message{
+	color: pink;
+}
+
