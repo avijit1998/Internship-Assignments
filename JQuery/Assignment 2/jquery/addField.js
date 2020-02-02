@@ -8,7 +8,7 @@ $(document).ready(function(){
     $(document).on("click", ".btn-remove-phone", function () {
         var phoneFieldIdNumber = $(this).attr('id').replace(/[^\d]+/, '');
         phoneFieldIdNumber++;
-	      if(counterPhone==1){
+	      if(counterPhone === 1){
             alert("No more phone fields to remove");
             return false;
         }
