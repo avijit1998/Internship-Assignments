@@ -1,36 +1,46 @@
-function readURL(input) {
+jQuery.fn.extend({
+  readURL: function (input) {
     if (input.files && input.files[0]) {
-    
       var reader = new FileReader();
-  
       reader.onload = function(e) {
-        $('.image-upload-wrap').hide();
-  
+        $('#imageDivEmpty').removeClass('display-toggle-block').addClass('display-toggle-none');
         $('.file-upload-image').attr('src', e.target.result);
-        $('.file-upload-content').show();
-  
-        $('.image-title').html(input.files[0].name);
+        $('#imageDivDisplay').removeClass('display-toggle-none').addClass('display-toggle-block');
+        $('#imageTitle').html(input.files[0].name);
       };
       reader.readAsDataURL(input.files[0]);
-      
     } else {
       removeUpload();
     }
-  }
-  
-  function removeUpload() {
-    $(".file-upload-input").val(null);
-    $('.file-upload-content').hide();
+  },
+  removeUpload: function () {
+    $("#imgInputField").val(null);
+    $('#imageDivDisplay').removeClass('display-toggle-block').addClass('display-toggle-none');
     $('.file-upload-image').attr('src', "#");
-    $('.image-title').html("");
-    $('.image-upload-wrap').show();
+    $('#imageTitle').html("");
+    $('#imageDivEmpty').removeClass('display-toggle-none').addClass('display-toggle-block');
   }
+});
 
-  $('.image-upload-wrap').bind('dragover', function () {
-          $('.image-upload-wrap').addClass('image-dropping');
-  });
+$('#imageDivDisplay').removeClass('display-toggle-block').addClass('display-toggle-none');
 
-  $('.image-upload-wrap').bind('dragleave', function () {
-        $('.image-upload-wrap').removeClass('image-dropping');
-  });
+$('#btnFileUpload').on('click',function () {
+    $('#imgInputField').trigger( 'click' );    
+});
+
+$('#imgInputField').on('change',function () {
+    $('#fileUpload').readURL(this);    
+});
+
+$('#btnRemoveImage').on('click',function () {
+    $(this).removeUpload();
+});
+
+$('#imageDivEmpty').bind('dragover', function () {
+    $('#imageDivEmpty').addClass('image-dropping');
+});
+
+$('#imageDivEmpty').bind('dragleave', function () {
+    $('#imageDivEmpty').removeClass('image-dropping');
+});
   

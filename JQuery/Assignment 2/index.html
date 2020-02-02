@@ -5,9 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Employee Registration Form</title>
+    <link rel="shortcut icon" href="images/logo.png" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css?family=Domine&display=swap" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/file-upload.css">
     <link rel="stylesheet" href="css/validation-styles.css">
 </head>
 <body>
@@ -120,19 +122,16 @@
                 </div>
     
                 <!-- profile picture upload field-->
-                <div class="file-upload">
-                    <button class="file-upload-btn" type="button">Add Image</button>
-                    <div class="image-upload-wrap">
-                        <input type='file' accept="image/*" class="file-upload-input" name="profile picture">
-                        <div class="drag-text">
-                            <h3 id="messageArea">Drag and drop a file or select add Image</h3>
-                        </div>
+                <div id="fileUpload">
+                    <button id="btnFileUpload" type="button">Add Image</button>
+                    <div id="imageDivEmpty">
+                        <input type='file' accept="image/*" id="imgInputField" name="profile picture">
+                        <h3 id="messageArea">Drag and drop a file or select ADD IMAGE</h3>
                     </div>
-                    <div class="file-upload-content">
+                    <div id="imageDivDisplay">
                         <img class="file-upload-image" src="#" alt="your image" id="imageUpload"/>
-                        <div class="image-title-wrap">
-                            <button type="button" class="remove-image">Remove 
-                                <span class="image-title">Uploaded Image</span></button>
+                        <div id="imageTitleDiv">
+                            <button type="button" id="btnRemoveImage">Remove <span id="imageTitle"></span></button>
                         </div>
                     </div>
                 </div>
@@ -150,6 +149,7 @@
                         <input type="number" name="inputCaptcha" id="txtVisibleCaptcha" value="" placeholder="Enter CAPTCHA.">
                     </div>
                 </div>
+                <div id="emsgCaptcha" class="error-message"></div>
 
                 <!-- submit and reset button -->
                 <div class="text-field submit-reset-field">
@@ -162,11 +162,8 @@
         </form>
         </div>
     </div>
-    <script src="jquery/addField.js"></script>
-    <script src="jquery/showStateList.js"></script>
     <script src="jquery/common.js"></script>
+    <script src="jquery/addField.js"></script>
     <script src="jquery/fileUpload.js"></script>
-    <script src="jquery/validate.js"></script>
-    <script src="jquery/fileUploadEvents.js"></script>
 </body>
 </html>
