@@ -18,7 +18,7 @@ jQuery.fn.extend({
     $('#imageDivDisplay').removeClass('display-toggle-block').addClass('display-toggle-none');
     $('.file-upload-image').attr('src', "#");
     $('#imageTitle').html("");
-    $('#imageDivEmpty').removeClass('display-toggle-none').addClass('display-toggle-block');
+    $('#imageDivEmpty').removeClass('display-toggle-none').addClass('display-toggle-block').removeClass('image-dropping');
   }
 });
 
@@ -36,11 +36,9 @@ $('#btnRemoveImage').on('click',function () {
     $(this).removeUpload();
 });
 
-$('#imageDivEmpty').bind('dragover', function () {
-    $('#imageDivEmpty').addClass('image-dropping');
-});
-
-$('#imageDivEmpty').bind('dragleave', function () {
-    $('#imageDivEmpty').removeClass('image-dropping');
+$('#imageDivEmpty').bind('dragover', function(){
+  $('#imageDivEmpty').addClass('image-dropping');
+}).bind('dragleave drop',function(){
+  $('#imageDivEmpty').removeClass('image-dropping');
 });
   
