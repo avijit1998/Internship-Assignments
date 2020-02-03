@@ -152,6 +152,8 @@ $(document).ready(function(){
     regexAddress = /^[a-zA-Z0-9\s,'-]*$/,
     regexCityName = /^[a-zA-Z ]{2,47}$/,
     regexZipCode = /^\d{6}$/; 
+
+    // real time validation for first name, last name, email, birthdate, adhaar, pan 
     $('#txtFirstName').on('input', function() {
         var input=$(this);
         var is_name=input.val();
@@ -236,6 +238,8 @@ $(document).ready(function(){
             $('#emsgPhoneField').text('Please enter a valid 10-digit phone number.');
         }
     });
+
+    // real time validation for address fields
     $('#grpAddressField').on('input','.validate-address', function() {
         var input=$(this);
         var s = '#emsgAddressField' + $(this).attr('id').replace(/txtAddress/, ''); 
@@ -249,6 +253,8 @@ $(document).ready(function(){
             $(s).text('Please enter a valid address');
         }
     });
+
+    // real time validation for all city fields
     $('#grpAddressField').on('input','.validate-city', function() {
         var input=$(this);
         var s = '#emsgCityField' + $(this).attr('id').replace(/txtCity/, '');
@@ -262,6 +268,8 @@ $(document).ready(function(){
             $(s).text('Please enter a valid city.');
         }
     });
+
+    // real time validation for all country dropdown field
     $('#grpAddressField').on('change','.validate-country', function() {
         var input=$(this);
         var s = '#emsgCountryField' + $(this).attr('id').replace(/optCountry/, '');
@@ -275,6 +283,8 @@ $(document).ready(function(){
             $(s).text('Please select a country.');
         }
     });
+
+    // real time validation for all state dropdown fields
     $('#grpAddressField').on('change','.validate-state', function() {
         var input=$(this);
         var s = '#emsgStateField' + $(this).attr('id').replace(/optState/, '');
@@ -288,6 +298,8 @@ $(document).ready(function(){
             $(s).text('Please select a state.');
         }
     });
+
+    // real time validation for all zipcode fields
     $('#grpAddressField').on('input','.validate-zipcode', function() {
         var input=$(this);
         var s = '#emsgZipCodeField' + $(this).attr('id').replace(/txtZipcode/, '');
@@ -301,6 +313,8 @@ $(document).ready(function(){
             $(s).text('Please enter a valid 6-digit zip code.');
         }
     });
+
+    // real time validation for captcha field
     $('#txtVisibleCaptcha').on('input', function() {
         var input=$(this);
         var captcha=input.val();
@@ -314,6 +328,7 @@ $(document).ready(function(){
         }
     });
 
+    // validation after submit button is clicked
     $('.emp-form').on('click','#btnSubmit',function(event){        
         event.preventDefault();
         
@@ -365,6 +380,7 @@ $(document).ready(function(){
             $('#emsgPANField').text('Please enter a valid PAN.');
         }
 
+        // validation for all phone number field with looping 
         $('#grpPhoneField').children().each(function () {
             var inp=$(this).attr('id');
             var str = '#' + inp + ' :input';
@@ -379,6 +395,7 @@ $(document).ready(function(){
             }
         });
 
+        // validation for multi line address input
         $('#grpAddressField').children().each(function () {
             var inp=$(this).attr('id');
             var s = '#emsgAddressField' + $(this).children().attr('id').replace(/multilineAddressField/, '');
@@ -394,6 +411,7 @@ $(document).ready(function(){
             }
         });
 
+        // validation for all city input
         $('#grpAddressField').find('.validate-city').each(function () {
             var inp=$(this).attr('id');
             var s = '#emsgCityField' + $(this).attr('id').replace(/txtCity/, '');
@@ -409,6 +427,7 @@ $(document).ready(function(){
             }
         });
 
+        // validation for all country dropdown
         $('#grpAddressField').find('.validate-country').each(function () {
             var inp=$(this).attr('id');
             var s = '#emsgCountryField' + $(this).attr('id').replace(/optCountry/, '');
@@ -424,6 +443,7 @@ $(document).ready(function(){
             }
         });
 
+        // validation for all state dropdown
         $('#grpAddressField').find('.validate-state').each(function () {
             var inp=$(this).attr('id');
             var s = '#emsgStateField' + $(this).attr('id').replace(/optState/, '');
@@ -439,6 +459,7 @@ $(document).ready(function(){
             }
         });
 
+        // validation for all zipcodes field present via loop
         $('#grpAddressField').find('.validate-zipcode').each(function () {
             var inp=$(this).attr('id');
             var s = '#emsgZipCodeField' + $(this).attr('id').replace(/txtZipcode/, '');
@@ -454,6 +475,7 @@ $(document).ready(function(){
             }
         });
 
+        // validation for captcha
         if ($('#txtVisibleCaptcha').val() && $('#txtVisibleCaptcha').val() === $('#hiddenTxtCaptcha').val()) {
             $('#txtVisibleCaptcha').removeClass("invalid").addClass("valid");
             $('#emsgCaptcha').text('');
@@ -462,6 +484,7 @@ $(document).ready(function(){
             $('#emsgCaptcha').text('Wrong CAPTCHA!! Try Again.');
         }
 
+        // validation for image file input
         if ($('.file-upload-image').attr("src") === '#') {
             $('#messageArea').html('This field is empty, you may upload your '+
               'picture via Drag-Drop or clicking the "ADD IMAGE" button above');
@@ -478,10 +501,12 @@ $(document).ready(function(){
         if($('.invalid')[0]){
         }
         else{
+            // for displaying the result page of the employee details
             $('h1').html('New Employee Profile');
             var newProfilePictureDiv = $(document.createElement('div')).attr({
                 id: 'profileDisplay'
             });
+
             newProfilePictureDiv.after().html('<img class="file-upload-image" src="#" alt="your image" id="imageDisplayCopy">');
             $('#displayForm').append(newProfilePictureDiv);
 
@@ -489,6 +514,8 @@ $(document).ready(function(){
             $('#profileDisplay').css({
                 "text-align":"center"
             });
+
+            // looping on txt fields
             $('input[id*=txt]').each(function(){
                 var id = $(this).attr('id');
                 if($(this).is('#txtVisibleCaptcha')){
@@ -507,6 +534,8 @@ $(document).ready(function(){
                 $('#displayForm').append(labelCopy);
                 $('#displayForm').append(txtInput);
             });
+
+            // looping on all select fields
             $('select[id*=opt]').each(function(){
                 var id = $(this).attr('id');
                 var labelCopy = $('label[for="' + id + '"]');
@@ -522,6 +551,8 @@ $(document).ready(function(){
                 $('#displayForm').append(labelCopy);
                 $('#displayForm').append(optInput);
             });
+
+            // looping on all textarea fields
             $('textarea[id*=txt]').each(function(){
                 var id = $(this).attr('id');
                 var labelCopy = $('label[for="' + id + '"]');
@@ -537,9 +568,12 @@ $(document).ready(function(){
                 $('#displayForm').append(labelCopy);
                 $('#displayForm').append(txtAreaInput);
             });
+            // hide the original form
             $('#activeForm').css({
                 "display":"none"
             });
+
+            // disable the input field in display form
             $("#displayForm :input").prop("disabled", true);    
         }
     });
