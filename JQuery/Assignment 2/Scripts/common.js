@@ -577,4 +577,9 @@ $(document).ready(function(){
             $("#displayForm :input").prop("disabled", true);    
         }
     });
+
+    $('.emp-form').on('click','#btnReset',function(event){
+        $("#btnRemoveImage").removeUpload();
+    });
+
 });
