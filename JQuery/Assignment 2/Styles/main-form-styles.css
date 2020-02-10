@@ -9,7 +9,7 @@ html {
 }
 
 body {
-    background: #7F7FD5;  /* fallback for old browsers */
+    background: #7F7FD5;
     background: -webkit-linear-gradient(to left, #91EAE4, #86A8E7, #7F7FD5);
     background: linear-gradient(to left, #91EAE4, #86A8E7, #7F7FD5);
 }
@@ -38,18 +38,7 @@ h2{
     color: floralwhite;
 }
 
-@keyframes slideInFromLeft {
-    0% {
-      transform: translateX(-100%);
-      
-    }
-    100% {
-      transform: translateX(0);
-    }
-}
-
 .form-background{
-    animation: 1s ease-out 0s 1 slideInFromLeft;
     margin: 5% 10%;
     background-color: #1B2631;
     border-radius: 9px;
@@ -83,6 +72,10 @@ input[type=text], input[type=number], input[type=date]{
     color: #ffffff;
 }
 
+#grpPhoneField input[type=text]{
+    width: 50%;
+}
+
 textarea{
     margin-top: 5px;
     resize: none;
@@ -105,41 +98,16 @@ select{
     padding: 10px;
 }
 
+.hidden{
+    display: none;
+}
+
 .text-field{
     margin-top: 10px;
 }
 
-.double-div-parent{
-    display: flex;
-}
-
-.right-child{
-    display: flex;
-    flex-direction: column;;
-    align-items: flex-end;
-    justify-content: space-between;
-}
-
-.smaller-input-field {
-    margin-top: 5px;
-    flex: 1;
-}
-
 #txtBirthDate {
     width: 40%;
-}
-
-#txtPhone1, #txtZipcode1{
-    width: 50%;
-}
-
-#txtFirstName, #txtLastName, #txtAdhaar, #txtPAN {
-    width: 80%;
-}
-
-.emp-form select:focus, .emp-form input:focus, .emp-form textarea:focus {
-    transform: scale(1.02);
-    transition: transform 0.25s ease-in-out;
 }
 
 .glowing-btn{
@@ -163,22 +131,12 @@ select{
     text-shadow: 1px 1px 2px #427388; 
 }
 
-#btnAddPhone {
+.btn-add-phone, .btn-remove-phone {
     margin-left: 10px;
     font-size: 20px;
 } 
-  
-.btn-remove-phone {
-    margin-left: 14px;
-    font-size: 20px;
-} 
 
-#btnAddAddress{
-    margin-top: 10px;
-    font-size: 16px;
-}
-    
-.btn-remove-address {
+.address-btn {
     margin-top: 10px;
     font-size: 16px;
 }
@@ -192,8 +150,19 @@ select{
     text-align: center;
 }
 
+.display-toggle-none {
+    display: none;
+}
+
+.display-toggle-block{
+    display: block;
+}
+
 @media only screen and (max-width: 550px){
     h1{
+        font-size: smaller;
+    }
+    h4{
         font-size: smaller;
     }
     label{
@@ -203,6 +172,9 @@ select{
 
 @media only screen and (max-width: 320px){
     h1{
+        font-size: x-small;
+    }
+    h4{
         font-size: x-small;
     }
     label{

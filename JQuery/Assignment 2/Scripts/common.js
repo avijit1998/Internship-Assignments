@@ -26,21 +26,18 @@ jQuery.fn.extend({
             code = "Invalid Operation.";
             val1 = 0;
         }
-        var captcha = $('#hiddenTxtCaptcha');
-        captcha.val(val1);
-        $("#txtCaptchaDiv").html(code);
+        $("input:hidden[class='hidden-captcha-value']").val(val1);
+        $(".captcha-question").html(code);
     },
     restrictNumeric: function(e) {
         var regexpAlpha = /[a-z]/i;
         var value = String.fromCharCode(e.which) || e.key;
-    
-        // No letters
         if (regexpAlpha.test(value)) {
-          e.preventDefault();
-          return false;
+            event.preventDefault();
+            return false;
         }
     },
-    checkSpcialChar: function(event){
+    checkSpcialChar: function(e){
         if(!((event.keyCode >= 65) && (event.keyCode <= 90) ||
             (event.keyCode >= 97) && (event.keyCode <= 122) || 
             (event.keyCode >= 48) && (event.keyCode <= 57) || 
@@ -52,10 +49,8 @@ jQuery.fn.extend({
         event.returnValue = true;
     },
     countryChange: function() {
-        var str1 = '#' + $(this).closest('.country').attr('id');
-        var str2 = '#' + $(this).closest('.country').parent().parent().find('.find-state-field:eq(1)').attr('id');
-        var str3 = '#' + $(this).closest('.country').parent().parent().find('.find-state-field').attr('id');
-        
+        var country = $(this).closest('.js-country-state').find('.country');
+        var state = $(this).closest('.js-country-state').find('.find-state-field').eq(1);
         var countryState = [
             [
                 'IN',[
@@ -84,11 +79,11 @@ jQuery.fn.extend({
         ];
         var listOfState;
         //if country and state have been selected
-        if ($(str1)[0] && $(str2)[0]) {
+        if ($(country)[0] && $(state)[0]) {
             listOfState = [['', 'None']];
 
             //states based on country are added into the list
-            var currentCountry = $(str1).children("option:selected").val();
+            var currentCountry = $(country).children("option:selected").val();
                 for (var i = 0; i < countryState.length; i++) {
                     if (currentCountry === countryState[i][0]) {
                         listOfState = countryState[i][1];
@@ -96,9 +91,9 @@ jQuery.fn.extend({
                 }
 
             // add all states from listofState to option in select field
-            $(str2)[0].options.length = 0;
+            $(state)[0].options.length = 0;
             for (var k = 0; k < listOfState.length; k++) {
-                $(str2)[0].options[k] = new Option(listOfState[k][1], listOfState[k][0]);    
+                $(state)[0].options[k] = new Option(listOfState[k][1], listOfState[k][0]);    
             }
         }
     },
@@ -113,473 +108,235 @@ jQuery.fn.extend({
             day = '0' + day.toString();
         var maxDate = year + '-' + month + '-' + day;
         return maxDate;
+    },
+    validate: function(errorMsg, regex, captcha){
+        if(captcha !== undefined && captcha){
+            if ($(this).val() && $(this).val() === $(this).parent().find('.hidden-captcha-value').val()) {
+                $(this).removeClass("invalid").addClass("valid");
+                $(this).parent().find('.error-message').text('');
+            }
+            else {
+                $(this).removeClass("valid").addClass("invalid");
+                $(this).parent().find('.error-message').text(errorMsg);
+            }
+            return;
+        }
+        if(regex !== undefined){
+            if ($(this).val() && regex.test($(this).val()) ) {
+                $(this).removeClass("invalid").addClass("valid");
+                $(this).parent().find('.error-message').text('');
+            }
+            else {
+                $(this).removeClass("valid").addClass("invalid");
+                $(this).parent().find('.error-message').text(errorMsg);
+            }
+            return;
+        }
+        if ($(this).val()) {
+            $(this).removeClass("invalid").addClass("valid");
+            $(this).parent().find('.error-message').text('');
+        }
+        else {
+            $(this).removeClass("valid").addClass("invalid");
+            $(this).parent().find('.error-message').text(errorMsg);
+        }
     }
 });
 $(document).ready(function(){
-    $('#captchaField').generateCaptcha();
+    var regexName = /^[a-zA-Z ]{2,30}$/, 
+        regexEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
+        regexAdhaar = /^\d{12}$/,
+        regexPAN = /^([a-zA-Z]){5}([0-9]){4}([a-zA-Z]){1}?$/,
+        regexPhone = /^[6-9]\d{9}$/,
+        regexAddress = /^[a-zA-Z0-9\s,'-]*$/,
+        regexCity = /^[a-zA-Z ]{2,47}$/,
+        regexZipCode = /^\d{6}$/,
+        regexNumber = /^\d{3}$/;
     
-    $('#txtBirthDate').attr('max', $(this).restrictFutureDate);
-
-    $('#txtAdhaar').on('keydown keyup keypress', function(){
-        $(this).restrictNumeric(event);
-        $(this).checkSpcialChar(event);
-    });
-
-    $('#grpPhoneField').on('keydown keyup keypress', 'input.validate-phone',function(){
-        $(this).restrictNumeric(event);
-        $(this).checkSpcialChar(event);
-    });
-
-    $('#grpAddressField').on('change', 'select.country', function() {
-        $(this).countryChange();    
-    });
-
-    $('#grpAddressField').on('keydown keyup keypress','input.validate-zipcode', function() {
-        $(this).restrictNumeric(event);
-        $(this).checkSpcialChar(event);
-    });
-
+    var errorMsgName = 'Please enter a valid name.(Name length must be between 2 to 30)',
+        errorMsgEmail = 'Please enter a valid email.(Ex:abc@xyz.com)',
+        errorMsgDateOfBirth = 'Please enter your date of birth',
+        errorMsgAdhaar = 'Please enter a valid 12-digit adhaar number.',
+        errorMsgPAN = 'Please enter a valid PAN number.',
+        errorMsgPhone = 'Please enter a valid 10 digit phone number.(It should start with [9/8/7/6])',
+        errorMsgAddress = 'Please enter a valid address.',
+        errorMsgCity = 'Please enter a valid city name.',
+        errorMsgCountry = 'Please select a country',
+        errorMsgState = 'Please select a state',
+        errorMsgZipCode = 'Please enter a valid 6-digit zipcode.',
+        errorMsgCaptcha = 'Wrong CAPTCHA!! Try Again.';
+        
+    //generate captcha on page starting and also on refresh btn 
+    $('#captchaField').generateCaptcha();
     $('#captchaField').on('click',"#btnRefreshCaptcha", function (e) {
         e.preventDefault();
         $(this).generateCaptcha();      
     });
+    
+    // restrict future date
+    $('#txtBirthDate').attr('max', $(this).restrictFutureDate);
+    // restriction to number based input field
+    $('#activeForm').on('keypress','input#txtAdhaar, input.validate-phone, input.validate-zipcode', function(e){
+        $(this).restrictNumeric(e);
+        $(this).checkSpcialChar(e);
+    });
 
-    var regexName = /^[a-zA-Z ]{2,30}$/, 
-    regexEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
-    regexAdhaar = /^\d{12}$/,
-    regexPAN = /^([a-zA-Z]){5}([0-9]){4}([a-zA-Z]){1}?$/,
-    regexPhone = /^[6-9]\d{9}$/,
-    regexAddress = /^[a-zA-Z0-9\s,'-]*$/,
-    regexCityName = /^[a-zA-Z ]{2,47}$/,
-    regexZipCode = /^\d{6}$/; 
+    // bind states based on country
+    $('#grpAddressField').on('change', 'select.country', function() {
+        $(this).countryChange();    
+    });
 
-    // real time validation for first name, last name, email, birthdate, adhaar, pan 
-    $('#txtFirstName').on('input', function() {
-        var input=$(this);
-        var is_name=input.val();
-        if (is_name && regexName.test(is_name) ) {
-            input.removeClass("invalid").addClass("valid");
-            $('#emsgNameField').text('');
-        }
-        else {
-            input.removeClass("valid").addClass("invalid");
-            $('#emsgNameField').text('Please enter a valid name.(Name length must be between 2 to 30)');
-        }
+    // validation of static fields
+    $('#txtFirstName').on('input', function() { 
+        $(this).validate(errorMsgName, regexName);
     });
     $('#txtLastName').on('input', function() {
-        var input=$(this);
-        var is_name=input.val();
-        if (is_name && regexName.test(is_name) ) {
-            input.removeClass("invalid").addClass("valid");
-            $('#emsgNameField').text('');
-        }
-        else {
-            input.removeClass("valid").addClass("invalid");
-            $('#emsgNameField').text('Please enter a valid name.(Name length must be between 2 to 30)');
-        }
+        $(this).validate(errorMsgName, regexName);
     });
     $('#txtEmail').on('input', function() {
-        var input=$(this);
-        var email=input.val();
-        if (email && regexEmail.test(email) ) {
-            input.removeClass("invalid").addClass("valid");
-            $('#emsgEmailField').text('');
-        }
-        else {
-            input.removeClass("valid").addClass("invalid");
-            $('#emsgEmailField').text('Please enter a valid email.(Ex:abc@xyz.com)');
-        }
+        $(this).validate(errorMsgEmail, regexEmail);
     });
     $('#txtBirthDate').on('input', function() {
-        var input=$(this);
-        var date=input.val();
-        if (date) {
-            input.removeClass("invalid").addClass("valid");
-            $('#emsgDateField').text('');
-        }
-        else {
-            input.removeClass("valid").addClass("invalid");
-            $('#emsgDateField').text('Please enter your date of birth');
-        }
+        $(this).validate(errorMsgDateOfBirth);
     });
     $('#txtAdhaar').on('input', function() {
-        var input=$(this);
-        var adhaar=input.val();
-        if (adhaar && regexAdhaar.test(adhaar) ) {
-            input.removeClass("invalid").addClass("valid");
-            $('#emsgAdhaarField').text('');
-        }
-        else {
-            input.removeClass("valid").addClass("invalid");
-            $('#emsgAdhaarField').text('Please enter a valid Adhaar Number(12-digits).');
-        }
+        $(this).validate(errorMsgAdhaar,regexAdhaar);
     });
     $('#txtPAN').on('input', function() {
-        var input=$(this);
-        var pan=input.val();
-        if (pan && regexPAN.test(pan) ) {
-            input.removeClass("invalid").addClass("valid");
-            $('#emsgPANField').text('');
-        }
-        else {
-            input.removeClass("valid").addClass("invalid");
-            $('#emsgPANField').text('Please enter a valid PAN.');
-        }
+        $(this).validate(errorMsgPAN,regexPAN);
     });
+
+    // validation of dynamic fields
     $('#grpPhoneField').on('input','input.validate-phone', function() {
-        var input=$(this);
-        var phone=input.val();
-        if (phone && regexPhone.test(phone) ) {
-            input.removeClass("invalid").addClass("valid");
-            $('#emsgPhoneField').text('');
-        }
-        else {
-            input.removeClass("valid").addClass("invalid");
-            $('#emsgPhoneField').text('Please enter a valid 10-digit phone number.');
-        }
+        $(this).validate(errorMsgPhone,regexPhone);
     });
-
-    // real time validation for address fields
     $('#grpAddressField').on('input','.validate-address', function() {
-        var input=$(this);
-        var s = '#emsgAddressField' + $(this).attr('id').replace(/txtAddress/, ''); 
-        var address=input.val();
-        if (address && regexAddress.test(address) ) {
-            input.removeClass("invalid").addClass("valid");
-            $(s).text('');
-        }
-        else {
-            input.removeClass("valid").addClass("invalid");
-            $(s).text('Please enter a valid address');
-        }
+        $(this).validate(errorMsgAddress,regexAddress);
     });
-
-    // real time validation for all city fields
     $('#grpAddressField').on('input','.validate-city', function() {
-        var input=$(this);
-        var s = '#emsgCityField' + $(this).attr('id').replace(/txtCity/, '');
-        var city=input.val();
-        if (city && regexCityName.test(city) ) {
-            input.removeClass("invalid").addClass("valid");
-            $(s).text('');
-        }
-        else {
-            input.removeClass("valid").addClass("invalid");
-            $(s).text('Please enter a valid city.');
-        }
+        $(this).validate(errorMsgCity,regexCity);
     });
-
-    // real time validation for all country dropdown field
     $('#grpAddressField').on('change','.validate-country', function() {
-        var input=$(this);
-        var s = '#emsgCountryField' + $(this).attr('id').replace(/optCountry/, '');
-        var country=input.val();
-        if (country !== "") {
-            input.removeClass("invalid").addClass("valid");
-            $(s).text('');
-        }
-        else {
-            input.removeClass("valid").addClass("invalid");
-            $(s).text('Please select a country.');
-        }
+        $(this).validate(errorMsgCountry);
     });
-
-    // real time validation for all state dropdown fields
     $('#grpAddressField').on('change','.validate-state', function() {
-        var input=$(this);
-        var s = '#emsgStateField' + $(this).attr('id').replace(/optState/, '');
-        var state=input.val();
-        if (state !== "") {
-            input.removeClass("invalid").addClass("valid");
-            $(s).text('');
-        }
-        else {
-            input.removeClass("valid").addClass("invalid");
-            $(s).text('Please select a state.');
-        }
+        $(this).validate(errorMsgState);
     });
-
-    // real time validation for all zipcode fields
     $('#grpAddressField').on('input','.validate-zipcode', function() {
-        var input=$(this);
-        var s = '#emsgZipCodeField' + $(this).attr('id').replace(/txtZipcode/, '');
-        var zipcode=input.val();
-        if (zipcode && regexZipCode.test(zipcode)) {
-            input.removeClass("invalid").addClass("valid");
-            $(s).text('');
-        }
-        else {
-            input.removeClass("valid").addClass("invalid");
-            $(s).text('Please enter a valid 6-digit zip code.');
-        }
+        $(this).validate(errorMsgZipCode,regexZipCode);
     });
 
-    // real time validation for captcha field
+    // captcha validation
     $('#txtVisibleCaptcha').on('input', function() {
-        var input=$(this);
-        var captcha=input.val();
-        if (captcha && captcha === $('#hiddenTxtCaptcha').val() ) {
-            input.removeClass("invalid").addClass("valid");
-            $('#emsgCaptcha').text('');
-        }
-        else {
-            input.removeClass("valid").addClass("invalid");
-            $('#emsgCaptcha').text('Wrong CAPTCHA!! Try Again.');
-        }
+        $(this).validate(errorMsgCaptcha,regexNumber,true);
     });
 
     // validation after submit button is clicked
     $('.emp-form').on('click','#btnSubmit',function(event){        
         event.preventDefault();
         
-        if ($('#txtFirstName').val() && regexName.test($('#txtFirstName').val()) ) {
-            $('#txtFirstName').removeClass("invalid").addClass("valid");
-            $('#emsgNameField').text('');
-        } else {
-            $('#txtFirstName').removeClass("valid").addClass("invalid");
-            $('#emsgNameField').text('Please enter a valid name.(Name length must be between 2 to 30)');
-        }
+        // validate of static fields
+        $('#txtFirstName').validate(errorMsgName,regexName);
+        $('#txtLastName').validate(errorMsgName,regexName);
+        $("#txtEmail").validate(errorMsgEmail, regexEmail);
+        $('#txtBirthDate').validate(errorMsgDateOfBirth);
+        $('#txtAdhaar').validate(errorMsgAdhaar,regexAdhaar);
+        $('#txtPAN').validate(errorMsgPAN,regexPAN);
 
-        if ($('#txtLastName').val() && regexName.test($('#txtLastName').val()) ) {
-            $('#txtLastName').removeClass("invalid").addClass("valid");
-            $('#emsgNameField').text('');
-        } else {
-            $('#txtLastName').removeClass("valid").addClass("invalid");
-            $('#emsgNameField').text('Please enter a valid name.(Name length must be between 2 to 30)');
-        }
-
-        if ($('#txtEmail').val() && regexEmail.test($('#txtEmail').val()) ) {
-            $('#txtEmail').removeClass("invalid").addClass("valid");
-            $('#emsgEmailField').text('');
-        } else {
-            $('#txtEmail').removeClass("valid").addClass("invalid");
-            $('#emsgEmailField').text('Please enter a valid email.(Ex:abc@xyz.com)');
-        }
-
-        if ($('#txtBirthDate').val()) {
-            $('#txtBirthDate').removeClass("invalid").addClass("valid");
-            $('#emsgDateField').text('');
-        } else {
-            $('#txtBirthDate').removeClass("valid").addClass("invalid");
-            $('#emsgDateField').text('Please enter your date of birth');
-        }
-
-        if ($('#txtAdhaar').val() && regexAdhaar.test($('#txtAdhaar').val()) ) {
-            $('#txtAdhaar').removeClass("invalid").addClass("valid");
-            $('#emsgAdhaarField').text('');
-        } else {
-            $('#txtAdhaar').removeClass("valid").addClass("invalid");
-            $('#emsgAdhaarField').text('Please enter a valid Adhaar Number(12-digits).');
-        }
-
-        if ($('#txtPAN').val() && regexPAN.test($('#txtPAN').val()) ) {
-            $('#txtPAN').removeClass("invalid").addClass("valid");
-            $('#emsgPANField').text('');
-        } else {
-            $('#txtPAN').removeClass("valid").addClass("invalid");
-            $('#emsgPANField').text('Please enter a valid PAN.');
-        }
-
-        // validation for all phone number field with looping 
-        $('#grpPhoneField').children().each(function () {
-            var inp=$(this).attr('id');
-            var str = '#' + inp + ' :input';
-            var phone = $(str).val();
-            if (phone && regexPhone.test(phone) ) {
-                $(str).removeClass("invalid").addClass("valid");
-                $('#emsgPhoneField').text('');
+        // validation of dyanamic fields (have to use with hasclass becoz it works only boolean)
+        $('.validate-phone').each(function () {
+            if(!$(this).parent().hasClass('hidden')){
+                $(this).validate(errorMsgPhone,regexPhone);
             }
-            else {
-                $(str).removeClass("valid").addClass("invalid");
-                $('#emsgPhoneField').text('Please enter a valid 10-digit phone number.');
+        });
+        $('.validate-address').each(function () {
+            if(!$(this).closest('.hidden').hasClass('hidden')){
+                $(this).validate(errorMsgAddress,regexAddress);
+            }
+        });
+        $('.validate-city').each(function () {
+            if(!$(this).closest('.hidden').hasClass('hidden')){
+                $(this).validate(errorMsgCity,regexCity);
+            }
+        });
+        $('.validate-country').each(function () {
+            if(!$(this).closest('.hidden').hasClass('hidden')){
+                $(this).validate(errorMsgCountry);
+            }
+        });
+        $('.validate-state').each(function () {
+            if(!$(this).closest('.hidden').hasClass('hidden')){
+                $(this).validate(errorMsgState);
+            }
+        });
+        $('.validate-zipcode').each(function () {
+            if(!$(this).closest('.hidden').hasClass('hidden')){
+                $(this).validate(errorMsgZipCode,regexZipCode);
             }
         });
 
-        // validation for multi line address input
-        $('#grpAddressField').children().each(function () {
-            var inp=$(this).attr('id');
-            var s = '#emsgAddressField' + $(this).children().attr('id').replace(/multilineAddressField/, '');
-            var str = '#' + inp + ' textarea';
-            var address = $(str).val();
-            if (address && regexAddress.test(address)) {
-                $(str).removeClass("invalid").addClass("valid");
-                $(s).text('');
-            }
-            else {
-                $(str).removeClass("valid").addClass("invalid");
-                $(s).text('Please enter a valid address');
-            }
-        });
-
-        // validation for all city input
-        $('#grpAddressField').find('.validate-city').each(function () {
-            var inp=$(this).attr('id');
-            var s = '#emsgCityField' + $(this).attr('id').replace(/txtCity/, '');
-            var str = '#' + inp;
-            var city = $(str).val();
-            if (city && regexCityName.test(city)) {
-                $(str).removeClass("invalid").addClass("valid");
-                $(s).text('');
-            }
-            else {
-                $(str).removeClass("valid").addClass("invalid");
-                $(s).text('Please enter a valid city.');
-            }
-        });
-
-        // validation for all country dropdown
-        $('#grpAddressField').find('.validate-country').each(function () {
-            var inp=$(this).attr('id');
-            var s = '#emsgCountryField' + $(this).attr('id').replace(/optCountry/, '');
-            var str = '#' + inp;
-            var country = $(str).val();
-            if (country !== "") {
-                $(str).removeClass("invalid").addClass("valid");
-                $(s).text('');
-            }
-            else {
-                $(str).removeClass("valid").addClass("invalid");
-                $(s).text('Please select a country.');
-            }
-        });
-
-        // validation for all state dropdown
-        $('#grpAddressField').find('.validate-state').each(function () {
-            var inp=$(this).attr('id');
-            var s = '#emsgStateField' + $(this).attr('id').replace(/optState/, '');
-            var str = '#' + inp;
-            var state = $(str).val();
-            if (state !== "") {
-                $(str).removeClass("invalid").addClass("valid");
-                $(s).text('');
-            }
-            else {
-                $(str).removeClass("valid").addClass("invalid");
-                $(s).text('Please select a state.');
-            }
-        });
-
-        // validation for all zipcodes field present via loop
-        $('#grpAddressField').find('.validate-zipcode').each(function () {
-            var inp=$(this).attr('id');
-            var s = '#emsgZipCodeField' + $(this).attr('id').replace(/txtZipcode/, '');
-            var str = '#' + inp;
-            var zipcode = $(str).val();
-            if (zipcode && regexZipCode.test(zipcode)) {
-                $(str).removeClass("invalid").addClass("valid");
-                $(s).text('');
-            }
-            else {
-                $(str).removeClass("valid").addClass("invalid");
-                $(s).text('Please enter a valid 6-digit zip code.');
-            }
-        });
-
-        // validation for captcha
-        if ($('#txtVisibleCaptcha').val() && $('#txtVisibleCaptcha').val() === $('#hiddenTxtCaptcha').val()) {
-            $('#txtVisibleCaptcha').removeClass("invalid").addClass("valid");
-            $('#emsgCaptcha').text('');
-        } else {
-            $('#txtVisibleCaptcha').removeClass("valid").addClass("invalid");
-            $('#emsgCaptcha').text('Wrong CAPTCHA!! Try Again.');
-        }
+        // captcha validation
+        $('#txtVisibleCaptcha').validate(errorMsgCaptcha,regexNumber,true);
 
         // validation for image file input
-        if ($('.file-upload-image').attr("src") === '#') {
+        if ($('#imageUpload').attr("src") === '#') {
             $('#messageArea').html('This field is empty, you may upload your '+
               'picture via Drag-Drop or clicking the "ADD IMAGE" button above');
-            $('#messageArea').css({
-                "color": "red"
-            });  
+            $('#messageArea').css({"color": "red"});  
         } else {
-            $('#messageArea').html('Drag and drop a file or select add Image');
-            $('#messageArea').css({
-                "color": "#1FB264"
-            });
+            $('#messageArea').html('Drag and drop a file or click ADD IMAGE');
+            $('#messageArea').css({"color": "#1FB264"});
         }
 
-        if($('.invalid')[0]){
-        }
-        else{
-            // for displaying the result page of the employee details
-            $('h1').html('New Employee Profile');
-            var newProfilePictureDiv = $(document.createElement('div')).attr({
-                id: 'profileDisplay'
-            });
+        // to check if any empty fields left
+        if(!($("#activeForm .invalid").length > 0 || $('#imageUpload').attr("src") === '#')){
+            // display data from active form to display form
+            $('.form-background').addClass('display-toggle-none');
+            $('#displayForm').removeClass('display-toggle-none');            
+            $('#dspFirstName').text($('#txtFirstName').val());
+            $('#dspLastName').text($('#txtLastName').val());
+            $('#dspEmail').text($('#txtEmail').val());
+            $('#dspDateOfBirth').text($('#txtBirthDate').val());
+            $('#dspAdhaar').text($('#txtAdhaar').val());
+            $('#dspPAN').text($('#txtPAN').val());
+            $('#uploadedImgDisplay').attr({"src": $('#imageUpload').attr("src")});
+            $('#dspPrimaryPhoneNumber').text($('.phone-field-primary').find('.validate-phone').val());
 
-            newProfilePictureDiv.after().html('<img class="file-upload-image" src="#" alt="your image" id="imageDisplayCopy">');
-            $('#displayForm').append(newProfilePictureDiv);
-
-            $('#imageDisplay').attr('src',$('#imageUpload').attr('src'));
-            $('#profileDisplay').css({
-                "text-align":"center"
-            });
-
-            // looping on txt fields
-            $('input[id*=txt]').each(function(){
-                var id = $(this).attr('id');
-                if($(this).is('#txtVisibleCaptcha')){
-                    return true;
+            // display alternate number only if it exists
+            if($("#grpPhoneField > div").length > 2){
+                $('#altPhoneNum').removeClass('display-toggle-none');
+            }
+            $('.validate-phone').each(function () {
+                if($(this).parent().hasClass('hidden') ||$(this).parent().hasClass('phone-field-primary')){}
+                else{
+                    $('#dspAltPhoneNumbers').append($(this).val()+'; ');
                 }
-                var labelCopy = $('label[for="' + id + '"]');
-                labelCopy = labelCopy.attr({
-                    for: labelCopy.attr('for')+"Copy"
-                });
-                var txtInput = $(this).clone(true);
-                txtInput = txtInput.attr({
-                    id: labelCopy.attr('for'),
-                    name: $(this).attr('name')+"Copy" 
-                });
-                $(txtInput).val($(this).val());
-                $('#displayForm').append(labelCopy);
-                $('#displayForm').append(txtInput);
             });
+            
+            // for primary address field
+            var addressInputValues = $('#addressField1 :input').map(function() {
+                return $(this).val();
+            });
+            $('#dspPrimaryAddress').append(Array.prototype.join.call(addressInputValues, "; "));
 
-            // looping on all select fields
-            $('select[id*=opt]').each(function(){
-                var id = $(this).attr('id');
-                var labelCopy = $('label[for="' + id + '"]');
-                labelCopy = labelCopy.attr({
-                    for: labelCopy.attr('for')+"Copy"
-                });
-                var optInput = $(this).clone(true);
-                optInput = optInput.attr({
-                    id: labelCopy.attr('for'),
-                    name: $(this).attr('name')+"Copy" 
-                });
-                $(optInput).val($(this).val());
-                $('#displayForm').append(labelCopy);
-                $('#displayForm').append(optInput);
+            // display alternate address only if entered
+            if($("#grpAddressField > div").length > 2){
+                $('#altAddressDivId').removeClass('display-toggle-none');
+            }
+            var altAddressInputValues = $('.cloned-alternate-address-field :input').map(function() {
+                return $(this).val();
             });
-
-            // looping on all textarea fields
-            $('textarea[id*=txt]').each(function(){
-                var id = $(this).attr('id');
-                var labelCopy = $('label[for="' + id + '"]');
-                labelCopy = labelCopy.attr({
-                    for: labelCopy.attr('for')+"Copy"
-                });
-                var txtAreaInput = $(this).clone(true);
-                txtAreaInput = txtAreaInput.attr({
-                    id: labelCopy.attr('for'),
-                    name: $(this).attr('name')+"Copy" 
-                });
-                $(txtAreaInput).val($(this).val());
-                $('#displayForm').append(labelCopy);
-                $('#displayForm').append(txtAreaInput);
-            });
-            // hide the original form
-            $('#activeForm').css({
-                "display":"none"
-            });
-
-            // disable the input field in display form
-            $("#displayForm :input").prop("disabled", true);    
+            var multipleAlternateAddress = [];
+            for (var i = 0; i < altAddressInputValues.length; i += 6) {
+                multipleAlternateAddress.push(altAddressInputValues.slice(i,i+6));
+            }
+            for (i = 0; i < multipleAlternateAddress.length; i++) {
+                $('#dspAlternateAddress').append(Array.prototype.join.call(multipleAlternateAddress[i], "; "));    
+                $('#dspAlternateAddress').append("<br><br>");
+            }
         }
-    });
-
+    });        
     $('.emp-form').on('click','#btnReset',function(event){
-        $("#btnRemoveImage").removeUpload();
+        removeUpload();
     });
-
 });

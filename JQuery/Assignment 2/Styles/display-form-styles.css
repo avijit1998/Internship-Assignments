@@ -1,0 +1,49 @@
+#displayForm{
+    margin: 5% 10%;
+    background-color: #1B2631;
+    border-radius: 9px;
+    padding: 2% 5% 5%;
+    -webkit-box-shadow: 0px 0px 40px 2px rgba(43,43,43,1);
+    -moz-box-shadow: 0px 0px 40px 2px rgba(43,43,43,1);
+    box-shadow: 0px 0px 40px 2px rgba(43,43,43,1);
+}
+
+.flex-container {
+    width: 100%;
+    margin: 0 auto;
+    display: -webkit-flex;    
+    display: flex;
+}
+
+.flex-item {
+    padding: 10px;
+    -webkit-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+}
+
+.profile-image{
+    text-align: center;
+}
+
+#uploadedImgDisplay{
+    max-height: 150px;
+    max-width: 200px;
+    margin: auto;
+    text-align: center;
+    padding: 10px;
+}
+
+.display-form-labels{
+    margin-top: 10px;
+}
+
+.phone-numbers-display, .address-display label{
+    padding-left: 10px;
+}
+
+@media only screen and (max-width: 440px){
+    #uploadedImgDisplay{
+        max-height: 100px;
+    }
+}

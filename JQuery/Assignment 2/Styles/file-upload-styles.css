@@ -36,10 +36,7 @@
     text-align: center;
     border: 4px solid darkcyan;
 }
-  
-.image-dropping{
-    background-color: cyan;
-}
+
 
 #imgInputField {
     position: absolute;
@@ -75,12 +72,12 @@
     padding: 60px 0;
 }
   
-.file-upload-image {
-    max-height: 200px;
+#imageUpload {
+    max-height: 150px;
     max-width: 200px;
     margin: auto;
     text-align: center;
-    padding: 20px;
+    padding: 10px;
 }
   
 #btnRemoveImage {
@@ -95,6 +92,8 @@
     outline: none;
     text-transform: uppercase;
     font-weight: 700;
+    width: 90%;
+    overflow-wrap: break-word;
 }
   
 #btnRemoveImage:hover {
@@ -109,10 +108,16 @@
     transition: all .2s ease;
 }
 
-.display-toggle-none {
-    display: none;
+#fileAlreadyExistError{
+	color: pink;
 }
 
-.display-toggle-block{
-    display: block;
+.image-dropping{
+    background-color: cyan;
+}
+
+@media only screen and (max-width: 440px){
+    #imageUpload{
+        max-height: 100px;
+    }
 }

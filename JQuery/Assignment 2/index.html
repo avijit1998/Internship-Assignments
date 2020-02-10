@@ -7,10 +7,10 @@
     <title>Employee Registration Form</title>
     <link rel="shortcut icon" href="Images/logo.png" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css?family=Domine&display=swap" rel="stylesheet">
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <link rel="stylesheet" href="Styles/main-form-styles.css">
     <link rel="stylesheet" href="Styles/file-upload-styles.css">
     <link rel="stylesheet" href="Styles/validation-styles.css">
+    <link rel="stylesheet" href="Styles/display-form-styles.css">
 </head>
 <body>
     <div class="company-banner-heading">
@@ -19,137 +19,202 @@
     </div>
     <div class="form-background">
         <h1>Register New Employee</h1>
+        <h4>(*) Mandatory Field</h4>
         <form class="emp-form">
             <div id="activeForm">
+
                 <!-- name field -->
-                <div class="text-field double-div-parent">
-                    <div class="smaller-input-field">
-                        <label for="txtFirstName" id="lblFirstName">First Name</label> 
+                <div class="text-field">
+                    <div class="bigger-input-field">
+                        <label for="txtFirstName" id="lblFirstName">First Name*</label> 
                         <input type="text" id="txtFirstName" name="firstName" placeholder="First name">
-                    </div>
-                    <div class="smaller-input-field right-child">
-                        <label for="txtLastName">Last Name</label>
-                        <input type="text" id="txtLastName" name="lastName" placeholder="Last name">
+                        <div class="error-message"></div>
                     </div>
                 </div>
-                <div id="emsgNameField" class="error-message"></div>
-                
+                <div class="text-field">
+                    <div class="bigger-input-field">
+                        <label for="txtLastName">Last Name*</label>
+                        <input type="text" id="txtLastName" name="lastName" placeholder="Last name">
+                        <div class="error-message"></div>
+                    </div>
+                </div>
+
                 <!-- email field -->
                 <div class="text-field">
                     <div class="bigger-input-field">
-                        <label for="txtEmail">Email-Id</label>
-                        <input type="text" id="txtEmail" name="email" placeholder="Your email-id..">
+                        <label>Email-Id*</label>
+                        <input type="text" id="txtEmail" placeholder="Your email-id..">
+                        <div class="error-message"></div>
                     </div>
                 </div>
-                <div id="emsgEmailField" class="error-message"></div>
                 
                 <!-- date of birth field -->
                 <div class="text-field">
-                    <label for="txtBirthDate">Date of Birth</label>
+                    <label for="txtBirthDate">Date of Birth*</label>
                     <input type="date" name="birthdate" id="txtBirthDate" placeholder="Date of Birth">
+                    <div class="error-message"></div>
                 </div>
-                <div id="emsgDateField" class="error-message"></div>
             
                 <!-- adhaar field -->
                 <div class="text-field">
                     <div class="bigger-input-field">
-                        <label for="txtAdhaar">Adhaar</label>
+                        <label for="txtAdhaar">Adhaar*</label>
                         <input type="text" id="txtAdhaar" name="adhaar" placeholder="Adhaar Number">
+                        <div class="error-message"></div>
                     </div>
                 </div>
-                <div id="emsgAdhaarField" class="error-message"></div>
                 
                 <!-- pan field -->
                 <div class="text-field">
                     <div class="bigger-input-field">
-                        <label for="txtPAN">PAN</label>
+                        <label for="txtPAN">PAN*</label>
                         <input type="text" id="txtPAN" name="pan" placeholder="Your PAN..">
+                        <div class="error-message"></div>
                     </div>
                 </div>
-                <div id="emsgPANField" class="error-message"></div>
                 
                 <!-- phone number field -->
                 <div id="grpPhoneField" class="text-field">
-                    <div id="phoneField1">
-                        <label for="txtPhone1">Phone Number (Primary)</label>
-                        <input type="text" name="phone1" id="txtPhone1" class="validate-phone" placeholder="Your Phone Number..">
-                        <button class="glowing-btn" id="btnAddPhone">+</button>
+                    <div class="phone-field-primary">
+                        <label>Phone Number* (Primary)</label>
+                        <input type="text" class="validate-phone" placeholder="Your Phone Number..">
+                        <button class="glowing-btn btn-add-phone">+</button>
+                        <div class="error-message"></div>
+                    </div>
+                    <div class="alternate-phone-number hidden">
+                        <label>Alt. Phone Number*</label>
+                        <input type="text" class="validate-phone" placeholder="Your Phone Number..">
+                        <button class="glowing-btn btn-remove-phone">X</button>
+                        <div class="error-message"></div>
                     </div>
                 </div>
-                <div id="emsgPhoneField" class="error-message"></div>
     
                 <!-- address field -->
                 <div id="grpAddressField" class="text-field">
                     <div id="addressField1">
-                        <div id="multilineAddressField1">
-                            <label for="txtAddress1">Address (Primary)</label>
-                            <textarea id="txtAddress1" class="validate-address" name="address1" placeholder="Enter address."></textarea>
+                        <div class="text-field">
+                            <div class="bigger-input-field">
+                                <label>Address* (Primary)</label>
+                                <textarea class="validate-address" placeholder="Enter address."></textarea>
+                                <div class="error-message"></div>
+                            </div>
                         </div>
-                        <div id="emsgAddressField1" class="error-message"></div>
-                        
-                        <div id="cityField1">
-                            <label for="txtCity1">City (Primary)</label>
-                            <input type="text" id="txtCity1"  class="validate-city" name="city1" placeholder="Enter city..">
+                        <div class="text-field">
+                            <div class="bigger-input-field">
+                                <label>City* (Primary)</label>
+                                <input type="text" class="validate-city" placeholder="Enter city..">
+                                <div class="error-message"></div>
+                            </div>
                         </div>
-                        <div id="emsgCityField1" class="error-message"></div>
-                        
-                        <div id="countryField1">
-                            <label for="optCountry1">Country (Primary)</label>
-                            <select class="country validate-country" name="country1" id="optCountry1">
-                                <option value="">-select-</option>
-                                <option value="IN">India</option>
-                                <option value='US'>United States</option>
-                                <option value='CA'>Canada</option>
-                            </select>
+                        <div class="text-field js-country-state">
+                            <div class="bigger-input-field">
+                                <label>Country* (Primary)</label>
+                                <select class="country validate-country">
+                                    <option value="">-select-</option>
+                                    <option value="IN">India</option>
+                                    <option value='US'>United States</option>
+                                    <option value='CA'>Canada</option>
+                                </select>
+                                <div class="error-message"></div>
+                            </div>
+                            <div class="bigger-input-field">
+                                <label class="find-state-field">State* (Primary)</label>
+                                <select class="find-state-field validate-state">
+                                    <option value="">State/Province</option>
+                                </select>
+                                <div class="error-message"></div>
+                            </div>
                         </div>
-                        <div id="emsgCountryField1" class="error-message"></div>
-                        
-                        <div id="stateField1">
-                            <label id="lblState1" class="find-state-field" for="optState1">State (Primary)</span></label>
-                            <select name="state1" id="optState1" class="find-state-field validate-state">
-                                <option value="">State/Province</option>
-                            </select>
+                        <div class="text-field">
+                            <div class="bigger-input-field">
+                                <label>ZipCode* (Primary)</label>
+                                <input type="text" class="validate-zipcode" placeholder="Zip Code..">
+                                <div class="error-message"></div>
+                            </div>
                         </div>
-                        <div id="emsgStateField1" class="error-message"></div>
-                        
-                        <div id="zipcode1">
-                            <label for="txtZipcode1">ZipCode (Primary)</label>
-                            <input type="text" id="txtZipcode1" class="validate-zipcode" name="zipcode1" placeholder="Zip Code..">
+                        <button class="glowing-btn btn-add-address address-btn">+ Add Address</button>
+                    </div>
+
+                    <div class="alternate-address-field hidden">
+                        <div class="text-field">
+                            <div class="bigger-input-field">
+                                <label>Alt. Address*</label>
+                                <textarea class="validate-address" placeholder="Enter address."></textarea>
+                                <div class="error-message"></div>
+                            </div>
                         </div>
-                        <div id="emsgZipCodeField1" class="error-message"></div>
-                        <button id="btnAddAddress" class="glowing-btn">+ Add Address</button>
+                        <div class="text-field">
+                            <div class="bigger-input-field">
+                                <label>Alt. City*</label>
+                                <input type="text" class="validate-city" placeholder="Enter city..">
+                                <div class="error-message"></div>
+                            </div>
+                        </div>
+                        <div class="text-field js-country-state">
+                            <div class="bigger-input-field">
+                                <label>Alt. Country*</label>
+                                <select class="country validate-country">
+                                    <option value="">-select-</option>
+                                    <option value="IN">India</option>
+                                    <option value='US'>United States</option>
+                                    <option value='CA'>Canada</option>
+                                </select>
+                                <div class="error-message"></div>
+                            </div>
+                            <div class="bigger-input-field">
+                                <label class="find-state-field">Alt. State*</label>
+                                <select class="find-state-field validate-state">
+                                    <option value="">State/Province</option>
+                                </select>
+                                <div class="error-message"></div>
+                            </div>
+                        </div>
+                        <div class="text-field">
+                            <div class="bigger-input-field">
+                                <label>Alt. ZipCode*</label>
+                                <input type="text" class="validate-zipcode" placeholder="Zip Code..">
+                                <div class="error-message"></div>
+                            </div>
+                        </div>
+                        <button class="glowing-btn btn-remove-address address-btn">X Remove Address</button>
                     </div>
                 </div>
     
                 <!-- profile picture upload field-->
-                <div id="fileUpload">
-                    <button id="btnFileUpload" type="button">Add Image</button>
-                    <div id="imageDivEmpty">
-                        <input type='file' accept="image/*" id="imgInputField" name="profile picture">
-                        <h3 id="messageArea">Drag and drop a file or select ADD IMAGE</h3>
+                <div class="text-field">
+                    <label>Display Profile*</label>
+                    <div id="fileUpload">    
+                        <button id="btnFileUpload" type="button">Add Image</button>
+                        <div id="imageDivEmpty">
+                            <input type='file' accept="image/*" id="imgInputField" name="profile picture">
+                            <h3 id="messageArea">Drag and drop a file or select ADD IMAGE</h3>
+                        </div>
+                        <div id="imageDivDisplay">
+                            <img src="#" alt="Invalid file" id="imageUpload"/>
+                            <div id="imageTitleDiv">
+                                <button type="button" id="btnRemoveImage">Remove <span id="imageTitle"></span></button>
+                            </div>
+                        </div>
+                        <div id="fileAlreadyExistError"></div>
                     </div>
-                    <div id="imageDivDisplay">
-                        <img class="file-upload-image" src="#" alt="your image" id="imageUpload"/>
-                        <div id="imageTitleDiv">
-                            <button type="button" id="btnRemoveImage">Remove <span id="imageTitle"></span></button>
+                </div>
+
+                <!-- captcha -->
+                <div class="captcha-field">
+                    <div id="captchaField" class="text-field">
+                        <div class="bigger-input-field">
+                            <label for="txtVisibleCaptcha">Captcha*:</label>
+                            <label class="captcha-question"></label><button id="btnRefreshCaptcha" class="glowing-btn">Refresh</button>
+                        </div>
+                    </div>
+                    <div class="text-field">
+                        <div class="bigger-input-field">
+                            <input type="hidden" id="hiddenTxtCaptcha" value="1" class="hidden-captcha-value">
+                            <input type="number" name="inputCaptcha" id="txtVisibleCaptcha" value="" placeholder="Enter CAPTCHA.">
+                            <div class="error-message"></div>
                         </div>
                     </div>
                 </div>
-    
-                <!-- captcha -->
-                <div id="captchaField" class="text-field">
-                    <div class="bigger-input-field">
-                        <label for="txtVisibleCaptcha">Captcha:</label>
-                        <label id="txtCaptchaDiv"></label><button id="btnRefreshCaptcha" class="glowing-btn">Refresh</button>
-                    </div>
-                </div>
-                <div class="text-field">
-                    <div class="bigger-input-field">
-                        <input type="hidden" id="hiddenTxtCaptcha" value="1">
-                        <input type="number" name="inputCaptcha" id="txtVisibleCaptcha" value="" placeholder="Enter CAPTCHA.">
-                    </div>
-                </div>
-                <div id="emsgCaptcha" class="error-message"></div>
 
                 <!-- submit and reset button -->
                 <div class="text-field submit-reset-field">
@@ -157,13 +222,57 @@
                     <input type="reset" value="Reset" id="btnReset" class="glowing-btn">
                 </div>
             </div>
-                
-            <div id="displayForm"></div>
         </form>
     </div>
+    <div id="displayForm" class="display-toggle-none">
+        <div class="personal-details flex-container">
+            <div class="personal-data flex-item">
+                <label class='display-form-labels'>Name:
+                    <span id="dspFirstName"></span>
+                    <span id="dspLastName"></span>
+                </label>
+                <label class="display-form-labels">Email:
+                    <span id="dspEmail"></span>
+                </label>
+                <label class="display-form-labels">Date Of Birth:
+                    <span id="dspDateOfBirth"></span>
+                </label>
+                <label class="display-form-labels">Adhaar:
+                    <span id="dspAdhaar"></span>
+                </label>
+                <label class="display-form-labels">PAN:
+                    <span id="dspPAN"></span>
+                </label>
+            </div>
+            <div class="profile-image flex-item">
+                <img id="uploadedImgDisplay" src="#" alt="Profile Picture"/>
+            </div>
+        </div>
+        <div class="phone-numbers-display">
+            <label class="display-form-labels">Primary Phone Number:
+                <span id="dspPrimaryPhoneNumber"></span>
+            </label>
+            <div id="altPhoneNum" class="display-toggle-none">
+                <label class="display-form-labels">Alt. Phone Number(s):
+                    <span id="dspAltPhoneNumbers"></span>
+                </label>
+            </div>
+        </div>
+        <div class="address-display">
+            <label class="display-form-labels">Primary Address:
+                <div id="dspPrimaryAddress"></div>
+            </label>
+            <div id="altAddressDivId" class="display-toggle-none">
+                <label class="display-form-labels">Alternates Addresses:-<br>
+                    <div id="dspAlternateAddress"></div>
+                </label>
+            </div>
+        </div>
     </div>
+    
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="Scripts/common.js"></script>
-    <script src="Scripts/addField.js"></script>
+    <script src="Scripts/dynamicAddRemoveField.js"></script>
     <script src="Scripts/fileUpload.js"></script>
 </body>
 </html>
