@@ -151,9 +151,8 @@ $(document).ready(function(){
         regexAddress = /^[a-zA-Z0-9\s,'-]*$/,
         regexCity = /^[a-zA-Z ]{2,47}$/,
         regexZipCode = /^\d{6}$/,
-        regexNumber = /^\d{3}$/;
-    
-    var errorMsgName = 'Please enter a valid name.(Name length must be between 2 to 30)',
+        regexNumber = /^\d{3}$/,    
+        errorMsgName = 'Please enter a valid name.(Name length must be between 2 to 30)',
         errorMsgEmail = 'Please enter a valid email.(Ex:abc@xyz.com)',
         errorMsgDateOfBirth = 'Please enter your date of birth',
         errorMsgAdhaar = 'Please enter a valid 12-digit adhaar number.',
@@ -187,10 +186,7 @@ $(document).ready(function(){
     });
 
     // validation of static fields
-    $('#txtFirstName').on('input', function() { 
-        $(this).validate(errorMsgName, regexName);
-    });
-    $('#txtLastName').on('input', function() {
+    $('.name-div').on('input','.name-field',function(){
         $(this).validate(errorMsgName, regexName);
     });
     $('#txtEmail').on('input', function() {
@@ -205,7 +201,9 @@ $(document).ready(function(){
     $('#txtPAN').on('input', function() {
         $(this).validate(errorMsgPAN,regexPAN);
     });
-
+    $('#txtVisibleCaptcha').on('input', function() {
+        $(this).validate(errorMsgCaptcha,regexNumber,true);
+    });
     // validation of dynamic fields
     $('#grpPhoneField').on('input','input.validate-phone', function() {
         $(this).validate(errorMsgPhone,regexPhone);
@@ -226,23 +224,18 @@ $(document).ready(function(){
         $(this).validate(errorMsgZipCode,regexZipCode);
     });
 
-    // captcha validation
-    $('#txtVisibleCaptcha').on('input', function() {
-        $(this).validate(errorMsgCaptcha,regexNumber,true);
-    });
-
     // validation after submit button is clicked
     $('.emp-form').on('click','#btnSubmit',function(event){        
         event.preventDefault();
         
         // validate of static fields
-        $('#txtFirstName').validate(errorMsgName,regexName);
-        $('#txtLastName').validate(errorMsgName,regexName);
+        $('.name-field').each(function () {
+            $(this).validate(errorMsgName,regexName);
+        });
         $("#txtEmail").validate(errorMsgEmail, regexEmail);
         $('#txtBirthDate').validate(errorMsgDateOfBirth);
         $('#txtAdhaar').validate(errorMsgAdhaar,regexAdhaar);
         $('#txtPAN').validate(errorMsgPAN,regexPAN);
-
         // validation of dyanamic fields (have to use with hasclass becoz it works only boolean)
         $('.validate-phone').each(function () {
             if(!$(this).parent().hasClass('hidden')){
@@ -280,8 +273,7 @@ $(document).ready(function(){
 
         // validation for image file input
         if ($('#imageUpload').attr("src") === '#') {
-            $('#messageArea').html('This field is empty, you may upload your '+
-              'picture via Drag-Drop or clicking the "ADD IMAGE" button above');
+            $('#messageArea').html('This field is empty, you may upload your picture via Drag-Drop or clicking the "ADD IMAGE" button above');
             $('#messageArea').css({"color": "red"});  
         } else {
             $('#messageArea').html('Drag and drop a file or click ADD IMAGE');
@@ -300,8 +292,8 @@ $(document).ready(function(){
             $('#dspAdhaar').text($('#txtAdhaar').val());
             $('#dspPAN').text($('#txtPAN').val());
             $('#uploadedImgDisplay').attr({"src": $('#imageUpload').attr("src")});
+            
             $('#dspPrimaryPhoneNumber').text($('.phone-field-primary').find('.validate-phone').val());
-
             // display alternate number only if it exists
             if($("#grpPhoneField > div").length > 2){
                 $('#altPhoneNum').removeClass('display-toggle-none');
@@ -318,7 +310,6 @@ $(document).ready(function(){
                 return $(this).val();
             });
             $('#dspPrimaryAddress').append(Array.prototype.join.call(addressInputValues, "; "));
-
             // display alternate address only if entered
             if($("#grpAddressField > div").length > 2){
                 $('#altAddressDivId').removeClass('display-toggle-none');

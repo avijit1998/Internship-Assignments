@@ -34,7 +34,6 @@ $('#fileUpload').on('change','#imgInputField',function () {
 $('#btnRemoveImage').on('click',function () {
     removeUpload();
 });
-
 // some styling for drag and drop via image-dropping class 
 $('#imageDivEmpty').bind('dragover', function(){
   $('#imageDivEmpty').addClass('image-dropping');
