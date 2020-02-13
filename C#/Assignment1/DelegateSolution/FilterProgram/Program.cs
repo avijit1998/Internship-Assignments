@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FilterProgram
 {
-    class Program
+    public class Program
     {
         public delegate bool FilterDelegate(int n);
         static void Main(string[] args)
@@ -15,11 +15,9 @@ namespace FilterProgram
             Console.WriteLine("Enter 10 numbers.");
             for (int i = 0; i < nums.Length; i++)
             {
-                var InputNumAsString = Console.ReadLine();
-                while (!int.TryParse(InputNumAsString, out nums[i]))
+                while (!int.TryParse(Console.ReadLine(), out nums[i]))
                 {
                     Console.WriteLine("Not a number! Enter again.");
-                    InputNumAsString = Console.ReadLine();
                 }
             }
             
