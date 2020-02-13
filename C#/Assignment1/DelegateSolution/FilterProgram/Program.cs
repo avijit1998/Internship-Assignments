@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 namespace FilterProgram
 {
     public class Program
@@ -20,15 +15,13 @@ namespace FilterProgram
                     Console.WriteLine("Not a number! Enter again.");
                 }
             }
-            
             while (true)
             {
                 Console.WriteLine("\nEnter Choice:\n" +
                               "1:Return all even numbers.\n" +
                               "2:Return numbers greater than 10\n" +
                               "3:Return numbers divisible by 5");
-                int choice = Int32.Parse(Console.ReadLine());
-                switch (choice)
+                switch (Int32.Parse(Console.ReadLine()))
                 {
                     case 1:
                         GetResult(nums, IsEvenFilter);
@@ -44,8 +37,7 @@ namespace FilterProgram
                         break;
                 }
                 Console.WriteLine("Again?(Y/N)");
-                char flag = Console.ReadLine()[0];
-                if (flag == 'Y' || flag == 'y')
+                if (Console.ReadLine()[0] == 'Y' || Console.ReadLine()[0] == 'y')
                     continue;
                 else
                     break;
