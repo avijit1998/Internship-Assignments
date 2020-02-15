@@ -15,6 +15,16 @@ namespace TaxCalculator.UI
         }
     }
 
+    // User defined exceptions for negative value.
+    public class NegativeNumberException : Exception
+    {
+        public NegativeNumberException(String message)
+            : base(message)
+        {
+
+        }
+    }
+
     class Program
     {
         static void Main(string[] args)
@@ -40,6 +50,16 @@ namespace TaxCalculator.UI
                             {
                                 throw new InvestmentGreaterException("The income amount is lesser than investment amount. Kindly enter again.");
                             }
+                            if (income < 0 || investment < 0)
+                            {
+                                throw new InvestmentGreaterException("Negative Input. Kindly enter again.");
+                            }
+                        }
+                        // Check negative input.
+                        catch (NegativeNumberException ex)
+                        {
+                            Console.WriteLine(ex.Message);
+                            errorFlag = 1;
                         }
                         // Check whether input data is valid numeric input.
                         catch (FormatException)
@@ -56,9 +76,16 @@ namespace TaxCalculator.UI
                     }
                     else
                     {
+                        // For only income input.
                         try
                         {
                             income = double.Parse(inputs[0]);
+                        }
+                        // Check negative input.
+                        catch (NegativeNumberException ex)
+                        {
+                            Console.WriteLine(ex.Message);
+                            errorFlag = 1;
                         }
                         // Check whether input data is valid numeric input.
                         catch (Exception)
