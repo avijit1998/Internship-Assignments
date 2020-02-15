@@ -5,6 +5,7 @@ using TaxCalculator.Business;
 
 namespace TaxCalculator.UI
 {
+    // User defined exceptions for investment value greater than income value.
     public class InvestmentGreaterException : Exception
     {
         public InvestmentGreaterException(String message)
@@ -20,9 +21,11 @@ namespace TaxCalculator.UI
         {
             while (true)
             {
-                double income = 0, investment = 0;
+                // User input and validation for numeric date and if investment is given it should be less than income.
+                double income = 0; 
+                double investment = 0;
                 Console.WriteLine("Kindly enter your income and Investments Amount under 80C (if any).");
-                int errorFlag = 0;
+                var errorFlag = 0;
                 do
                 {
                     errorFlag = 0;
@@ -38,11 +41,13 @@ namespace TaxCalculator.UI
                                 throw new InvestmentGreaterException("The income amount is lesser than investment amount. Kindly enter again.");
                             }
                         }
+                        // Check whether input data is valid numeric input.
                         catch (FormatException)
                         {
                             Console.WriteLine("One or more inputs aren't valid. Kindly enter again.");
                             errorFlag = 1;
                         }
+                        // Check whether investment(if exists) is greater than income.
                         catch (InvestmentGreaterException ex)
                         {
                             Console.WriteLine(ex.Message);
@@ -55,6 +60,7 @@ namespace TaxCalculator.UI
                         {
                             income = double.Parse(inputs[0]);
                         }
+                        // Check whether input data is valid numeric input.
                         catch (Exception)
                         {
                             errorFlag = 1;
@@ -63,6 +69,7 @@ namespace TaxCalculator.UI
                     }
                 } while (errorFlag != 0);
 
+                // To display the income and investment(if any) amount in Indian format.
                 CultureInfo hindi = new CultureInfo("hi-IN");
                 Console.WriteLine("\nIncome: Rs.{0}", string.Format(hindi, "{0:c}", income).Substring(1));
                 if (investment != 0)
@@ -70,24 +77,32 @@ namespace TaxCalculator.UI
                     Console.WriteLine("\nInvestment: Rs.{0}", string.Format(hindi, "{0:c}", investment).Substring(1));
                     Console.WriteLine("(Maximum Rs.1,50,000 can be exempted from tax.)");
                 }
-
+                
                 Calculate c = new Calculate();
+                
+                // Display taxable income amount after taking investment into account.
                 double taxableIncome = c.TaxableIncomeAfterInvestment(income, investment);
-
                 Console.WriteLine("\nTaxable Income: Rs.{0}", string.Format(hindi, "{0:c}", taxableIncome).Substring(1));
+                
+                // Tax amount under each slab rate.
                 Console.WriteLine("\nTax Under Different Slab Rates:");
                 Console.WriteLine("-------------------------------");
                 List<double> taxUnderSlabs = c.ReturnTaxUnderDiffSlabs(taxableIncome);
+               
+                // Display when there is no tax charged on the income amount.
+                // If the tax for the Rs.0 to Rs.5L is zero then itis obviously zero for the rest slabs.
                 if (taxUnderSlabs.Count == 0)
                 {
                     Console.WriteLine("Rs.0 - Rs.500000:-\nRs.0");
                     Console.WriteLine("------------------");
                     Console.WriteLine("Total:\tRs.0");
                 }
+                    
+                // Display tax charged on the income amount based on each slab until the income falls into that slab range.
                 else
                 {
-                    int rangeValue = 0;
-                    for (int i = 0; i < taxUnderSlabs.Count; i++)
+                    var rangeValue = 0;
+                    for (var i = 0; i < taxUnderSlabs.Count; i++)
                     {
                         if (rangeValue == 1000000)
                         {
@@ -103,6 +118,8 @@ namespace TaxCalculator.UI
                     }
                     Console.WriteLine("Total:\tRs.{0}", string.Format(hindi, "{0:c}", c.SumOfIndividualTaxSlab(taxUnderSlabs)).Substring(1));
                 }
+
+                // To repeat the process.
                 Console.WriteLine("Do you wish to calculate again?(y/n)");
                 if (Console.ReadLine().ToLower() != "y")
                 {
