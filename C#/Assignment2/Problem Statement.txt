@@ -1,0 +1,12 @@
+The task requires us to build a console application where the user will be asked to input his/her income and 
+the amount of the money he/she has invested(under 80C). In the output the following will be displayed,
+1>Income Tax Amount that will be deducted
+2>Return amount that the user will get
+3>Tax Rate Slab the user falls into
+
+Additional Requirements
+The solution must contain three projects
+1.TaxCalculator(Console UI only to be used for I/O)
+2.TaxCalculator.BusinessLogic(Library Class containing business logic)
+3.TaxCalculator.Interface(Containing the interfaces for all business logic)
+
