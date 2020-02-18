@@ -102,7 +102,7 @@ namespace TaxCalculator.UI
                         Console.WriteLine("One or more inputs aren't valid. Kindly enter again.");
                         errorFlag = 1;
                     }
-                    // Catch overall exception (if any exists).
+                    // Catch any other exception (if any exists).
                     catch (Exception ex)
                     {
                         Console.WriteLine(ex.Message);

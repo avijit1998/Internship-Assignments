@@ -31,6 +31,7 @@ namespace TaxCalculator.Business
             double rateSlab3 = 0.3;
             double fixedTaxAmountSlab1 = rateSlab1 * 500000;
             double fixedTaxAmountSlab2 = rateSlab2 * 500000;
+
             List<double> taxUnderSlabs = new List<Double>();
             
             // For slab rate range 0L-5L.
