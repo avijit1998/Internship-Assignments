@@ -12,13 +12,14 @@ namespace TaxCalculator.UI
     public class InvestmentGreaterException : Exception
     {
         /// <summary>
-        /// Constructor which initialises the exception when investment value greater than income value.
+        /// Function to customize the investment greater than income value exception message.
         /// </summary>
-        /// <param name="message" type="String"></param>
-        public InvestmentGreaterException(String message)
-            : base(message)
+        public override string Message
         {
-
+            get 
+            { 
+                return "Investment amount greater than income amount. Kindly enter again.";
+            }
         }
     }
 
@@ -29,84 +30,83 @@ namespace TaxCalculator.UI
     public class NegativeNumberException : Exception
     {
         /// <summary>
-        /// Constructor which initialises the exception for negative values.
+        /// Function to customize the negative number input exception message.
         /// </summary>
-        /// <param name="message" type="String"></param>
-        public NegativeNumberException(String message)
-            : base(message)
+        public override string Message
         {
-
+            get 
+            {
+                return "Negative Input. Kindly enter again.";
+            }
         }
     }
 
     class Program
     {
+        static double income, investment;
         static void Main(string[] args)
-        {
+        {   
             while (true)
             {
-                // User input and validation for numeric date and if investment is given it should be less than income.
-                double income = 0; 
-                double investment = 0;
                 Console.WriteLine("Kindly enter your income and Investments Amount under 80C (if any).");
                 var errorFlag = 0;
                 do
                 {
+                    income = 0;
+                    investment = 0;
                     errorFlag = 0;
                     string[] inputs = Console.ReadLine().Split();
-                    if (inputs.Length > 1)
-                    {
-                        try
+                    try
+                    { 
+                        if(Double.TryParse(inputs[0],out income))
                         {
-                            income = double.Parse(inputs[0]);
-                            investment = double.Parse(inputs[1]);
-                            if (income < investment)
+                            if (inputs.Length > 1)
                             {
-                                throw new InvestmentGreaterException("The income amount is lesser than investment amount. Kindly enter again.");
+                                if (Double.TryParse(inputs[1], out investment))
+                                {
+                                    if (income < investment)
+                                    {
+                                        throw new InvestmentGreaterException();
+                                    }
+                                }
+                                else
+                                {
+                                    throw new FormatException();
+                                }
                             }
                             if (income < 0 || investment < 0)
                             {
-                                throw new NegativeNumberException("Negative Input. Kindly enter again.");
+                                throw new NegativeNumberException();
                             }
                         }
-                        // Check negative input.
-                        catch (NegativeNumberException ex)
+                        else
                         {
-                            Console.WriteLine(ex.Message);
-                            errorFlag = 1;
-                        }
-                        // Check whether input data is valid numeric input.
-                        catch (FormatException)
-                        {
-                            Console.WriteLine("One or more inputs aren't valid. Kindly enter again.");
-                            errorFlag = 1;
-                        }
-                        // Check whether investment(if exists) is greater than income.
-                        catch (InvestmentGreaterException ex)
-                        {
-                            Console.WriteLine(ex.Message);
-                            errorFlag = 1;
+                            throw new FormatException();
                         }
                     }
-                    else
+                    // Catch negative input exception.
+                    catch (NegativeNumberException ex)
                     {
-                        // For only income input.
-                        try
-                        {
-                            income = double.Parse(inputs[0]);
-                        }
-                        // Check negative input.
-                        catch (NegativeNumberException ex)
-                        {
-                            Console.WriteLine(ex.Message);
-                            errorFlag = 1;
-                        }
-                        // Check whether input data is valid numeric input.
-                        catch (Exception)
-                        {
-                            errorFlag = 1;
-                            Console.WriteLine("Kindly enter a valid numeric data as income.");
-                        }
+                        Console.WriteLine(ex.Message);
+                        errorFlag = 1;
+                    }
+                    // Catch investment(if exists) is greater than income exception.
+                    catch (InvestmentGreaterException ex)
+                    {
+                        Console.WriteLine(ex.Message);
+                        errorFlag = 1;
+                    }
+                    // Catch invalid numeric input format exception.
+                    catch (FormatException)
+                    {
+                        Console.WriteLine("One or more inputs aren't valid. Kindly enter again.");
+                        errorFlag = 1;
+                    }
+                    // Catch overall exception (if any exists).
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine(ex.Message);
+                        errorFlag = 1;
                     }
                 } while (errorFlag != 0);
 
@@ -149,12 +149,10 @@ namespace TaxCalculator.UI
                         {
                             Console.WriteLine("{0} - {1}:-\nRs.{2}", rangeValue, "Any", string.Format(hindi, "{0:c}", taxUnderSlabs[i]).Substring(1));
                             Console.WriteLine("---------------------");
+                            break;
                         }
-                        else
-                        {
-                            Console.WriteLine("{0} - {1}:-\nRs.{2}", rangeValue, rangeValue += 500000, string.Format(hindi, "{0:c}", taxUnderSlabs[i]).Substring(1));
-                            Console.WriteLine("---------------------");
-                        }
+                        Console.WriteLine("{0} - {1}:-\nRs.{2}", rangeValue, rangeValue += 500000, string.Format(hindi, "{0:c}", taxUnderSlabs[i]).Substring(1));
+                        Console.WriteLine("---------------------");
                     }
                     Console.WriteLine("Total:\tRs.{0}", string.Format(hindi, "{0:c}", c.SumOfIndividualTaxSlab(taxUnderSlabs)).Substring(1));
                 }

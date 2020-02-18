@@ -26,28 +26,33 @@ namespace TaxCalculator.Business
         /// <returns type="List<double>">List containing taxes calculated for each slab based on income.</returns>
         public List<double> ReturnTaxUnderDiffSlabs(double taxableIncome)
         {
+            double rateSlab1 = 0.05;
+            double rateSlab2 = 0.2;
+            double rateSlab3 = 0.3;
+            double fixedTaxAmountSlab1 = rateSlab1 * 500000;
+            double fixedTaxAmountSlab2 = rateSlab2 * 500000;
             List<double> taxUnderSlabs = new List<Double>();
             
             // For slab rate range 0L-5L.
             if (taxableIncome > 250000 && taxableIncome <= 500000)
             {
-                taxUnderSlabs.Add(0.05 * (taxableIncome - 250000));
+                taxUnderSlabs.Add(rateSlab1 * (taxableIncome - 250000));
                 return taxUnderSlabs;
             }
 
             // For slab rate range 5L-10L.
             if(taxableIncome > 500000 && taxableIncome <= 1000000){
-                taxUnderSlabs.Add(12500);
-                taxUnderSlabs.Add(0.2 * (taxableIncome - 500000));
+                taxUnderSlabs.Add(fixedTaxAmountSlab1);
+                taxUnderSlabs.Add(rateSlab2 * (taxableIncome - 500000));
                 return taxUnderSlabs;
             }
 
             // For slab rate range above 10L.
             if (taxableIncome > 1000000)
             {
-                taxUnderSlabs.Add(12500);
-                taxUnderSlabs.Add(100000);
-                taxUnderSlabs.Add(0.3 * (taxableIncome - 1000000));
+                taxUnderSlabs.Add(fixedTaxAmountSlab1);
+                taxUnderSlabs.Add(fixedTaxAmountSlab2);
+                taxUnderSlabs.Add(rateSlab3 * (taxableIncome - 1000000));
                 return taxUnderSlabs;
             }
             return taxUnderSlabs;
