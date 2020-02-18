@@ -66,7 +66,7 @@ namespace TaxCalculator.UI
                             }
                             if (income < 0 || investment < 0)
                             {
-                                throw new InvestmentGreaterException("Negative Input. Kindly enter again.");
+                                throw new NegativeNumberException("Negative Input. Kindly enter again.");
                             }
                         }
                         // Check negative input.
