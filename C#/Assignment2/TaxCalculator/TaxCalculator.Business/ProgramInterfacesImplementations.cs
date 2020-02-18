@@ -3,29 +3,27 @@ using System.Collections.Generic;
 using TaxCalculator.Infra;
 namespace TaxCalculator.Business
 {
+    /// <summary>
+    /// Class implementing the ICalculate interface.
+    /// </summary>
     public class Calculate:ICalculate
     {
-        // Function to find the taxable income after considering investments.
+        /// <summary>
+        /// Function to find the taxable income after considering investments. 
+        /// </summary>
+        /// <param name="income" type="double"></param>
+        /// <param name="investment" type="double"></param>
+        /// <returns type="double">Taxable Income</returns>
         public double TaxableIncomeAfterInvestment(double income, double investment)
         {
-            if (income < 250000)
-            {
-                return income;
-            }
-            else
-            {
-                if (investment > 150000)
-                {
-                    return income - 150000;
-                }
-                else
-                {
-                    return income - investment;
-                }
-            }
+            return (income < 250000)? income : (investment > 150000)? income - 150000: income - investment;  
         }
 
-        // To store te income tax under different slabs based on their rate respectively.
+        /// <summary>
+        /// To store te income tax under different slabs based on their rate respectively. 
+        /// </summary>
+        /// <param name="taxableIncome" type="double"></param>
+        /// <returns type="List<double>">List containing taxes calculated for each slab based on income.</returns>
         public List<double> ReturnTaxUnderDiffSlabs(double taxableIncome)
         {
             List<double> taxUnderSlabs = new List<Double>();
@@ -55,7 +53,11 @@ namespace TaxCalculator.Business
             return taxUnderSlabs;
         }
 
-        // To find the total sum of individual taxes under each slab. 
+        /// <summary>
+        /// To find the total sum of individual taxes under each slab.  
+        /// </summary>
+        /// <param name="taxUnderSlabs" type="List<double>"></param>
+        /// <returns type="double">Total Income Tax</returns>
         public double SumOfIndividualTaxSlab(List<double> taxUnderSlabs)
         {
             double sum = 0;
@@ -63,7 +65,6 @@ namespace TaxCalculator.Business
             foreach (var tax in taxUnderSlabs)
             {
                 sum += tax;
-                
             }
 
             return sum;

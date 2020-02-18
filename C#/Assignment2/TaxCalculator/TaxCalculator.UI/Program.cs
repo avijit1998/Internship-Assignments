@@ -5,9 +5,16 @@ using TaxCalculator.Business;
 
 namespace TaxCalculator.UI
 {
-    // User defined exceptions for investment value greater than income value.
+    /// <summary>
+    /// Class inheriting the Exception class for implementing User Defined Exception.
+    /// In this case exception should be thrown for when investment value greater than income value.
+    /// </summary>
     public class InvestmentGreaterException : Exception
     {
+        /// <summary>
+        /// Constructor which initialises the exception when investment value greater than income value.
+        /// </summary>
+        /// <param name="message" type="String"></param>
         public InvestmentGreaterException(String message)
             : base(message)
         {
@@ -15,9 +22,16 @@ namespace TaxCalculator.UI
         }
     }
 
-    // User defined exceptions for negative value.
+    /// <summary>
+    /// Class inheriting the Exception class for implementing User Defined Exception.
+    /// In this case exceptions for negative value.
+    /// </summary>
     public class NegativeNumberException : Exception
     {
+        /// <summary>
+        /// Constructor which initialises the exception for negative values.
+        /// </summary>
+        /// <param name="message" type="String"></param>
         public NegativeNumberException(String message)
             : base(message)
         {
@@ -138,9 +152,8 @@ namespace TaxCalculator.UI
                         }
                         else
                         {
-                            Console.WriteLine("{0} - {1}:-\nRs.{2}", rangeValue, rangeValue + 500000, string.Format(hindi, "{0:c}", taxUnderSlabs[i]).Substring(1));
+                            Console.WriteLine("{0} - {1}:-\nRs.{2}", rangeValue, rangeValue += 500000, string.Format(hindi, "{0:c}", taxUnderSlabs[i]).Substring(1));
                             Console.WriteLine("---------------------");
-                            rangeValue += 500000;
                         }
                     }
                     Console.WriteLine("Total:\tRs.{0}", string.Format(hindi, "{0:c}", c.SumOfIndividualTaxSlab(taxUnderSlabs)).Substring(1));
