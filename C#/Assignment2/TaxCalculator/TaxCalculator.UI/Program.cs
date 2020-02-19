@@ -165,6 +165,11 @@ namespace TaxCalculator.UI
                 }
             }
         }
+        /// <summary>
+        /// Function to display the money in indian format
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns type="string"></returns>
         static string IndianFormat(double input)
         {
             CultureInfo hindi = new CultureInfo("hi-IN");
