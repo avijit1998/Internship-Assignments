@@ -111,11 +111,11 @@ namespace TaxCalculator.UI
                 } while (errorFlag != 0);
 
                 // To display the income and investment(if any) amount in Indian format.
-                CultureInfo hindi = new CultureInfo("hi-IN");
-                Console.WriteLine("\nIncome: Rs.{0}", string.Format(hindi, "{0:c}", income).Substring(1));
+                
+                Console.WriteLine("\nIncome: Rs.{0}", IndianFormat(income));
                 if (investment != 0)
                 {
-                    Console.WriteLine("\nInvestment: Rs.{0}", string.Format(hindi, "{0:c}", investment).Substring(1));
+                    Console.WriteLine("\nInvestment: Rs.{0}", IndianFormat(investment));
                     Console.WriteLine("(Maximum Rs.1,50,000 can be exempted from tax.)");
                 }
                 
@@ -123,7 +123,7 @@ namespace TaxCalculator.UI
                 
                 // Display taxable income amount after taking investment into account.
                 double taxableIncome = c.TaxableIncomeAfterInvestment(income, investment);
-                Console.WriteLine("\nTaxable Income: Rs.{0}", string.Format(hindi, "{0:c}", taxableIncome).Substring(1));
+                Console.WriteLine("\nTaxable Income: Rs.{0}", IndianFormat(taxableIncome));
                 
                 // Tax amount under each slab rate.
                 Console.WriteLine("\nTax Under Different Slab Rates:");
@@ -147,14 +147,14 @@ namespace TaxCalculator.UI
                     {
                         if (rangeValue == 1000000)
                         {
-                            Console.WriteLine("{0} - {1}:-\nRs.{2}", rangeValue, "Any", string.Format(hindi, "{0:c}", taxUnderSlabs[i]).Substring(1));
+                            Console.WriteLine("{0} - {1}:-\nRs.{2}", rangeValue, "Any", IndianFormat(taxUnderSlabs[i]));
                             Console.WriteLine("---------------------");
                             break;
                         }
-                        Console.WriteLine("{0} - {1}:-\nRs.{2}", rangeValue, rangeValue += 500000, string.Format(hindi, "{0:c}", taxUnderSlabs[i]).Substring(1));
+                        Console.WriteLine("{0} - {1}:-\nRs.{2}", rangeValue, rangeValue += 500000, IndianFormat(taxUnderSlabs[i]));
                         Console.WriteLine("---------------------");
                     }
-                    Console.WriteLine("Total:\tRs.{0}", string.Format(hindi, "{0:c}", c.SumOfIndividualTaxSlab(taxUnderSlabs)).Substring(1));
+                    Console.WriteLine("Total:\tRs.{0}", IndianFormat(c.SumOfIndividualTaxSlab(taxUnderSlabs)));
                 }
 
                 // To repeat the process.
@@ -164,6 +164,11 @@ namespace TaxCalculator.UI
                     break;
                 }
             }
+        }
+        static string IndianFormat(double input)
+        {
+            CultureInfo hindi = new CultureInfo("hi-IN");
+            return string.Format(hindi, "{0:c}", input).Substring(1);
         }
     }
 }
