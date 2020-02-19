@@ -166,7 +166,7 @@ namespace TaxCalculator.UI
             }
         }
         /// <summary>
-        /// Function to display the money in indian format
+        /// Function to display the money in indian format.
         /// </summary>
         /// <param name="input"></param>
         /// <returns type="string"></returns>
