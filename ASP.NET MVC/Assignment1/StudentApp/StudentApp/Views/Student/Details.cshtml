@@ -1,0 +1,63 @@
+﻿@model StudentApp.Models.Students
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+</head>
+<body>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+    <div>
+        <h4>Student Detail</h4>
+        <hr />
+        <div>
+            @Html.LabelFor(model => model.serialId,"Serial No")
+            <div>
+                @Html.EditorFor(model => model.serialId, new { @readonly = "readonly" })
+            </div>
+        </div>
+        <div>
+            @Html.LabelFor(model => model.firstName, "First Name")
+            <div>
+                @Html.EditorFor(model => model.firstName, new { @readonly = "readonly" })
+            </div>
+        </div>
+        <div>
+            @Html.LabelFor(model => model.lastName, "Last Name")
+            <div>
+                @Html.EditorFor(model => model.lastName, new { @readonly = "readonly" })
+            </div>
+        </div>
+        <div>
+            @Html.LabelFor(model => model.age, "Age")
+            <div>
+                @Html.EditorFor(model => model.age, new { @readonly = "readonly" })
+            </div>
+        </div>
+        <div>
+            @Html.LabelFor(model => model.email, "Email")
+            <div>
+                @Html.EditorFor(model => model.email, new { @readonly = "readonly" })
+            </div>
+        </div>
+        <div>
+            @Html.LabelFor(model => model.gender, "Gender:")
+            <div>
+                @Html.DisplayFor(model => model.gender)
+            </div>
+        </div>
+    </div>
+    }
+    <p>
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</body>
+</html>
