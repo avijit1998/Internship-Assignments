@@ -34,7 +34,7 @@
         <div>
             @Html.LabelFor(model => model.lastName, "Last Name")
             <div>
-                @Html.TextBoxFor(model => model.lastName, new { @readonly = "readonly" })
+                @Html.TextBoxFor(model => model.lastName, new { @readonly = "disabled" })
             </div>
         </div>
         <div>
@@ -46,7 +46,7 @@
         <div>
             @Html.LabelFor(model => model.email, "Email")
             <div>
-                @Html.TextBoxFor(model => model.email, new { @disabled = "readonly" })
+                @Html.TextBoxFor(model => model.email, new { @disabled = "disabled" })
             </div>
         </div>
         <div>
