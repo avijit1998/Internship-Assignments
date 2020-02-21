@@ -14,7 +14,6 @@ namespace StudentApp.Controllers
         // GET: Student
         public ActionResult Index()
         {
-
             var students = from s in db.Students
                            orderby s.serialId
                            select s;
@@ -50,21 +49,27 @@ namespace StudentApp.Controllers
             }
         }
 
-        // GET: Student/Edit/5
+        // GET: Student/Edit/id
+        [HttpGet]
         public ActionResult Edit(int id)
         {
-            return View();
+            var student = db.Students.Single(m => m.serialId == id);
+            return View(student);
         }
 
-        // POST: Student/Edit/5
-        [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        // POST: Student/Edit/id
+        [HttpPost, ActionName("Edit")]
+        public ActionResult EditPost(int id)
         {
             try
             {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
+                var student = db.Students.Single(m => m.serialId == id);
+                if (TryUpdateModel(student))
+                {
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                return View(student);
             }
             catch
             {
@@ -72,20 +77,14 @@ namespace StudentApp.Controllers
             }
         }
 
-        // GET: Student/Delete/5
+        //GET
         public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: Student/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
         {
             try
             {
-                // TODO: Add delete logic here
-
+                Students student = db.Students.Find(id);
+                db.Students.Remove(student);
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
             catch

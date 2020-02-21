@@ -43,7 +43,7 @@ namespace TaxCalculator.UI
 
     class Program
     {
-        static double income, investment;
+        double income, investment;
         static void Main(string[] args)
         {   
             while (true)

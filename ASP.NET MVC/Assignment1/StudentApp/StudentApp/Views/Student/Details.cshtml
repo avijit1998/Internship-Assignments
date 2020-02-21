@@ -18,34 +18,35 @@
     <div>
         <h4>Student Detail</h4>
         <hr />
+        
         <div>
             @Html.LabelFor(model => model.serialId,"Serial No")
             <div>
-                @Html.EditorFor(model => model.serialId, new { @readonly = "readonly" })
+                @Html.TextBoxFor(model => model.serialId, new { @disabled = "disabled" })
             </div>
         </div>
         <div>
             @Html.LabelFor(model => model.firstName, "First Name")
             <div>
-                @Html.EditorFor(model => model.firstName, new { @readonly = "readonly" })
+                @Html.TextBoxFor(model => model.firstName, new { @disabled = "disabled" })
             </div>
         </div>
         <div>
             @Html.LabelFor(model => model.lastName, "Last Name")
             <div>
-                @Html.EditorFor(model => model.lastName, new { @readonly = "readonly" })
+                @Html.TextBoxFor(model => model.lastName, new { @readonly = "readonly" })
             </div>
         </div>
         <div>
             @Html.LabelFor(model => model.age, "Age")
             <div>
-                @Html.EditorFor(model => model.age, new { @readonly = "readonly" })
+                @Html.TextBoxFor(model => model.age, new { @disabled = "disabled" })
             </div>
         </div>
         <div>
             @Html.LabelFor(model => model.email, "Email")
             <div>
-                @Html.EditorFor(model => model.email, new { @readonly = "readonly" })
+                @Html.TextBoxFor(model => model.email, new { @disabled = "readonly" })
             </div>
         </div>
         <div>
