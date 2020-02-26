@@ -120,7 +120,12 @@
     <Compile Include="Migrations\202002261047262_RenamedProperties.designer.cs">
       <DependentUpon>202002261047262_RenamedProperties.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202002261058139_AddedDOBPropRemovedAgeProp.cs" />
+    <Compile Include="Migrations\202002261058139_AddedDOBPropRemovedAgeProp.designer.cs">
+      <DependentUpon>202002261058139_AddedDOBPropRemovedAgeProp.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\AdultAgeValidation.cs" />
     <Compile Include="Models\Students.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -159,6 +164,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202002261047262_RenamedProperties.resx">
       <DependentUpon>202002261047262_RenamedProperties.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002261058139_AddedDOBPropRemovedAgeProp.resx">
+      <DependentUpon>202002261058139_AddedDOBPropRemovedAgeProp.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -38,12 +38,6 @@
             </div>
         </div>
         <div>
-            @Html.LabelFor(model => model.Age, "Age")
-            <div>
-                @Html.TextBoxFor(model => model.Age, new { @disabled = "disabled" })
-            </div>
-        </div>
-        <div>
             @Html.LabelFor(model => model.Email, "Email")
             <div>
                 @Html.TextBoxFor(model => model.Email, new { @disabled = "disabled" })
@@ -53,6 +47,12 @@
             @Html.LabelFor(model => model.Gender, "Gender:")
             <div>
                 @Html.DisplayFor(model => model.Gender)
+            </div>
+        </div>
+        <div>
+            @Html.LabelFor(model => model.BirthDate)
+            <div>
+                @Html.TextBoxFor(model => model.BirthDate, "{0:d MMMM yyyy}")
             </div>
         </div>
     </div>

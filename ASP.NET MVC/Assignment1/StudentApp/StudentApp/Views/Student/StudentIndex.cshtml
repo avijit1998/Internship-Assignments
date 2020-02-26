@@ -37,7 +37,10 @@
                 @Html.DisplayFor(modelItem => item.Gender)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Age)
+                @{
+                    var age = DateTime.Now.Year - item.BirthDate.Year;
+                    @Html.DisplayFor(modelItem => age);
+                }
             </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new { id=item.SerialId }) |

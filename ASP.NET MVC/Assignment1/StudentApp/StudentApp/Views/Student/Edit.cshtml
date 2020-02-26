@@ -25,32 +25,28 @@
                     @Html.EditorFor(model => model.FirstName)
                 </div>
             </div>
-    
             <div>
                 @Html.LabelFor(model => model.LastName)
                 <div>
                     @Html.EditorFor(model => model.LastName)
                 </div>
             </div>
-    
-            <div>
-                @Html.LabelFor(model => model.Age)
-                <div>
-                    @Html.EditorFor(model => model.Age)
-                </div>
-            </div>
-    
             <div>
                 @Html.LabelFor(model => model.Email)
                 <div>
                     @Html.EditorFor(model => model.Email)
                 </div>
             </div>
-    
             <div>
                 @Html.LabelFor(model => model.Gender)
                 <div>
                     @Html.EditorFor(model => model.Gender)
+                </div>
+            </div>
+            <div>
+                @Html.LabelFor(model => model.BirthDate)
+                <div>
+                    @Html.TextBoxFor(model => model.BirthDate, "{0:d MMMM yyyy}")
                 </div>
             </div>
     

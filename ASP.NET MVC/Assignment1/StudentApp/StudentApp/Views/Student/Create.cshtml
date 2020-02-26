@@ -34,13 +34,6 @@
             </div>
     
             <div>
-                @Html.LabelFor(model => model.Age)
-                <div>
-                    @Html.EditorFor(model => model.Age)
-                </div>
-            </div>
-    
-            <div>
                 @Html.LabelFor(model => model.Email)
                 <div>
                     @Html.EditorFor(model => model.Email)
@@ -54,7 +47,12 @@
                     Female: @Html.RadioButtonFor(model => model.Gender, "female")
                 </div>
             </div>
-    
+            <div>
+                @Html.LabelFor(model => model.BirthDate)
+                <div>
+                    @Html.TextBoxFor(model => model.BirthDate, "{0:d MMMM yyyy}")
+                </div>
+            </div>
             <div>
                 <div>
                     <input type="submit" value="Create" />

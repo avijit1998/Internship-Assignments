@@ -12,16 +12,21 @@ namespace StudentApp.Models
     {
         [Key]
         public int SerialId { get; set; }
+        
         [Required]
         public string FirstName { get; set; }
+        
         [Required]
         public string LastName { get; set; }
-        [Required]
-        public int Age { get; set; }
         
         public string Email { get; set; }
+        
         [Required]
         public string Gender { get; set; }
+
+        [Required]
+        [AdultAgeValidation]
+        public DateTime BirthDate { get; set; }
     }
     public class StudentDBContext : DbContext
     {
