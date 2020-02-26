@@ -11,17 +11,17 @@ namespace StudentApp.Models
     public class Students
     {
         [Key]
-        public int serialId { get; set; }
+        public int SerialId { get; set; }
         [Required]
-        public string firstName { get; set; }
+        public string FirstName { get; set; }
         [Required]
-        public string lastName { get; set; }
+        public string LastName { get; set; }
         [Required]
-        public int age { get; set; }
+        public int Age { get; set; }
         
-        public string email { get; set; }
+        public string Email { get; set; }
         [Required]
-        public string gender { get; set; }
+        public string Gender { get; set; }
     }
     public class StudentDBContext : DbContext
     {

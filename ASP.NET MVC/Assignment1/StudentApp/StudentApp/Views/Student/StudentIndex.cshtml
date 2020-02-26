@@ -32,19 +32,17 @@
     @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.firstName)
-                @Html.DisplayFor(modelItem => item.lastName)
+                @Html.DisplayFor(modelItem => item.FirstName) @Html.DisplayFor(modelItem => item.LastName)</td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Gender)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.gender)
+                @Html.DisplayFor(modelItem => item.Age)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.age)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id=item.serialId }) |
-                @Html.ActionLink("Details", "Details", new { id=item.serialId }) |
-                @Html.ActionLink("Delete", "Delete", new { id=item.serialId })
+                @Html.ActionLink("Edit", "Edit", new { id=item.SerialId }) |
+                @Html.ActionLink("Details", "Details", new { id=item.SerialId }) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.SerialId })
             </td>
         </tr>
     }

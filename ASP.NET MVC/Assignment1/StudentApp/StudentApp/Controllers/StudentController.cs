@@ -9,13 +9,14 @@ namespace StudentApp.Controllers
 {
     public class StudentController : Controller
     {
+
         private StudentDBContext db = new StudentDBContext();
-      
+
         // GET: Student
         public ActionResult Index()
         {
             var students = from s in db.Students
-                           orderby s.serialId
+                           orderby s.SerialId
                            select s;
             return View("StudentIndex",students);
         }
@@ -23,7 +24,7 @@ namespace StudentApp.Controllers
         // GET: Student/Details/id
         public ActionResult Details(int id)
         {
-            var student = db.Students.Single(m => m.serialId  == id);
+            var student = db.Students.Single(m => m.SerialId  == id);
             return View(student);
         }
 
@@ -53,7 +54,7 @@ namespace StudentApp.Controllers
         [HttpGet]
         public ActionResult Edit(int id)
         {
-            var student = db.Students.Single(m => m.serialId == id);
+            var student = db.Students.Single(m => m.SerialId == id);
             return View(student);
         }
 
@@ -63,7 +64,7 @@ namespace StudentApp.Controllers
         {
             try
             {
-                var student = db.Students.Single(m => m.serialId == id);
+                var student = db.Students.Single(m => m.SerialId == id);
                 if (TryUpdateModel(student))
                 {
                     db.SaveChanges();

@@ -112,6 +112,14 @@
     <Compile Include="Migrations\202002201944248_addedGenderField.designer.cs">
       <DependentUpon>202002201944248_addedGenderField.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202002261035120_updatedcontext.cs" />
+    <Compile Include="Migrations\202002261035120_updatedcontext.designer.cs">
+      <DependentUpon>202002261035120_updatedcontext.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202002261047262_RenamedProperties.cs" />
+    <Compile Include="Migrations\202002261047262_RenamedProperties.designer.cs">
+      <DependentUpon>202002261047262_RenamedProperties.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Students.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -140,9 +148,17 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202002201935285_RequiredAdded.resx">
       <DependentUpon>202002201935285_RequiredAdded.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202002201944248_addedGenderField.resx">
       <DependentUpon>202002201944248_addedGenderField.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002261035120_updatedcontext.resx">
+      <DependentUpon>202002261035120_updatedcontext.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002261047262_RenamedProperties.resx">
+      <DependentUpon>202002261047262_RenamedProperties.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
