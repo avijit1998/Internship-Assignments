@@ -24,30 +24,38 @@
                 <div>
                     @Html.EditorFor(model => model.FirstName)
                 </div>
+                @Html.ValidationMessageFor(model => model.FirstName)
             </div>
             <div>
                 @Html.LabelFor(model => model.LastName)
                 <div>
                     @Html.EditorFor(model => model.LastName)
                 </div>
+                @Html.ValidationMessageFor(model => model.LastName)
             </div>
             <div>
                 @Html.LabelFor(model => model.Email)
                 <div>
                     @Html.EditorFor(model => model.Email)
                 </div>
+                @Html.ValidationMessageFor(model => model.Email)
             </div>
             <div>
                 @Html.LabelFor(model => model.Gender)
                 <div>
-                    @Html.EditorFor(model => model.Gender)
+                    @Html.RadioButtonFor(model => model.Gender, "Male", new { id = "male" })
+                    @Html.Label("Male", new { @for = "male" })
+                    @Html.RadioButtonFor(model => model.Gender, "Female", new { id = "female" })
+                    @Html.Label("Female", new { @for = "female" })
                 </div>
+                @Html.ValidationMessageFor(model => model.Gender)
             </div>
             <div>
                 @Html.LabelFor(model => model.BirthDate)
                 <div>
                     @Html.TextBoxFor(model => model.BirthDate, "{0:d MMMM yyyy}")
                 </div>
+                @Html.ValidationMessageFor(model => model.BirthDate)
             </div>
     
             <div>

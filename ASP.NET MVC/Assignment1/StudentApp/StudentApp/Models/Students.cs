@@ -13,9 +13,11 @@ namespace StudentApp.Models
         [Key]
         public int SerialId { get; set; }
         
+        [Display(Name="First Name")]
         [Required]
         public string FirstName { get; set; }
         
+        [Display(Name="Last Name")]
         [Required]
         public string LastName { get; set; }
         
@@ -24,8 +26,8 @@ namespace StudentApp.Models
         [Required]
         public string Gender { get; set; }
 
+        [Display(Name="Date of Birth")]
         [Required]
-        [AdultAgeValidation]
         public DateTime BirthDate { get; set; }
     }
     public class StudentDBContext : DbContext

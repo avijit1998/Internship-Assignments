@@ -1,7 +1,7 @@
 ﻿@model StudentApp.Models.Students
 
 @{
-    Layout = null;
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <!DOCTYPE html>
@@ -19,39 +19,33 @@
         <div>
             <h4>Students</h4>
             <hr />
-            <div>
+            <div class="form-group">
                 @Html.LabelFor(model => model.FirstName)
-                <div>
-                    @Html.EditorFor(model => model.FirstName)
-                </div>
+                @Html.TextBoxFor(model => model.FirstName, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.FirstName)
             </div>
-    
-            <div>
+            <div class="form-group">
                 @Html.LabelFor(model => model.LastName)
-                <div>
-                    @Html.EditorFor(model => model.LastName)
-                </div>
+                @Html.TextBoxFor(model => model.LastName, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.LastName)
             </div>
-    
-            <div>
+            <div class="form-group">
                 @Html.LabelFor(model => model.Email)
-                <div>
-                    @Html.EditorFor(model => model.Email)
-                </div>
+                @Html.TextBoxFor(model => model.Email, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Email)
             </div>
-    
-            <div>
+            <div class="form-group">
                 @Html.LabelFor(model => model.Gender)
-                <div>
-                    Male: @Html.RadioButtonFor(model => model.Gender, "male")
-                    Female: @Html.RadioButtonFor(model => model.Gender, "female")
-                </div>
+                @Html.RadioButtonFor(model => model.Gender, "Male", new { id = "male" })
+                @Html.Label("Male", new { @for = "male" })
+                @Html.RadioButtonFor(model => model.Gender, "Female", new { id = "female" })
+                @Html.Label("Female", new { @for = "female" })
+                @Html.ValidationMessageFor(model => model.Gender)
             </div>
-            <div>
+            <div class="form-group">
                 @Html.LabelFor(model => model.BirthDate)
-                <div>
-                    @Html.TextBoxFor(model => model.BirthDate, "{0:d MMMM yyyy}")
-                </div>
+                @Html.TextBoxFor(model => model.BirthDate, "{0:d MMMM yyyy}", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.BirthDate)
             </div>
             <div>
                 <div>
