@@ -1,4 +1,5 @@
-﻿@model StudentApp.Models.Students
+﻿@model StudentApp.ViewModels.StudentFormViewModel
+
 
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -20,28 +21,32 @@
         <hr />
         
         <div class="form-group">
-            @Html.LabelFor(model => model.SerialId,"Serial No")
-            @Html.TextBoxFor(model => model.SerialId, new { @readonly = "readonly", @class = "form-control" })
+            @Html.LabelFor(model => model.Students.SerialId,"Serial No")
+            @Html.TextBoxFor(model => model.Students.SerialId, new { @readonly = "readonly", @class = "form-control" })
         </div>
         <div class="form-group">
-            @Html.LabelFor(model => model.FirstName, "First Name")
-            @Html.TextBoxFor(model => model.FirstName, new { @class = "form-control", @readonly = "readonly" })
+            @Html.LabelFor(model => model.Students.FirstName, "First Name")
+            @Html.TextBoxFor(model => model.Students.FirstName, new { @class = "form-control", @readonly = "readonly" })
         </div>
         <div class="form-group">
-            @Html.LabelFor(model => model.LastName, "Last Name")
-            @Html.TextBoxFor(model => model.LastName, new { @class = "form-control", @readonly = "readonly" })
+            @Html.LabelFor(model => model.Students.LastName, "Last Name")
+            @Html.TextBoxFor(model => model.Students.LastName, new { @class = "form-control", @readonly = "readonly" })
         </div>
         <div class="form-group">
-            @Html.LabelFor(model => model.Email, "Email")
-            @Html.TextBoxFor(model => model.Email, new { @class = "form-control", @readonly = "readonly" })
+            @Html.LabelFor(model => model.Students.Email, "Email")
+            @Html.TextBoxFor(model => model.Students.Email, new { @class = "form-control", @readonly = "readonly" })
         </div>
         <div class="form-group">
-            @Html.LabelFor(model => model.Gender, "Gender:")
-            @Html.DisplayFor(model => model.Gender)
+            @Html.LabelFor(model => model.Students.Gender, "Gender:")
+            @Html.DisplayFor(model => model.Students.Gender)
         </div>
         <div class="form-group">
-            @Html.LabelFor(model => model.BirthDate)
-            @Html.TextBoxFor(model => model.BirthDate, "{0:d MMMM yyyy}", new { @class = "form-control", @readonly = "readonly" })
+            @Html.LabelFor(model => model.Students.BirthDate)
+            @Html.TextBoxFor(model => model.Students.BirthDate, "{0:d MMMM yyyy}", new { @class = "form-control", @readonly = "readonly" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Students.Department.DepartmentName)
+            @Html.TextBoxFor(model => model.Students.Department.DepartmentName, new { @class = "form-control", @readonly = "readonly" })
         </div>
     </div>
     }

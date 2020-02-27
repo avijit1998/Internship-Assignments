@@ -1,4 +1,4 @@
-﻿@model IEnumerable<StudentApp.ViewModels.StudentFormViewModel>
+﻿@model IEnumerable<StudentApp.ViewModels.StudentDepartment>
 
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -36,26 +36,26 @@
     
     @foreach (var item in Model) {
         <tr>
-            <td>@Html.DisplayFor(modelItem => item.StudentDetails.FirstName) @Html.DisplayFor(modelItem => item.StudentDetails.LastName)</td>
+            <td>@Html.DisplayFor(modelItem => item.FirstName) @Html.DisplayFor(modelItem => item.LastName)</td>
             <td>
-                @Html.DisplayFor(modelItem => item.StudentDetails.Gender)
+                @Html.DisplayFor(modelItem => item.Gender)
             </td>
             <td>
                 @{
-                    var age = DateTime.Now.Year - item.StudentDetails.BirthDate.Year;
+                    var age = DateTime.Now.Year - item.BirthDate.Year;
                     @Html.DisplayFor(modelItem => age);
                 }
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.StudentDetails.DepartmentName)
+                @Html.DisplayFor(modelItem => item.DepartmentName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.StudentDetails.Location)
+                @Html.DisplayFor(modelItem => item.Location)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id=item.StudentDetails.SerialId }) |
-                @Html.ActionLink("Details", "Details", new { id=item.StudentDetails.SerialId }) |
-                @Html.ActionLink("Delete", "Delete", new { id=item.StudentDetails.SerialId })
+                @Html.ActionLink("Edit", "Edit", new { id=item.SerialId }) |
+                @Html.ActionLink("Details", "Details", new { id=item.SerialId }) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.SerialId })
             </td>
         </tr>
     }

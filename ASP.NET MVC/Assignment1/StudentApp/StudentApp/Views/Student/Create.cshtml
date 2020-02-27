@@ -1,4 +1,4 @@
-﻿@model StudentApp.Models.Students
+﻿@model StudentApp.ViewModels.StudentFormViewModel
 
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -20,32 +20,37 @@
             <h4>Students</h4>
             <hr />
             <div class="form-group">
-                @Html.LabelFor(model => model.FirstName)
-                @Html.TextBoxFor(model => model.FirstName, new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.FirstName)
+                @Html.LabelFor(model => model.Students.FirstName)
+                @Html.TextBoxFor(model => model.Students.FirstName, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Students.FirstName)
             </div>
             <div class="form-group">
-                @Html.LabelFor(model => model.LastName)
-                @Html.TextBoxFor(model => model.LastName, new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.LastName)
+                @Html.LabelFor(model => model.Students.LastName)
+                @Html.TextBoxFor(model => model.Students.LastName, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Students.LastName)
             </div>
             <div class="form-group">
-                @Html.LabelFor(model => model.Email)
-                @Html.TextBoxFor(model => model.Email, new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.Email)
+                @Html.LabelFor(model => model.Students.Email)
+                @Html.TextBoxFor(model => model.Students.Email, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Students.Email)
             </div>
             <div class="form-group">
-                @Html.LabelFor(model => model.Gender)
-                @Html.RadioButtonFor(model => model.Gender, "Male", new { id = "male" })
+                @Html.LabelFor(model => model.Students.Gender)
+                @Html.RadioButtonFor(model => model.Students.Gender, "Male", new { id = "male" })
                 @Html.Label("Male", new { @for = "male" })
-                @Html.RadioButtonFor(model => model.Gender, "Female", new { id = "female" })
+                @Html.RadioButtonFor(model => model.Students.Gender, "Female", new { id = "female" })
                 @Html.Label("Female", new { @for = "female" })
-                @Html.ValidationMessageFor(model => model.Gender)
+                @Html.ValidationMessageFor(model => model.Students.Gender)
             </div>
             <div class="form-group">
-                @Html.LabelFor(model => model.BirthDate)
-                @Html.TextBoxFor(model => model.BirthDate, "{0:d MMMM yyyy}", new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.BirthDate)
+                @Html.LabelFor(model => model.Students.BirthDate)
+                @Html.TextBoxFor(model => model.Students.BirthDate, "{0:d MMMM yyyy}", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Students.BirthDate)
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Students.DepartmentId)
+                @Html.DropDownListFor(model => model.Students.DepartmentId, new SelectList(Model.Departments, "DepartmentId", "DepartmentName"), "Select Department", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Students.DepartmentId)
             </div>
             <div>
                 <div>

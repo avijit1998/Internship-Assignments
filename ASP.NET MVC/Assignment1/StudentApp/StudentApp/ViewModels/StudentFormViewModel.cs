@@ -8,7 +8,7 @@ namespace StudentApp.ViewModels
 {
     public class StudentFormViewModel
     {
-        public StudentDepartment StudentDetails { get; set; }
+        public Students Students { get; set; }
         public IEnumerable<Department> Departments { get; set; }
     }
 }
