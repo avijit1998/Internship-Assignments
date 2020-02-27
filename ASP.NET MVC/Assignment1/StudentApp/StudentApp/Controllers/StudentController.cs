@@ -11,7 +11,7 @@ namespace StudentApp.Controllers
     public class StudentController : Controller
     {
         private StudentAppDbContext studentDbContext = new StudentAppDbContext();
-        
+
 
         // GET: Student
         public ActionResult Index()
@@ -25,10 +25,10 @@ namespace StudentApp.Controllers
                                 Email = s.Email,
                                 Gender = s.Gender,
                                 BirthDate = s.BirthDate,
-                                DepartmentName = s.Department.DepartmentName,
-                                Location = s.Department.Location
+                                DepartmentName = s.Department.DepartmentName != null ? s.Department.DepartmentName : "NA",
+                                Location = s.Department.Location != null ? s.Department.Location : "NA"
                             }).ToList();
-            return View("StudentIndex",students);
+            return View("StudentIndex", students);
         }
 
         // GET: Student/Details/id
@@ -64,7 +64,26 @@ namespace StudentApp.Controllers
             student = s.Students;
             if (student.SerialId == 0)
             {
-                studentDbContext.Students.Add(student);    
+                if (s.Students.DepartmentId == null)
+                {
+                    try
+                    {
+                        student.Department = new Department
+                        {
+                            DepartmentName = "N/A",
+                            Location = "N/A"
+                        };
+                        //student.Department.DepartmentName = "NA";
+                        //student.Department.Location = "NA";
+
+                    }
+                    catch (Exception e)
+                    {
+                        var test = 0;
+                    }
+
+                }
+                studentDbContext.Students.Add(student);
             }
             studentDbContext.SaveChanges();
             return RedirectToAction("Index");
