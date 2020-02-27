@@ -163,6 +163,7 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AdultAgeValidation.cs" />
     <Compile Include="Models\Department.cs" />
+    <Compile Include="Models\GmailClientValidation.cs" />
     <Compile Include="Models\StudentAppDbContext.cs" />
     <Compile Include="Models\Students.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

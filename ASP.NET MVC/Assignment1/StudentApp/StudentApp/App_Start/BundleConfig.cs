@@ -14,9 +14,14 @@ namespace StudentApp
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/site.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
+                        "~/Scripts/jquery.validate*"));
+            
             bundles.Add(new StyleBundle("~/bootstrap/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
+
+            
         }
     }
 }

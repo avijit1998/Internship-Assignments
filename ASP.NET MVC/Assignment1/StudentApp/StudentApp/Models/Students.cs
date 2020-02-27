@@ -21,12 +21,14 @@ namespace StudentApp.Models
         [Required]
         public string LastName { get; set; }
         
+        [GmailClientValidation]
         public string Email { get; set; }
         
         [Required]
         public string Gender { get; set; }
 
-        [Required]
+        [Display(Name="Date of Birth"),AdultAgeValidation]
+        [DataType(DataType.Date)]
         public DateTime BirthDate { get; set; }
 
         public int? DepartmentId { get; set; }

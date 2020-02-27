@@ -12,7 +12,6 @@ namespace StudentApp.Controllers
     {
         private StudentAppDbContext studentDbContext = new StudentAppDbContext();
 
-
         // GET: Student
         public ActionResult Index()
         {
@@ -25,8 +24,8 @@ namespace StudentApp.Controllers
                                 Email = s.Email,
                                 Gender = s.Gender,
                                 BirthDate = s.BirthDate,
-                                DepartmentName = s.Department.DepartmentName != null ? s.Department.DepartmentName : "NA",
-                                Location = s.Department.Location != null ? s.Department.Location : "NA"
+                                DepartmentName = s.DepartmentId != null ? s.Department.DepartmentName : "NA",
+                                Location = s.DepartmentId != null ? s.Department.Location : "NA"
                             }).ToList();
             return View("StudentIndex", students);
         }
@@ -60,32 +59,25 @@ namespace StudentApp.Controllers
         [HttpPost]
         public ActionResult Create(StudentFormViewModel s)
         {
-            Students student = new Students();
-            student = s.Students;
-            if (student.SerialId == 0)
+            if (!ModelState.IsValid)
             {
-                if (s.Students.DepartmentId == null)
+                var viewModel = new StudentFormViewModel
                 {
-                    try
-                    {
-                        student.Department = new Department
-                        {
-                            DepartmentName = "N/A",
-                            Location = "N/A"
-                        };
-                        //student.Department.DepartmentName = "NA";
-                        //student.Department.Location = "NA";
-
-                    }
-                    catch (Exception e)
-                    {
-                        var test = 0;
-                    }
-
-                }
-                studentDbContext.Students.Add(student);
+                    Students = s.Students,
+                    Departments = studentDbContext.Departments.ToList()
+                };
+                return View(viewModel);
             }
-            studentDbContext.SaveChanges();
+            else
+            {
+                Students student = new Students();
+                student = s.Students;
+                if (student.SerialId == 0)
+                {
+                    studentDbContext.Students.Add(student);
+                }
+                studentDbContext.SaveChanges();
+            }
             return RedirectToAction("Index");
         }
 
@@ -106,14 +98,26 @@ namespace StudentApp.Controllers
         // POST: Student/Edit/id
         public ActionResult Edit(int id, StudentFormViewModel s)
         {
-            var studentInDb = studentDbContext.Students.SingleOrDefault(c => c.SerialId == id);
-            studentInDb.BirthDate = s.Students.BirthDate;
-            studentInDb.DepartmentId = s.Students.DepartmentId;
-            studentInDb.Email = s.Students.Email;
-            studentInDb.FirstName = s.Students.FirstName;
-            studentInDb.Gender = s.Students.Gender;
-            studentInDb.LastName = s.Students.LastName;
-            studentDbContext.SaveChanges();
+            if (!ModelState.IsValid)
+            {
+                var viewModel = new StudentFormViewModel
+                {
+                    Students = s.Students,
+                    Departments = studentDbContext.Departments.ToList()
+                };
+                return View(viewModel);
+            }
+            else
+            {
+                var studentInDb = studentDbContext.Students.SingleOrDefault(c => c.SerialId == id);
+                studentInDb.BirthDate = s.Students.BirthDate;
+                studentInDb.DepartmentId = s.Students.DepartmentId;
+                studentInDb.Email = s.Students.Email;
+                studentInDb.FirstName = s.Students.FirstName;
+                studentInDb.Gender = s.Students.Gender;
+                studentInDb.LastName = s.Students.LastName;
+                studentDbContext.SaveChanges();
+            }
             return RedirectToAction("Index");
         }
 

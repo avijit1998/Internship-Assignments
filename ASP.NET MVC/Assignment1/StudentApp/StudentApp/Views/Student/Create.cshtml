@@ -40,7 +40,10 @@
                 @Html.Label("Male", new { @for = "male" })
                 @Html.RadioButtonFor(model => model.Students.Gender, "Female", new { id = "female" })
                 @Html.Label("Female", new { @for = "female" })
-                @Html.ValidationMessageFor(model => model.Students.Gender)
+                <div>
+                    @Html.ValidationMessageFor(model => model.Students.Gender)
+                </div>
+                
             </div>
             <div class="form-group">
                 @Html.LabelFor(model => model.Students.BirthDate)
