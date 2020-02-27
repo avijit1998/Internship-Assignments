@@ -7,13 +7,13 @@ namespace StudentApp.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.0")]
-    public sealed partial class AddedDOBPropRemovedAgeProp : IMigrationMetadata
+    public sealed partial class DeptTableMigr : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(AddedDOBPropRemovedAgeProp));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(DeptTableMigr));
         
         string IMigrationMetadata.Id
         {
-            get { return "202002261058139_AddedDOBPropRemovedAgeProp"; }
+            get { return "202002270550377_DeptTableMigr"; }
         }
         
         string IMigrationMetadata.Source

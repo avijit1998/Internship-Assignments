@@ -26,12 +26,12 @@ namespace StudentApp.Models
         [Required]
         public string Gender { get; set; }
 
-        [Display(Name="Date of Birth")]
         [Required]
         public DateTime BirthDate { get; set; }
-    }
-    public class StudentDBContext : DbContext
-    {
-        public DbSet<Students> Students { get; set; }
+
+        public int? DepartmentId { get; set; }
+
+        [ForeignKey("DepartmentId")]
+        public virtual Department Department { get; set; }
     }
 }

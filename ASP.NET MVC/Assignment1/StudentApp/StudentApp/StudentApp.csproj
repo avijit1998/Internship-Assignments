@@ -115,6 +115,10 @@
     <Content Include="Global.asax" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -128,7 +132,9 @@
     <Content Include="Scripts\respond.min.js" />
     <None Include="Scripts\_references.js" />
     <Content Include="Scripts\site.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
@@ -150,22 +156,23 @@
     <Compile Include="Migrations\202002201944248_addedGenderField.designer.cs">
       <DependentUpon>202002201944248_addedGenderField.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202002261035120_updatedcontext.cs" />
-    <Compile Include="Migrations\202002261035120_updatedcontext.designer.cs">
-      <DependentUpon>202002261035120_updatedcontext.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202002261047262_RenamedProperties.cs" />
-    <Compile Include="Migrations\202002261047262_RenamedProperties.designer.cs">
-      <DependentUpon>202002261047262_RenamedProperties.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202002261058139_AddedDOBPropRemovedAgeProp.cs" />
-    <Compile Include="Migrations\202002261058139_AddedDOBPropRemovedAgeProp.designer.cs">
-      <DependentUpon>202002261058139_AddedDOBPropRemovedAgeProp.cs</DependentUpon>
+    <Compile Include="Migrations\202002270550377_DeptTableMigr.cs" />
+    <Compile Include="Migrations\202002270550377_DeptTableMigr.designer.cs">
+      <DependentUpon>202002270550377_DeptTableMigr.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AdultAgeValidation.cs" />
+    <Compile Include="Models\Department.cs" />
+    <Compile Include="Models\StudentAppDbContext.cs" />
     <Compile Include="Models\Students.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\StudentDepartment.cs" />
+    <Compile Include="ViewModels\StudentFormViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
@@ -199,14 +206,8 @@
       <DependentUpon>202002201944248_addedGenderField.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202002261035120_updatedcontext.resx">
-      <DependentUpon>202002261035120_updatedcontext.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202002261047262_RenamedProperties.resx">
-      <DependentUpon>202002261047262_RenamedProperties.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202002261058139_AddedDOBPropRemovedAgeProp.resx">
-      <DependentUpon>202002261058139_AddedDOBPropRemovedAgeProp.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202002270550377_DeptTableMigr.resx">
+      <DependentUpon>202002270550377_DeptTableMigr.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
