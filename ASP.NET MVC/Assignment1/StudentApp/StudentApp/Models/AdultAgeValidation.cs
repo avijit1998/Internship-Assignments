@@ -20,7 +20,6 @@ namespace StudentApp.Models
            {
                return new ValidationResult("Please enter a valid Date of Birth");
            }
-
            var age = DateTime.Now.Year - student.BirthDate.Year;
            return age >= 18 ? ValidationResult.Success : new ValidationResult("The person should be born before "+DateTime.Now.AddYears(-18).Year.ToString());
         }
