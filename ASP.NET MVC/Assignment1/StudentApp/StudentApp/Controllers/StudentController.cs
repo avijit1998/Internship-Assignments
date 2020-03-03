@@ -15,19 +15,7 @@ namespace StudentApp.Controllers
         // GET: Student
         public ActionResult Index()
         {
-            var students = (from s in studentDbContext.Students.Include("Department").ToList()
-                            select new StudentDepartment
-                            {
-                                SerialId = s.SerialId,
-                                FirstName = s.FirstName,
-                                LastName = s.LastName,
-                                Email = s.Email,
-                                Gender = s.Gender,
-                                BirthDate = s.BirthDate,
-                                DepartmentName = s.DepartmentId != null ? s.Department.DepartmentName : "NA",
-                                Location = s.DepartmentId != null ? s.Department.Location : "NA"
-                            }).ToList();
-            return View("StudentIndex", students);
+            return View("StudentIndex");
         }
 
         // GET: Student/Details/id
@@ -118,15 +106,6 @@ namespace StudentApp.Controllers
                 studentInDb.LastName = s.Students.LastName;
                 studentDbContext.SaveChanges();
             }
-            return RedirectToAction("Index");
-        }
-
-        //GET
-        public ActionResult Delete(int id)
-        {
-            var studentInDb = studentDbContext.Students.SingleOrDefault(c => c.SerialId == id);
-            studentDbContext.Students.Remove(studentInDb);
-            studentDbContext.SaveChanges();
             return RedirectToAction("Index");
         }
     }

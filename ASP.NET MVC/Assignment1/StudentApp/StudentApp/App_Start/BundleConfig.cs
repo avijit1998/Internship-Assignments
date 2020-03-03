@@ -10,18 +10,18 @@ namespace StudentApp
     {
         public static void RegisterBundles(BundleCollection bundles)
         {
-            bundles.Add(new ScriptBundle("~/bootstrap/js").Include(
+            bundles.Add(new ScriptBundle("~/bootstrap/lib").Include(
                       "~/Scripts/bootstrap.js",
-                      "~/Scripts/site.js"));
-
-            bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
-                        "~/Scripts/jquery.validate*"));
+                      "~/Scripts/site.js",
+                      "~/Scripts/jquery.validate*",
+                      "~/Scripts/bootbox.js",
+                      "~/Scripts/datatables/jquery.datatables.js",
+                      "~/Scripts/datatables/datatables.bootstrap.js"));
             
             bundles.Add(new StyleBundle("~/bootstrap/css").Include(
-                      "~/Content/bootstrap.css",
+                      "~/Content/bootstrap-darkly-3.4.1.css",
+                      "~/Content/datatables/css/datatables.bootstrap.css",
                       "~/Content/site.css"));
-
-            
         }
     }
 }

@@ -1,67 +1,96 @@
 ﻿@model IEnumerable<StudentApp.ViewModels.StudentDepartment>
-
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>StudentIndex</title>
-</head>
-<body>
-    <p>
-        @Html.ActionLink("Create New", "Create")
-    </p>
-    <table class="table">
+<div>
+    @Html.ActionLink("Create New", "Create", new { controller = "Student" }, new { @class = "btn btn-success" })
+</div>
+<br />
+<table id="students" class="table table-bordered table-hover">
+    <thead>
         <tr>
-            <th>
-                @Html.DisplayName("Name")
-            </th>
-            <th>
-                @Html.DisplayName("Gender")
-            </th>
-            <th>
-                @Html.DisplayName("Age")
-            </th>
-            <th>
-                @Html.DisplayName("Department Name")
-            </th>
-            <th>
-                @Html.DisplayName("Department Location")
-            </th>
-            <th>
-                @Html.DisplayName("Actions")
-            </th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Gender</th>
+            <th>Date Of Birth</th>
+            <th>Department</th>
+            <th>Location</th>
+            <th>Actions</th>
         </tr>
-    
-    @foreach (var item in Model) {
-        <tr>
-            <td>@Html.DisplayFor(modelItem => item.FirstName) @Html.DisplayFor(modelItem => item.LastName)</td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Gender)
-            </td>
-            <td>
-                @{
-                    var age = DateTime.Now.Year - item.BirthDate.Year;
-                    @Html.DisplayFor(modelItem => age);
-                }
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DepartmentName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Location)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id=item.SerialId }) |
-                @Html.ActionLink("Details", "Details", new { id=item.SerialId }) |
-                @Html.ActionLink("Delete", "Delete", new { id=item.SerialId })
-            </td>
-        </tr>
-    }
-    </table>
-</body>
-</html>
+    </thead>
+    <tbody></tbody>
+</table>
+
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+            var table = $("#students").DataTable({
+                ajax: {
+                    url: "/api/student/",
+                    type: 'GET',
+                    dataType: 'json',
+                    contentType: 'application/json; charset=utf-8',
+                    dataSrc: function (res ) {
+                        console.log(res);
+                        return res;
+                    }
+                },
+                columns: [
+                    {
+                        data1: null,
+                        render: function (data, type, full, meta) {
+                            return full["firstName"] + " " + full["lastName"];;
+                        }
+                    },
+                    { data: "email" },
+                    {
+                        data: "gender"
+                    },
+                    {
+                        data: "birthDate",
+                        render: function (data, type, full, meta) {
+                            var dob = Date.parse(data);
+                            var diff_ms = Date.now() - dob;
+                            var age_dt = new Date(diff_ms);
+                            return Math.abs(age_dt.getUTCFullYear() - 1970);
+                        }
+                    },
+                    { data: "departmentName" },
+                    { data: "location" },
+                    {
+                        data: "serialId",
+                        render: function (data, type, full, meta) {
+                            return "<button class='btn-link js-delete' data-student-id=" + data + ">Delete</button>" +
+                                    "<button class='btn-link js-edit' data-student-id=" + data + ">Edit</button>" +
+                                    "<button class='btn-link js-detail' data-student-id=" + data + ">Details</button>";
+                        }      
+                    }
+                ]
+            });
+
+            $("#students").on("click", ".js-delete", function () {
+                var button = $(this);
+                bootbox.confirm("Are you sure you want to delete?", function (result) {
+                    if (result) {
+                        $.ajax({
+                            url: "/api/student/" + button.attr("data-student-id"),
+                            method: "DELETE",
+                            success: function () {
+                                table.row(button.parents("tr")).remove().draw();
+                            }
+                        });
+                    }
+                });
+            });
+
+            $("#students").on("click", ".js-edit", function () {
+                window.location.href = "/student/edit/" + $(this).attr("data-student-id");
+            });
+
+            $("#students").on("click", ".js-detail", function () {
+                window.location.href = "/student/details/" + $(this).attr("data-student-id");
+            });
+        });
+    </script>
+}
