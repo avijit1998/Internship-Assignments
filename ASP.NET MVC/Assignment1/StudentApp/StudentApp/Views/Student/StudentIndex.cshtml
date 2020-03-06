@@ -1,9 +1,10 @@
 ﻿@model IEnumerable<StudentApp.ViewModels.StudentDepartment>
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
+    List<StudentApp.Models.Department> depts = ViewBag.Departments;
 }
 <div>
-    @Html.ActionLink("Create New", "Create", new { controller = "Student" }, new { @class = "btn btn-success" })
+    <button class="btn btn-default btn-primary pull-right" data-toggle="modal" data-target="#studentFormModal">Create New</button> 
 </div>
 <br />
 <table id="students" class="table table-bordered table-hover">
@@ -20,6 +21,64 @@
     </thead>
     <tbody></tbody>
 </table>
+<div id="studentFormModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Add Student</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <form>
+                            <input type="hidden" id="studentId" name="studentId" value="" />
+                            <div class="form-group">
+                                <label for="firstName">First Name:</label>
+                                <input type="text" class="form-control" id="firstName" name="firstName">
+                            </div>
+                            <div class="form-group">
+                                <label for="lastName">Last Name:</label>
+                                <input type="text" class="form-control" id="lastName" name="lastName">
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email address:</label>
+                                <input type="text" class="form-control" id="email" name="email">
+                            </div>
+                            <div class="form-group">
+                                <label for="birthDate">Date of Birth:</label>
+                                <input type="text" class="form-control" id="birthDate" name="birthDate">
+                            </div>
+                            <div class="form-group">
+                                <label><input type="radio" name="gender" value="Male">Male</label>
+                                <label><input type="radio" name="gender" value="Female">Female</label>
+                            </div>
+                            <div class="form-group">
+                                <label>Department:</label>
+                                <select class="form-control" name="departmentId">
+                                    <option value="">Select</option>
+                                    @foreach (var d in depts)
+                                    {
+                                        <option value="@d.DepartmentId">@d.DepartmentName</option>
+                                    }
+                                </select>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-success js-save-student">Save</button>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer"></div>
+        </div>
+    </div>
+</div>
 
 @section scripts
 {
@@ -31,7 +90,7 @@
                     type: 'GET',
                     dataType: 'json',
                     contentType: 'application/json; charset=utf-8',
-                    dataSrc: function (res ) {
+                    dataSrc: function (res) {
                         console.log(res);
                         return res;
                     }
@@ -64,9 +123,15 @@
                             return "<button class='btn-link js-delete' data-student-id=" + data + ">Delete</button>" +
                                     "<button class='btn-link js-edit' data-student-id=" + data + ">Edit</button>" +
                                     "<button class='btn-link js-detail' data-student-id=" + data + ">Details</button>";
-                        }      
+                        }
                     }
                 ]
+            });
+
+            $('#studentFormModal').on('hidden.bs.modal', function () {
+                $('input:not([name="gender"]),select').val('');
+                //$('input,select').val('');
+                $('#studentFormModal').find('.modal-title').html('Add Student');
             });
 
             $("#students").on("click", ".js-delete", function () {
@@ -84,8 +149,62 @@
                 });
             });
 
-            $("#students").on("click", ".js-edit", function () {
-                window.location.href = "/student/edit/" + $(this).attr("data-student-id");
+            $("body").on("click", ".js-edit", function (e) {
+                e.preventDefault();
+                var button = $(this);
+                $.ajax({
+                    url: "/Student/Edit/" + button.attr("data-student-id"),
+                    method: "GET",
+                    success: function (result) {
+                        console.log(result);
+                        $('input[name="firstName"]').val(result.FirstName);
+                        $('input[name="lastName"]').val(result.LastName);
+                        $('input[name="email"]').val(result.Email);
+                        $('input[name="birthDate"]').val(moment(result.BirthDate).format('L'));
+                        $("input[name='gender'][value='" + result.Gender + "']").prop('checked', true);
+                        $('select[name="departmentId"]').val(result.DepartmentId);
+                        $('input[name="studentId"]').val(result.StudentId);
+                        $('#studentFormModal').find('.modal-title').html('Update Student Details');
+                        $('#studentFormModal').modal('show');
+                    },
+                    error: function (error) {
+                        console.log(error);
+                        alert("Sorry ! Unable to edit student");
+                    }
+                });
+            });
+
+            $('body').on('click', '.js-save-student', function (e) {
+                console.log("hello");
+                e.preventDefault();
+                var url = "";
+                if ($('input[name="studentId"]').val())
+                    url = "/Student/Edit/" + $('input[name="studentId"]').val();
+                else
+                    url = "Student/Create";
+                var formData = {
+                    "StudentId": $('input[name="studentId"]').val(),
+                    "FirstName": $('input[name="firstName"]').val(),
+                    "LastName": $('input[name="lastName"]').val(),
+                    "Email": $('input[name="email"]').val(),
+                    "Gender": $('input[name="gender"]:checked').val(),
+                    "BirthDate": $('input[name="birthDate"]').val(),
+                    "DepartmentId": $('select[name="departmentId"]').val()
+                };
+                $.ajax({
+                    url: url,
+                    method: "POST",
+                    data: formData,
+                    success: function (result) {
+                        console.log(result);
+                        $('#studentFormModal').modal('hide');
+                        table.ajax.reload();
+                    },
+                    error: function (error) {
+                        console.log(error);
+                        alert("Sorry ! Unable to save employee");
+                    }
+                });
             });
 
             $("#students").on("click", ".js-detail", function () {

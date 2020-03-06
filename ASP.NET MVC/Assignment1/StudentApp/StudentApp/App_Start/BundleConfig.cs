@@ -16,7 +16,8 @@ namespace StudentApp
                       "~/Scripts/jquery.validate*",
                       "~/Scripts/bootbox.js",
                       "~/Scripts/datatables/jquery.datatables.js",
-                      "~/Scripts/datatables/datatables.bootstrap.js"));
+                      "~/Scripts/datatables/datatables.bootstrap.js",
+                      "~/Scripts/moment.js"));
             
             bundles.Add(new StyleBundle("~/bootstrap/css").Include(
                       "~/Content/bootstrap-darkly-3.4.1.css",

@@ -15,6 +15,8 @@ namespace StudentApp.Controllers
         // GET: Student
         public ActionResult Index()
         {
+            var departments = studentDbContext.Departments.ToList();
+            ViewBag.Departments = departments;
             return View("StudentIndex");
         }
 
@@ -45,28 +47,18 @@ namespace StudentApp.Controllers
 
         // POST: Student/Create
         [HttpPost]
-        public ActionResult Create(StudentFormViewModel s)
+        public ActionResult Create(StudentVM s)
         {
-            if (!ModelState.IsValid)
-            {
-                var viewModel = new StudentFormViewModel
-                {
-                    Students = s.Students,
-                    Departments = studentDbContext.Departments.ToList()
-                };
-                return View(viewModel);
-            }
-            else
-            {
-                Students student = new Students();
-                student = s.Students;
-                if (student.SerialId == 0)
-                {
-                    studentDbContext.Students.Add(student);
-                }
-                studentDbContext.SaveChanges();
-            }
-            return RedirectToAction("Index");
+            Students student = new Students();
+            student.FirstName = s.FirstName;
+            student.LastName = s.LastName;
+            student.BirthDate = s.BirthDate;
+            student.Email = s.Email;
+            student.Gender = s.Gender;
+            student.DepartmentId = s.DepartmentId;
+            studentDbContext.Students.Add(student);
+            studentDbContext.SaveChanges();
+            return Json("Success");
         }
 
         // GET: Student/Edit/id
@@ -75,38 +67,35 @@ namespace StudentApp.Controllers
         {
             var student = studentDbContext.Students.Include("Department").SingleOrDefault(c => c.SerialId == id);
             var departments = studentDbContext.Departments.ToList();
-            var viewModel = new StudentFormViewModel
+            var viewModel = new StudentVM
             {
-                Students = student,
-                Departments = departments
+                StudentId = student.SerialId,
+                FirstName = student.FirstName,
+                LastName = student.LastName,
+                Email = student.Email,
+                BirthDate = student.BirthDate,
+                Gender = student.Gender,
+                DepartmentId = student.DepartmentId
             };
-            return View(viewModel);
+            return Json(viewModel,JsonRequestBehavior.AllowGet);
         }
 
         // POST: Student/Edit/id
-        public ActionResult Edit(int id, StudentFormViewModel s)
+        [HttpPost]
+        public ActionResult Edit(int studentId, StudentVM s)
         {
-            if (!ModelState.IsValid)
-            {
-                var viewModel = new StudentFormViewModel
-                {
-                    Students = s.Students,
-                    Departments = studentDbContext.Departments.ToList()
-                };
-                return View(viewModel);
-            }
-            else
-            {
-                var studentInDb = studentDbContext.Students.SingleOrDefault(c => c.SerialId == id);
-                studentInDb.BirthDate = s.Students.BirthDate;
-                studentInDb.DepartmentId = s.Students.DepartmentId;
-                studentInDb.Email = s.Students.Email;
-                studentInDb.FirstName = s.Students.FirstName;
-                studentInDb.Gender = s.Students.Gender;
-                studentInDb.LastName = s.Students.LastName;
-                studentDbContext.SaveChanges();
-            }
-            return RedirectToAction("Index");
+            var studentInDb = studentDbContext.Students.SingleOrDefault(c => c.SerialId == studentId);
+            studentInDb.FirstName = s.FirstName;    
+            studentInDb.LastName = s.LastName;
+            studentInDb.Email = s.Email;
+            studentInDb.Gender = s.Gender;
+            studentInDb.BirthDate = s.BirthDate;
+            studentInDb.DepartmentId = s.DepartmentId;
+            studentDbContext.SaveChanges();
+            return Json("Success");
         }
+
+        
+        
     }
 }
